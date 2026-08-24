@@ -47,6 +47,14 @@ class Settings:
     # --- Connectors --------------------------------------------------------
     publishing_mode: str = os.getenv("PUBLISHING_MODE", "mock").strip().lower()
 
+    # --- Ingest ------------------------------------------------------------
+    # aws_transcribe | whisper_local
+    transcription_provider: str = os.getenv("TRANSCRIPTION_PROVIDER", "aws_transcribe").strip().lower()
+    whisper_model: str = os.getenv("WHISPER_MODEL", "base")
+    s3_bucket: str = os.getenv("S3_BUCKET", "")
+    ffmpeg_path: str = os.getenv("FFMPEG_PATH", "ffmpeg")
+    ffprobe_path: str = os.getenv("FFPROBE_PATH", "ffprobe")
+
     # --- API ---------------------------------------------------------------
     api_host: str = os.getenv("API_HOST", "0.0.0.0")
     api_port: int = _int("API_PORT", 8000)
@@ -63,6 +71,8 @@ class Settings:
     creators_dir: Path = DATA_DIR / "creators"
     content_dir: Path = DATA_DIR / "content"
     runs_dir: Path = DATA_DIR / "runs"
+    uploads_dir: Path = DATA_DIR / "uploads"
+    audio_dir: Path = DATA_DIR / "audio"
 
     @property
     def is_replay(self) -> bool:

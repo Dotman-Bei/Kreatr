@@ -11,12 +11,13 @@ import asyncio
 import json
 from typing import Any, Literal
 
-from fastapi import BackgroundTasks, FastAPI, HTTPException
+from fastapi import BackgroundTasks, FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from agent.config import settings
+from agent.ingest import IngestError, ingest_video
 from agent.main import run_workflow
 from agent.resume import resume_after_approval
 from agent.schemas import Run
@@ -92,6 +93,45 @@ def get_content(content_id: str) -> dict[str, Any]:
         return load_content(content_id).model_dump(by_alias=True)
     except FileNotFoundError as exc:
         raise HTTPException(404, str(exc)) from exc
+
+
+@app.post("/api/content/upload", status_code=201)
+async def upload_content(
+    file: UploadFile = File(...),
+    creator_id: str = Form("creator_alex"),
+    title: str = Form(""),
+) -> dict[str, Any]:
+    """Upload a video, extract audio, transcribe it, and store the content.
+
+    Stage A of the workflow. Returns the stored content so a run can be started
+    against it immediately.
+    """
+    settings.uploads_dir.mkdir(parents=True, exist_ok=True)
+    destination = settings.uploads_dir / (file.filename or "upload.mp4")
+
+    try:
+        with destination.open("wb") as handle:
+            while chunk := await file.read(1024 * 1024):
+                handle.write(chunk)
+    except OSError as exc:
+        raise HTTPException(500, f"Could not save the upload: {exc}") from exc
+
+    try:
+        result = ingest_video(destination, creator_id=creator_id, title=title or None)
+    except IngestError as exc:
+        # Missing ffmpeg, no S3 bucket, silent audio — all actionable, so the
+        # message goes back to the caller verbatim.
+        raise HTTPException(422, str(exc)) from exc
+
+    return {
+        "contentId": result.content.id,
+        "title": result.content.title,
+        "duration": result.content.duration,
+        "transcriptWords": result.content.transcript_words,
+        "lines": len(result.content.transcript),
+        "provider": result.provider,
+        "secondsElapsed": round(result.seconds_elapsed, 1),
+    }
 
 
 # ---------------------------------------------------------------------------

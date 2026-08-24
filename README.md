@@ -28,7 +28,7 @@ honestly per component so nothing here overstates what runs today.
 | Creator memory persistence | ✅ Built (JSON store) |
 | Performance learning loop | ✅ Built (seeded analytics) |
 | Web UI wired to the API | ✅ Built |
-| Ingest (ffmpeg + transcription) | ⬜ Not started — transcripts are seeded |
+| Ingest (ffmpeg + transcription) | ✅ Built — needs ffmpeg installed |
 | Deployment | ⬜ Not started |
 | Demo video | ⬜ Not started |
 
@@ -259,6 +259,34 @@ Then start a run:
 curl -X POST http://localhost:8000/api/runs/sync   -H "Content-Type: application/json"   -d '{"contentId": "vid_100saas"}'
 ```
 
+### Ingesting a video
+
+Stage A turns a video file into a timestamped transcript:
+
+```bash
+python scripts/ingest.py path/to/video.mp4 --creator creator_alex
+```
+
+Or over HTTP: `POST /api/content/upload` (multipart: `file`, `creator_id`, `title`).
+
+Requires **ffmpeg** on PATH (`winget install Gyan.FFmpeg` / `brew install ffmpeg`).
+Transcription is pluggable via `TRANSCRIPTION_PROVIDER`:
+
+| Provider | Needs | Notes |
+| :--- | :--- | :--- |
+| `aws_transcribe` (default) | `S3_BUCKET` + AWS credentials | No local dependencies |
+| `whisper_local` | `pip install faster-whisper` | Runs offline |
+
+The seeded `vid_100saas` content already has a transcript, so ingest is only needed
+for your own footage.
+
+### Running the tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+
 ### Verifying the live agent
 
 Before trusting a live run, check credentials and Bedrock access:
@@ -346,9 +374,8 @@ Recommended next: "How I Price My SaaS" (confidence 88%).
 
 ## Limitations
 
-- Transcripts are seeded. Audio extraction (ffmpeg) and speech-to-text are not
-  built yet, so the agent reasons over a stored transcript rather than one it
-  produced from an uploaded file.
+- Ingest requires ffmpeg on PATH, and Amazon Transcribe requires an S3 bucket.
+  The bundled demo content ships with a transcript so neither is needed to try it.
 - Analytics are simulated for the demo rather than pulled from a live channel.
 - Creator memory and run state are JSON files on disk, not DynamoDB or Postgres.
 - Publishing defaults to a mock connector; real OAuth integrations are out of scope

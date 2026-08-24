@@ -2,18 +2,8 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Clock, FileVideo, TriangleAlert } from "lucide-react";
 import { AppShell } from "@/components/workspace/AppShell";
 import { WorkspaceTabs } from "@/components/workspace/WorkspaceTabs";
-import { content, metrics, pendingApprovals } from "@/lib/mockData";
-
-const pills = [
-  { icon: CheckCircle2, label: "Analyzed", tone: "done" },
-  { icon: CheckCircle2, label: `${metrics.analysed} moments found`, tone: "done" },
-  { icon: CheckCircle2, label: `${metrics.selected} assets selected`, tone: "done" },
-  {
-    icon: TriangleAlert,
-    label: `${pendingApprovals.length} approvals needed`,
-    tone: "warn",
-  },
-];
+import { content } from "@/lib/mockData";
+import { loadWorkspace } from "@/lib/api";
 
 export default async function WorkspaceLayout({
   children,
@@ -23,6 +13,21 @@ export default async function WorkspaceLayout({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const data = await loadWorkspace();
+  const pendingCount = data.assets.filter(
+    (asset) => asset.actionClass === "approval" && asset.status === "pending",
+  ).length;
+
+  const pills = [
+    { icon: CheckCircle2, label: "Analyzed", tone: "done" },
+    { icon: CheckCircle2, label: `${data.metrics.analysed} moments found`, tone: "done" },
+    { icon: CheckCircle2, label: `${data.metrics.selected} assets selected`, tone: "done" },
+    {
+      icon: pendingCount ? TriangleAlert : CheckCircle2,
+      label: pendingCount ? `${pendingCount} approvals needed` : "All actions resolved",
+      tone: pendingCount ? "warn" : "done",
+    },
+  ];
 
   return (
     <AppShell active="workspace">
@@ -65,7 +70,7 @@ export default async function WorkspaceLayout({
               </div>
             </div>
 
-            <WorkspaceTabs id={id} />
+            <WorkspaceTabs id={id} pendingCount={pendingCount} />
           </div>
         </div>
       </div>

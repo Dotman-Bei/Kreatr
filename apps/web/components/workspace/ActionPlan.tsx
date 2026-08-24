@@ -16,7 +16,8 @@ import {
   Youtube,
   type LucideIcon,
 } from "lucide-react";
-import { assets as seedAssets, type ActionClass, type Asset } from "@/lib/mockData";
+import { assets as fixtureAssets, type ActionClass, type Asset } from "@/lib/mockData";
+import { decideAsset, resumeRun } from "@/lib/api";
 import { ApprovalModal } from "@/components/workspace/ApprovalModal";
 import { Badge } from "@/components/ui/Badge";
 import { ConfidenceBar } from "@/components/ui/Meters";
@@ -54,13 +55,29 @@ const classMeta: Record<ActionClass, { label: string; icon: LucideIcon; tone: st
 
 type Decision = "pending" | "approved" | "rejected";
 
-export function ActionPlan() {
+export function ActionPlan({
+  assets: seedAssets = fixtureAssets,
+  runId = null,
+}: {
+  assets?: Asset[];
+  /** Present when a live backend run is driving this screen. */
+  runId?: string | null;
+}) {
   const [decisions, setDecisions] = useState<Record<string, Decision>>(() =>
     Object.fromEntries(
-      seedAssets.map((asset) => [asset.id, asset.actionClass === "auto" ? "approved" : "pending"]),
+      seedAssets.map((asset) => [
+        asset.id,
+        asset.actionClass === "auto" || asset.status === "published" ? "approved" : "pending",
+      ]),
     ),
   );
   const [modalAsset, setModalAsset] = useState<Asset | null>(null);
+
+  /** Mirror the decision to the backend when one is driving this screen. */
+  const persist = (assetId: string, decision: Decision) => {
+    if (!runId || decision === "pending") return;
+    void decideAsset(runId, assetId, decision).then(() => resumeRun(runId));
+  };
 
   const counts = useMemo(() => {
     const values = Object.entries(decisions).filter(
@@ -73,8 +90,10 @@ export function ActionPlan() {
     };
   }, [decisions]);
 
-  const setDecision = (id: string, decision: Decision) =>
+  const setDecision = (id: string, decision: Decision) => {
     setDecisions((prev) => ({ ...prev, [id]: decision }));
+    persist(id, decision);
+  };
 
   return (
     <>
@@ -91,11 +110,15 @@ export function ActionPlan() {
               <button
                 type="button"
                 onClick={() =>
-                  setDecisions((prev) =>
-                    Object.fromEntries(
+                  setDecisions((prev) => {
+                    const next = Object.fromEntries(
                       Object.entries(prev).map(([id, d]) => [id, d === "pending" ? "approved" : d]),
-                    ),
-                  )
+                    ) as Record<string, Decision>;
+                    Object.entries(prev)
+                      .filter(([, d]) => d === "pending")
+                      .forEach(([id]) => persist(id, "approved"));
+                    return next;
+                  })
                 }
                 className="neo-press inline-flex items-center gap-2 rounded-full border-2 border-black bg-lime-custom px-5 py-2.5 text-sm font-extrabold shadow-neo-sm"
               >

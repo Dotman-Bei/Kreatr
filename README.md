@@ -20,18 +20,26 @@ honestly per component so nothing here overstates what runs today.
 | Component | Status |
 | :--- | :--- |
 | Web UI — landing page | ✅ Built |
-| Web UI — dashboard, workspace, action plan, agent feed | ✅ Built (seeded demo data) |
-| Strands agent + tools | ⬜ Not started |
-| FastAPI backend | ⬜ Not started |
-| Ingest (ffmpeg + transcription) | ⬜ Not started |
-| Creator memory persistence | ⬜ Not started |
-| Performance learning loop | ⬜ Not started |
+| Web UI — dashboard, workspace, action plan, agent feed | ✅ Built |
+| Strands agent + 11 tools | ✅ Built |
+| FastAPI backend | ✅ Built |
+| Human-in-the-loop approval gate | ✅ Built |
+| Verify / retry / recover loop | ✅ Built |
+| Creator memory persistence | ✅ Built (JSON store) |
+| Performance learning loop | ✅ Built (seeded analytics) |
+| Web UI wired to the API | ✅ Built |
+| Ingest (ffmpeg + transcription) | ⬜ Not started — transcripts are seeded |
 | Deployment | ⬜ Not started |
 | Demo video | ⬜ Not started |
 
-The four workspace screens currently render from a seeded fixture
-(`apps/web/lib/mockData.ts`) that doubles as the API contract. Sections below marked
-**Planned** describe the intended design, not shipped behaviour.
+The workspace reads from the API when it is running and falls back to a seeded
+fixture when it is not — each screen shows a badge saying which one you are looking
+at. Sections below marked **Planned** describe intended design, not shipped behaviour.
+
+`KREATR_AGENT_MODE=live` runs the real Strands agent against Bedrock and needs AWS
+credentials. `KREATR_AGENT_MODE=replay` runs the same tools with no model in the loop
+so the stack works offline — useful for UI work, but a replay run is not the agent
+making decisions, and is labelled as such in the UI.
 
 ---
 
@@ -119,14 +127,36 @@ Kreatr is not a prompt wrapper around a transcript. It:
 
 ## Strands Agents Usage
 
-**Planned.** The orchestrator will live in `agent/main.py` as a single Strands agent
-with a registered tool set, rather than a fan-out of cosmetic sub-agents. Strands is
-intended to drive the real workflow — tool calling, structured outputs, memory access,
-verification and the human-in-the-loop pause — not to be a mention in this README.
+The orchestrator is a single Strands agent in [`agent/main.py`](agent/main.py) with
+eleven registered tools — not a fan-out of cosmetic sub-agents.
+
+```python
+Agent(
+    model=BedrockModel(model_id=..., region_name=...),
+    tools=ALL_TOOLS,                    # agent/tools/
+    system_prompt=system_prompt(),      # agent/prompts/orchestrator.md
+    hooks=[StrandsActivityHook(log)],   # feeds the live agent feed
+)
+```
+
+Strands drives the actual workflow:
+
+- **Tool calling** — the agent chooses the order; nothing is hard-scripted.
+- **Structured output** — the analysis tools use `structured_output_model=` with
+  Pydantic schemas, so scoring and asset plans return validated JSON.
+- **Lifecycle hooks** — `BeforeToolCallEvent` / `AfterToolCallEvent` /
+  `AfterModelCallEvent` are captured in [`agent/events.py`](agent/events.py), which is
+  why the workspace's agent feed shows real executions rather than narration.
+- **Memory** — `get_creator_memory` / `update_creator_memory` read and write a
+  persistent profile that changes later scoring.
+- **Verification and recovery** — every publish is followed by
+  `verify_publish_result`, and failures retry with backoff.
+- **Human-in-the-loop** — `publish_asset` refuses to act on a public asset until a
+  decision is recorded, and returns `awaiting_approval` instead.
 
 ## Tools
 
-The ten tools the agent exposes (`agent/tools/`). **Planned.**
+The tools the agent exposes ([`agent/tools/`](agent/tools/)).
 
 | Tool | Purpose |
 | :--- | :--- |
@@ -140,6 +170,7 @@ The ten tools the agent exposes (`agent/tools/`). **Planned.**
 | `verify_publish_result` | Confirm live state; report failure and retry advice |
 | `analyze_performance` | What happened, likely reason, recommended next action |
 | `update_creator_memory` | Persist a learned preference or observation |
+| `get_creator_memory` | Read the persistent creator profile before judging |
 
 ## Human-in-the-Loop
 
@@ -166,9 +197,16 @@ even when its hook scores well, and a strong historical topic is promoted in ran
 
 ## Performance Learning
 
-**Planned.** After publishing, Kreatr compares the asset against the creator's baseline,
-writes the finding to memory, and uses it to rank the next batch and recommend the next
-piece of content.
+After the creator approves and the assets publish, `POST /api/runs/{id}/resume`
+executes the approved actions, then `analyze_performance` compares the result against
+the channel baseline and `update_creator_memory` writes the lesson back:
+
+```text
+Wrote to memory: Concrete pricing examples outperform generic startup advice.
+```
+
+That line then appears in the `score_moment` prompt on the next run, so the second run
+ranks differently from the first. Analytics themselves are seeded for the demo.
 
 ## Demo
 
@@ -187,23 +225,58 @@ To explore the seeded UI today, run the web app (below) and visit:
 
 ## Local Setup
 
-**Requirements:** Node.js 20+, npm. (Python 3.11+, ffmpeg and AWS credentials will be
-required once the agent and API land.)
+**Requirements:** Node.js 20+, Python 3.10+. AWS credentials with Bedrock access are
+needed for `live` mode only.
 
 ```bash
-git clone <your-repo-url>
-cd kreatr
-cp .env.example .env      # fill in as components come online
-
-# Web app
-cd apps/web
-npm install
-npm run dev               # http://localhost:3000
+git clone https://github.com/Dotman-Bei/Kreatr.git
+cd Kreatr
+cp .env.example .env
 ```
 
-The web app runs standalone against seeded data — no backend or AWS account needed yet.
+**Backend** (agent + API):
+
+```bash
+python -m venv .venv
+.venv/Scripts/activate           # Windows
+source .venv/bin/activate        # macOS / Linux
+pip install -r requirements.txt
+
+uvicorn api.main:app --reload --port 8000
+```
+
+**Frontend**:
+
+```bash
+cd apps/web
+npm install
+npm run dev                      # http://localhost:3000
+```
+
+Then start a run:
+
+```bash
+curl -X POST http://localhost:8000/api/runs/sync   -H "Content-Type: application/json"   -d '{"contentId": "vid_100saas"}'
+```
+
+No AWS account? Set `KREATR_AGENT_MODE=replay` and everything above works offline
+against the seeded fixture. The web app also runs standalone with no backend at all —
+it falls back to seeded data and says so on screen.
 
 See [`apps/web/README.md`](apps/web/README.md) for frontend specifics.
+
+### API
+
+| Method | Route | Purpose |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Mode, model and connector status |
+| `POST` | `/api/runs` | Start a run in the background |
+| `POST` | `/api/runs/sync` | Run and return the finished result |
+| `GET` | `/api/runs/latest` | The most recent run (what the UI reads) |
+| `GET` | `/api/runs/{id}` | One run in full |
+| `POST` | `/api/runs/{id}/assets/{assetId}/decision` | Approve or reject an asset |
+| `POST` | `/api/runs/{id}/resume` | Execute approvals, verify, then learn |
+| `GET` | `/api/runs/{id}/events` | SSE stream of the activity feed |
 
 ## Environment Variables
 
@@ -259,8 +332,11 @@ Recommended next: "How I Price My SaaS" (confidence 88%).
 
 ## Limitations
 
-- The UI currently runs on seeded fixture data; the agent is not yet wired in.
+- Transcripts are seeded. Audio extraction (ffmpeg) and speech-to-text are not
+  built yet, so the agent reasons over a stored transcript rather than one it
+  produced from an uploaded file.
 - Analytics are simulated for the demo rather than pulled from a live channel.
+- Creator memory and run state are JSON files on disk, not DynamoDB or Postgres.
 - Publishing defaults to a mock connector; real OAuth integrations are out of scope
   for the hackathon MVP.
 - Kreatr plans clips and copy — it does not render finished video cuts.

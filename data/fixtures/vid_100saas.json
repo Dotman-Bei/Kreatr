@@ -1,0 +1,435 @@
+{
+  "candidates": [
+    {
+      "start": "08:42",
+      "end": "09:21",
+      "topic": "Pricing psychology",
+      "hook": "I tripled my price and lost exactly zero customers.",
+      "transcript": "I tripled my price and lost exactly zero customers. Here is the thing nobody tells you about pricing early: your first ten customers are not buying software, they are buying a fix for a problem that is costing them more than your price tag."
+    },
+    {
+      "start": "05:12",
+      "end": "05:50",
+      "topic": "Cold outreach",
+      "hook": "My first 40 customers came from a spreadsheet, not ads.",
+      "transcript": "My first 40 customers came from a spreadsheet, not ads. I opened a blank sheet, listed 200 companies that had publicly complained about the exact problem I solved, and sent 200 emails that each referenced their own words back to them."
+    },
+    {
+      "start": "14:20",
+      "end": "15:05",
+      "topic": "Distribution flywheel",
+      "hook": "Distribution is not a channel, it is a compounding loop.",
+      "transcript": "Distribution is not a channel, it is a compounding loop. Every customer you land should make the next one cheaper to reach. If it does not, you do not have distribution, you have advertising."
+    },
+    {
+      "start": "03:14",
+      "end": "04:02",
+      "topic": "Origin story recap",
+      "hook": "So going back to what I mentioned earlier about the agency...",
+      "transcript": "So going back to what I mentioned earlier about the agency, that whole period was really where the idea started forming, although at the time I did not think of it as a product at all, it was just a script I ran on Fridays."
+    },
+    {
+      "start": "11:02",
+      "end": "11:48",
+      "topic": "Daily routine tangent",
+      "hook": "I wake up at 5:30 and I do not check my phone...",
+      "transcript": "I wake up at 5:30 and I do not check my phone for the first hour, which honestly is the thing everybody says, but for me it genuinely did change how the first block of work went."
+    },
+    {
+      "start": "18:33",
+      "end": "19:27",
+      "topic": "Sponsor read",
+      "hook": "Quick word from the sponsor before the last part.",
+      "transcript": "Quick word from the sponsor before we get into the last part. If you have ever tried to set up analytics for a side project you know how long that takes, and this is the tool I actually use for it."
+    }
+  ],
+  "scores": {
+    "m_pricing_psychology": {
+      "score": 94,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 96
+        },
+        {
+          "label": "Standalone context",
+          "value": 91
+        },
+        {
+          "label": "Audience relevance",
+          "value": 97
+        },
+        {
+          "label": "Novelty",
+          "value": 84
+        },
+        {
+          "label": "Historical fit",
+          "value": 95
+        }
+      ],
+      "verdict": "select",
+      "platforms": [
+        "YouTube Shorts",
+        "TikTok"
+      ],
+      "reasons": [
+        "Reaches the core claim in 7 seconds, no setup required.",
+        "Pricing is a top-3 historical topic for this channel.",
+        "A similar segment outperformed the channel baseline by 1.8x."
+      ]
+    },
+    "m_cold_outreach": {
+      "score": 88,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 89
+        },
+        {
+          "label": "Standalone context",
+          "value": 93
+        },
+        {
+          "label": "Audience relevance",
+          "value": 90
+        },
+        {
+          "label": "Novelty",
+          "value": 76
+        },
+        {
+          "label": "Historical fit",
+          "value": 87
+        }
+      ],
+      "verdict": "select",
+      "platforms": [
+        "YouTube Shorts"
+      ],
+      "reasons": [
+        "Concrete number in the opening line, a strong scroll-stopper.",
+        "Maps to distribution, a proven topic in Creator Memory.",
+        "Fully self-contained, needs no reference to earlier chapters."
+      ]
+    },
+    "m_distribution_flywheel": {
+      "score": 84,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 78
+        },
+        {
+          "label": "Standalone context",
+          "value": 86
+        },
+        {
+          "label": "Audience relevance",
+          "value": 92
+        },
+        {
+          "label": "Novelty",
+          "value": 81
+        },
+        {
+          "label": "Historical fit",
+          "value": 83
+        }
+      ],
+      "verdict": "select",
+      "platforms": [
+        "X thread",
+        "Newsletter"
+      ],
+      "reasons": [
+        "Framework-shaped content, reads better as text than as video.",
+        "Routed to X and Newsletter instead of Shorts: the payoff is structural.",
+        "An audience of founders over-indexes on distribution frameworks."
+      ]
+    },
+    "m_origin_story_recap": {
+      "score": 42,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 31
+        },
+        {
+          "label": "Standalone context",
+          "value": 22
+        },
+        {
+          "label": "Audience relevance",
+          "value": 58
+        },
+        {
+          "label": "Novelty",
+          "value": 40
+        },
+        {
+          "label": "Historical fit",
+          "value": 49
+        }
+      ],
+      "verdict": "reject",
+      "rejectionReason": "Requires 45s of context, weak opening.",
+      "rejectionClass": "weak-hook",
+      "platforms": [],
+      "reasons": [
+        "Opens with a back-reference that breaks standalone viewing.",
+        "Needs roughly 45 seconds of prior context before the point lands.",
+        "Origin-story clips historically underperform this channel baseline."
+      ]
+    },
+    "m_daily_routine_tangent": {
+      "score": 51,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 61
+        },
+        {
+          "label": "Standalone context",
+          "value": 74
+        },
+        {
+          "label": "Audience relevance",
+          "value": 28
+        },
+        {
+          "label": "Novelty",
+          "value": 19
+        },
+        {
+          "label": "Historical fit",
+          "value": 24
+        }
+      ],
+      "verdict": "reject",
+      "rejectionReason": "Low audience relevance, matches a known weak topic.",
+      "rejectionClass": "low-relevance",
+      "platforms": [],
+      "reasons": [
+        "General productivity is flagged as a weak topic in Creator Memory.",
+        "Near-zero novelty, the claim is common across the category.",
+        "Conflicts with the stated avoidance of generic motivational language."
+      ]
+    },
+    "m_sponsor_read": {
+      "score": 38,
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 44
+        },
+        {
+          "label": "Standalone context",
+          "value": 66
+        },
+        {
+          "label": "Audience relevance",
+          "value": 21
+        },
+        {
+          "label": "Novelty",
+          "value": 12
+        },
+        {
+          "label": "Historical fit",
+          "value": 18
+        }
+      ],
+      "verdict": "escalate",
+      "rejectionReason": "Brand-safety escalation, sponsor segment needs a creator decision.",
+      "rejectionClass": "escalated",
+      "platforms": [],
+      "reasons": [
+        "Contains contractual sponsor copy, repurposing may breach the ad agreement.",
+        "Escalated rather than silently discarded: only the creator knows the terms.",
+        "No editorial payoff for a short-form audience."
+      ]
+    }
+  },
+  "assets": [
+    {
+      "id": "a_short_pricing",
+      "type": "YouTube Short",
+      "platform": "YouTube",
+      "icon": "youtube",
+      "sourceMomentId": "m_pricing_psychology",
+      "confidence": 94,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Thursday at 4:00 PM",
+      "title": "I tripled my price. Nobody left.",
+      "body": "Your first ten customers are not buying software, they are buying a fix for a problem that costs them more than your price tag. Here is the exact script I used to raise prices without a single churn.",
+      "meta": [
+        {
+          "label": "Cut",
+          "value": "08:42 - 09:21"
+        },
+        {
+          "label": "Length",
+          "value": "39s"
+        },
+        {
+          "label": "Aspect",
+          "value": "9:16"
+        },
+        {
+          "label": "Captions",
+          "value": "Burned-in"
+        }
+      ],
+      "rationale": [
+        "Strong standalone hook, the claim lands in 7 seconds.",
+        "Matches a top-performing topic in Creator Memory (pricing).",
+        "A comparable segment beat the channel baseline by 1.8x."
+      ]
+    },
+    {
+      "id": "a_short_outreach",
+      "type": "YouTube Short",
+      "platform": "YouTube",
+      "icon": "youtube",
+      "sourceMomentId": "m_cold_outreach",
+      "confidence": 88,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Saturday at 11:00 AM",
+      "title": "40 customers from a spreadsheet",
+      "body": "No ads. No launch. Two hundred rows, two hundred emails, each one quoting the prospect back to themselves. This is the cold outreach loop that produced the first 40 paying accounts.",
+      "meta": [
+        {
+          "label": "Cut",
+          "value": "05:12 - 05:50"
+        },
+        {
+          "label": "Length",
+          "value": "38s"
+        },
+        {
+          "label": "Aspect",
+          "value": "9:16"
+        },
+        {
+          "label": "Captions",
+          "value": "Burned-in"
+        }
+      ],
+      "rationale": [
+        "A concrete number in the opening line stops the scroll.",
+        "Maps to distribution, a proven channel topic.",
+        "Self-contained, no dependency on earlier chapters."
+      ]
+    },
+    {
+      "id": "a_x_flywheel",
+      "type": "X Thread",
+      "platform": "X",
+      "icon": "x",
+      "sourceMomentId": "m_distribution_flywheel",
+      "confidence": 84,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Friday at 9:15 AM",
+      "title": "Distribution is not a channel. It is a loop.",
+      "body": "Distribution is not a channel. It is a compounding loop.\n\nEvery customer you land should make the next one cheaper to reach.\n\nIf it does not, you do not have distribution. You have advertising.\n\n5 tests to tell the difference:",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "14:20 - 15:05"
+        },
+        {
+          "label": "Format",
+          "value": "Hook + 5 posts"
+        },
+        {
+          "label": "Tone",
+          "value": "Direct, practical"
+        }
+      ],
+      "rationale": [
+        "Framework content reads better as text than as a Short.",
+        "Founders over-index on distribution frameworks.",
+        "Routed away from Shorts deliberately, the payoff is structural."
+      ]
+    },
+    {
+      "id": "a_newsletter",
+      "type": "Newsletter Angle",
+      "platform": "Email",
+      "icon": "mail",
+      "sourceMomentId": "m_distribution_flywheel",
+      "confidence": 79,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Next Tuesday at 7:00 AM",
+      "title": "The loop test: are you compounding or renting?",
+      "body": "Open with the spreadsheet story, then formalise it into the flywheel test. Close with the pricing correction as proof that the loop only works once the price reflects the fix.",
+      "meta": [
+        {
+          "label": "Sections",
+          "value": "3"
+        },
+        {
+          "label": "Read time",
+          "value": "~4 min"
+        },
+        {
+          "label": "CTA",
+          "value": "Reply with your loop"
+        }
+      ],
+      "rationale": [
+        "Long-form framing suits the framework better than 45 seconds of video.",
+        "Reuses two selected moments without duplicating the Shorts.",
+        "Newsletter is a stated preferred format in Creator Memory."
+      ]
+    },
+    {
+      "id": "a_metadata",
+      "type": "YouTube Metadata",
+      "platform": "YouTube",
+      "icon": "tag",
+      "sourceMomentId": "m_pricing_psychology",
+      "confidence": 91,
+      "actionClass": "auto",
+      "status": "draft",
+      "scheduledFor": "Applied to draft",
+      "title": "Chapters, description and tags rewritten",
+      "body": "Nine chapter markers generated from topic segmentation, the description rewritten to front-load the pricing segment, and 12 tags aligned to historical high-CTR terms.",
+      "meta": [
+        {
+          "label": "Chapters",
+          "value": "9"
+        },
+        {
+          "label": "Tags",
+          "value": "12"
+        },
+        {
+          "label": "Class",
+          "value": "Auto, no approval"
+        }
+      ],
+      "rationale": [
+        "Draft-only metadata change, nothing is published publicly.",
+        "Classified auto because it is reversible and non-public."
+      ]
+    }
+  ],
+  "performance": {
+    "assetId": "a_short_pricing",
+    "asset": "I tripled my price. Nobody left.",
+    "views": 94800,
+    "baselineViews": 41200,
+    "multiple": "2.3x",
+    "retention": 81,
+    "baselineRetention": 62,
+    "ctr": 9.1,
+    "baselineCtr": 5.4,
+    "newSubscribers": 1240
+  }
+}

@@ -5,21 +5,24 @@ import { BrainCircuit, Check, Layers, Maximize2, Sparkles, X } from "lucide-reac
 import { VideoTimeline } from "@/components/workspace/VideoTimeline";
 import { MomentCard } from "@/components/workspace/MomentCard";
 import { RejectionCard } from "@/components/workspace/RejectionCard";
-import {
-  content,
-  creator,
-  metrics,
-  moments,
-  rejectedMoments,
-  selectedMoments,
-} from "@/lib/mockData";
+import { content, creator, moments as seedMoments, type Moment } from "@/lib/mockData";
+import type { RunMetrics } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 type Tab = "selected" | "rejected";
 
-export function MomentInspector() {
+export function MomentInspector({
+  moments = seedMoments,
+  metrics,
+}: {
+  moments?: Moment[];
+  metrics: RunMetrics;
+}) {
   const [tab, setTab] = useState<Tab>("selected");
   const [activeId, setActiveId] = useState<string | null>(null);
+
+  const selectedMoments = moments.filter((m) => m.status === "selected");
+  const rejectedMoments = moments.filter((m) => m.status === "rejected");
 
   const handleSelectMoment = (id: string) => {
     const moment = moments.find((m) => m.id === id);
@@ -150,9 +153,24 @@ export function MomentInspector() {
           </div>
           <ol className="space-y-3">
             {[
-              { label: "Raw segments", value: metrics.candidateMoments, width: "100%", tone: "bg-zinc-200" },
-              { label: "Deep-analysed", value: metrics.analysed, width: "43%", tone: "bg-status-pending" },
-              { label: "Selected", value: metrics.selected, width: "21%", tone: "bg-lime-custom" },
+              {
+                label: "Raw segments",
+                value: metrics.candidateMoments,
+                width: "100%",
+                tone: "bg-zinc-200",
+              },
+              {
+                label: "Deep-analysed",
+                value: metrics.analysed,
+                width: `${Math.round((metrics.analysed / Math.max(1, metrics.candidateMoments)) * 100)}%`,
+                tone: "bg-status-pending",
+              },
+              {
+                label: "Selected",
+                value: metrics.selected,
+                width: `${Math.round((metrics.selected / Math.max(1, metrics.candidateMoments)) * 100)}%`,
+                tone: "bg-lime-custom",
+              },
             ].map((row) => (
               <li key={row.label}>
                 <div className="mb-1 flex items-baseline justify-between">

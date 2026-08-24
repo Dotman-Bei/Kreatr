@@ -1,0 +1,18 @@
+# Kreatr — Python dependencies (agent + API)
+#
+#   python -m venv .venv
+#   .venv/Scripts/activate        # Windows
+#   source .venv/bin/activate     # macOS / Linux
+#   pip install -r requirements.txt
+
+# Agent
+strands-agents>=1.53,<2
+
+# API
+fastapi>=0.115
+uvicorn[standard]>=0.32
+python-multipart>=0.0.12
+
+# Shared
+pydantic>=2.9
+python-dotenv>=1.0

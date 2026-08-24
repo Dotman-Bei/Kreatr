@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ListChecks, ScanSearch, Terminal } from "lucide-react";
-import { pendingApprovals } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
 
-export function WorkspaceTabs({ id }: { id: string }) {
+export function WorkspaceTabs({ id, pendingCount }: { id: string; pendingCount: number }) {
   const pathname = usePathname();
   const base = `/workspace/${id}`;
 
@@ -16,7 +15,7 @@ export function WorkspaceTabs({ id }: { id: string }) {
       href: `${base}/actions`,
       label: "Action Plan",
       icon: ListChecks,
-      badge: String(pendingApprovals.length),
+      badge: pendingCount ? String(pendingCount) : undefined,
     },
     { href: `${base}/agent-feed`, label: "Agent Feed", icon: Terminal },
   ];

@@ -1,0 +1,42 @@
+{
+  "id": "creator_alex",
+  "name": "Alex Rivera",
+  "handle": "@alexbuilds",
+  "avatar": "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=facearea&w=260&q=80&h=260&facepad=2.5",
+  "primaryPlatform": "YouTube",
+  "audience": "Early-stage founders",
+  "subscribers": "148K",
+  "tone": [
+    "direct",
+    "educational",
+    "practical"
+  ],
+  "preferredFormats": [
+    "YouTube Shorts",
+    "X posts",
+    "Newsletter"
+  ],
+  "avoid": [
+    "clickbait",
+    "generic motivational language"
+  ],
+  "historicalPatterns": {
+    "strongTopics": [
+      "pricing",
+      "distribution",
+      "ai tools"
+    ],
+    "weakTopics": [
+      "general productivity",
+      "morning routines"
+    ]
+  },
+  "baseline": {
+    "avgShortViews": 41200,
+    "avgCtr": 5.4,
+    "avgRetention": 62
+  },
+  "learnings": [
+    "Concrete pricing examples outperform generic startup advice."
+  ]
+}

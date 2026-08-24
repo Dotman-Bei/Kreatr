@@ -1,0 +1,134 @@
+{
+  "id": "vid_100saas",
+  "creatorId": "creator_alex",
+  "title": "How I Built a SaaS in 30 Days",
+  "filename": "saas-growth-final.mp4",
+  "duration": "20:14",
+  "durationSeconds": 1214,
+  "uploadedAt": "Today at 12:03 PM",
+  "transcriptWords": 652,
+  "poster": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1100&q=80&h=620",
+  "thumbnail": "https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&w=900&q=80&h=620",
+  "transcript": [
+    {
+      "start": 0,
+      "end": 14,
+      "text": "Thirty days ago this was an empty repo. Today it has paying customers, and I want to walk you through exactly how that happened."
+    },
+    {
+      "start": 14,
+      "end": 38,
+      "text": "I am going to cover four things: how I picked the problem, how I got the first users, how I priced it, and what I would do differently."
+    },
+    {
+      "start": 38,
+      "end": 72,
+      "text": "The problem came from my own workflow. I was doing the same manual task every week and I finally got annoyed enough to build something."
+    },
+    {
+      "start": 72,
+      "end": 120,
+      "text": "I want to be clear that I did not do customer discovery interviews. I was the customer. That is not always the right approach but it worked here."
+    },
+    {
+      "start": 120,
+      "end": 168,
+      "text": "So the build took about nine days for a version that did one thing. One thing, done properly, with no settings page."
+    },
+    {
+      "start": 168,
+      "end": 194,
+      "text": "That is the part people skip. They build six features badly instead of one feature well."
+    },
+    {
+      "start": 194,
+      "end": 242,
+      "text": "So going back to what I mentioned earlier about the agency, that whole period was really where the idea started forming, although at the time I did not think of it as a product at all, it was just a script I ran on Fridays."
+    },
+    {
+      "start": 242,
+      "end": 312,
+      "text": "Anyway. Distribution. This is the part that actually decides whether you have a business."
+    },
+    {
+      "start": 312,
+      "end": 350,
+      "text": "My first 40 customers came from a spreadsheet, not ads. I opened a blank sheet, listed 200 companies that had publicly complained about the exact problem I solved, and sent 200 emails that each referenced their own words back to them."
+    },
+    {
+      "start": 350,
+      "end": 400,
+      "text": "The reply rate was about 19 percent, which is absurd, and it is absurd because the emails were not cold. They were specific."
+    },
+    {
+      "start": 400,
+      "end": 470,
+      "text": "I did try paid ads for a week. I spent 400 dollars and got two signups, both of which churned. So I stopped."
+    },
+    {
+      "start": 470,
+      "end": 522,
+      "text": "Let us talk about pricing, because this is where I made the biggest mistake and then the biggest correction."
+    },
+    {
+      "start": 522,
+      "end": 561,
+      "text": "I tripled my price and lost exactly zero customers. Here is the thing nobody tells you about pricing early: your first ten customers are not buying software, they are buying a fix for a problem that is costing them more than your price tag."
+    },
+    {
+      "start": 561,
+      "end": 620,
+      "text": "I started at nineteen dollars because that felt safe. It was not safe. It signalled that the thing was a toy."
+    },
+    {
+      "start": 620,
+      "end": 662,
+      "text": "When I moved to fifty nine, the conversations changed. People asked about onboarding instead of asking whether it was free."
+    },
+    {
+      "start": 662,
+      "end": 708,
+      "text": "I wake up at 5:30 and I do not check my phone for the first hour, which honestly is the thing everybody says, but for me it genuinely did change how the first block of work went."
+    },
+    {
+      "start": 708,
+      "end": 760,
+      "text": "Right, back to the product. The onboarding was three screens and I cut it to one."
+    },
+    {
+      "start": 760,
+      "end": 860,
+      "text": "Support was me, in a shared inbox, for the entire first month. That is not scalable and I would not defend it, but it taught me the objections faster than any survey would have."
+    },
+    {
+      "start": 860,
+      "end": 905,
+      "text": "Distribution is not a channel, it is a compounding loop. Every customer you land should make the next one cheaper to reach. If it does not, you do not have distribution, you have advertising."
+    },
+    {
+      "start": 905,
+      "end": 980,
+      "text": "The loop for me was simple: every customer got a shareable output with a small footer, and that footer drove about a third of new signups by week four."
+    },
+    {
+      "start": 980,
+      "end": 1060,
+      "text": "I want to flag that this works for tools with a visible output. If your product is invisible, you need a different loop, probably content."
+    },
+    {
+      "start": 1060,
+      "end": 1113,
+      "text": "Okay, two more things and then I will wrap up, because I know this is getting long."
+    },
+    {
+      "start": 1113,
+      "end": 1167,
+      "text": "Quick word from today's sponsor before we get into the last part. If you have ever tried to set up analytics for a side project you know how long that takes, and this is the tool I actually use for it."
+    },
+    {
+      "start": 1167,
+      "end": 1214,
+      "text": "Last thing. What I would do differently. I would price higher on day one, and I would start the outreach spreadsheet before the product was finished."
+    }
+  ]
+}

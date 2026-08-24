@@ -10,7 +10,14 @@ import {
   Terminal as TerminalIcon,
   type LucideIcon,
 } from "lucide-react";
-import { agentLog, metrics, postPublishLog, type LogEntry, type LogLevel } from "@/lib/mockData";
+import {
+  agentLog as seedAgentLog,
+  metrics as seedMetrics,
+  postPublishLog,
+  type LogEntry,
+  type LogLevel,
+} from "@/lib/mockData";
+import type { RunMetrics } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 const levelStyle: Record<LogLevel, { text: string; dot: string; label: string }> = {
@@ -32,21 +39,28 @@ const filters: { key: LogLevel | "all"; label: string }[] = [
   { key: "error", label: "Errors" },
 ];
 
-const toolCalls = [...agentLog, ...postPublishLog].filter((entry) =>
-  entry.tag.startsWith("TOOL:"),
-).length;
+function buildStats(metrics: RunMetrics): { label: string; value: string; icon: LucideIcon }[] {
+  return [
+    { label: "Tool calls", value: String(metrics.toolCalls), icon: TerminalIcon },
+    {
+      label: "Actions verified",
+      value: `${metrics.actionsVerified}/${metrics.actionsPlanned}`,
+      icon: Activity,
+    },
+    { label: "Recoveries", value: String(metrics.recoveries), icon: RotateCcw },
+  ];
+}
 
-const stats: { label: string; value: string; icon: LucideIcon }[] = [
-  { label: "Tool calls", value: String(toolCalls), icon: TerminalIcon },
-  {
-    label: "Actions verified",
-    value: `${metrics.actionsVerified}/${metrics.actionsPlanned}`,
-    icon: Activity,
-  },
-  { label: "Recoveries", value: String(metrics.recoveries), icon: RotateCcw },
-];
-
-export function AgentTerminal() {
+export function AgentTerminal({
+  log: agentLog = seedAgentLog,
+  metrics,
+  runId = null,
+}: {
+  log?: LogEntry[];
+  metrics: RunMetrics;
+  runId?: string | null;
+}) {
+  const stats = buildStats(metrics);
   const [session, setSession] = useState<"analysis" | "post">("analysis");
   const [filter, setFilter] = useState<LogLevel | "all">("all");
   const [visible, setVisible] = useState(0);
@@ -120,7 +134,7 @@ export function AgentTerminal() {
               <Circle className="h-2.5 w-2.5 fill-emerald-500 text-emerald-500" />
             </div>
             <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-              kreatr-agent · vid_100saas
+              kreatr-agent · {runId ?? "vid_100saas"}
             </span>
             <span
               className={cn(

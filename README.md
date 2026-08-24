@@ -275,4 +275,4 @@ Recommended next: "How I Price My SaaS" (confidence 88%).
 
 ## License
 
-[MIT](LICENSE) © 2026 Emmanuel Bamigboye
+[MIT](LICENSE) © 2026 Heisbei

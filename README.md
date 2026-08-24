@@ -259,6 +259,20 @@ Then start a run:
 curl -X POST http://localhost:8000/api/runs/sync   -H "Content-Type: application/json"   -d '{"contentId": "vid_100saas"}'
 ```
 
+### Verifying the live agent
+
+Before trusting a live run, check credentials and Bedrock access:
+
+```bash
+python scripts/live_smoke.py --preflight   # cheap: credentials, identity, model access
+python scripts/live_smoke.py               # full run + behavioural verdict
+```
+
+The full run asserts the agent behaved like one: it found candidates, rejected a
+meaningful share of them, made multiple tool calls, and — the check that matters most —
+did not publish any public asset without approval. Failures print the fix, not a stack
+trace.
+
 No AWS account? Set `KREATR_AGENT_MODE=replay` and everything above works offline
 against the seeded fixture. The web app also runs standalone with no backend at all —
 it falls back to seeded data and says so on screen.

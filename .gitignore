@@ -1,0 +1,55 @@
+# ---- Node / Next.js ----
+node_modules/
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+.pnpm-debug.log*
+npm-debug.log*
+yarn-error.log*
+
+# ---- Python / FastAPI / Strands ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# ---- Environment & secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+
+# ---- Media & generated artifacts ----
+# Source uploads and derived audio/clips stay out of git.
+data/uploads/
+data/audio/
+data/clips/
+data/transcripts/
+*.mp4
+*.mov
+*.mp3
+*.wav
+!demo/**/*.mp4
+
+# ---- AWS / IaC ----
+.aws-sam/
+cdk.out/
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# ---- Editors & OS ----
+.vscode/
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db

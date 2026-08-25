@@ -51,6 +51,21 @@ it to "clean up" the UI.
 - **Line endings.** `.gitattributes` normalises to LF. Git will warn about CRLF on
   Windows; that is expected and harmless.
 
+### Deployment
+- **Do not trust a "nothing else is running" answer — check the box.** The VPS
+  was believed to be free; it was in fact serving another project on 80/443 with
+  ports 8000–8003 taken. `ss -tlnp` before choosing any port. This is why
+  `provision.sh` refuses to start when a port is held, naming the holder.
+- **`NEXT_PUBLIC_*` is inlined at build time.** Changing the browser-side API
+  base needs a rebuild, not a restart. A restart looks like it did nothing.
+- **Server components cannot use a relative fetch URL.** The workspace pages are
+  async server components; they need an absolute loopback base
+  (`KREATR_API_ORIGIN`), while the browser needs a relative one. One shared
+  constant cannot serve both — `lib/api.ts` resolves them separately.
+- **SSE dies silently behind a default nginx config.** Without
+  `proxy_buffering off` the agent feed arrives in one lump at the end of the
+  run. It looks like a hung UI, not a proxy setting.
+
 ### Next.js
 - **`next build` wipes `.next`, killing a running `next dev`.** If the dev server
   starts 404-ing on chunks after a production build, restart it. Not a code bug.
@@ -70,17 +85,38 @@ it to "clean up" the UI.
 | `replay` mode exists | Lets the whole stack run with no AWS account | It is a test double. Never call it an agent run |
 | AWS Transcribe over Whisper as default | No torch-sized dependency; fits the AWS story | Whisper still available |
 | VPS over serverless | In-memory store, BackgroundTasks, SSE, ffmpeg all assume one process | See `architecture.md` §8 |
+| systemd + existing nginx, not Docker + Caddy | The VPS already runs a live project on native nginx/certbot and has no Docker; nginx already holds 443 | Reversed the sketch in the old handoff after inspecting the box |
+| Web and API behind one hostname | A split origin gets blocked as mixed content, and the fail-soft would show seeded data as if it were a run | `deploy/nginx/kreatr.conf` |
 | Model: `global.anthropic.claude-opus-5` | Bedrock ids take a cross-region inference-profile prefix | Switch to `us.`/`eu.` if `global.` is not enabled |
 | Unsplash ids centralised in `lib/images.ts` | Every id was resolution- and subject-checked; two 404'd, several were wrong subjects | Add new ids there, verify before use |
 
-## 4. Environment facts (development machine)
+## 4. Environment facts
 
-- Windows, PowerShell primary; Git Bash available
-- Python 3.12.3, venv at `.venv/` → `.venv/Scripts/python.exe`
-- Node 22.17.1, npm 10.9.2
-- **ffmpeg: NOT installed** → ingest cannot actually run here
-- **AWS credentials: NONE** → live agent has never run here
-- **Docker: not installed** on the dev machine (user has a VPS with it)
+### The VPS (where the project now lives — Ubuntu 24.04)
+
+The repo was moved onto the VPS; this is the primary environment now.
+
+- `/root/kreatr/Kreatr`, root user. 4 cores, 7.8 GB RAM, 84 GB free
+- Python 3.12.3, venv at `.venv/` → `.venv/bin/python`. Node 20.20.2, npm 10.8.2
+- **This box is shared.** Another live project (`financehub`,
+  `financehub-demo.duckdns.org`) runs on it. Everything Kreatr does must be
+  additive, and nginx must be `nginx -t`-checked before every reload — a syntax
+  error takes down *both* sites
+- **nginx owns 80/443**, with certbot and a working Let's Encrypt cert. This is
+  why the plan is an nginx vhost, not Caddy
+- **Ports 8000–8003 are taken** by that project's uvicorn workers, plus postgres
+  5432 and redis 6379. Kreatr uses **8010** (API) and **3010** (web)
+- **Docker: NOT installed** — and deliberately not being installed. See `DEPLOY.md` §1
+- **AWS credentials: NONE** → live agent still has never run
+- Public IP `169.58.153.9`. Kreatr is live on `kreatr-demo.duckdns.org` (DuckDNS,
+  same pattern as the other project), TLS via certbot, cert valid to 23 Nov 2026
+- **ffmpeg 6.1.1 is now installed** (`provision.sh` did it), so real ingest is
+  finally runnable on this box
+
+### The original dev machine
+
+- Windows, PowerShell primary; Git Bash available. venv at `.venv/Scripts/`
+- No ffmpeg, no AWS credentials, no Docker
 - `gh` CLI not installed; git push works via Git Credential Manager
 
 Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
@@ -98,6 +134,12 @@ Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
 - All 5 routes: zero console errors, zero horizontal overflow at 1440/1600/390px
 - Live agent *constructs* with 11 tools; fails cleanly with `NoCredentialsError`
 - 14 pytest tests pass
+- **On the VPS (25 Aug):** full stack runs on Linux at ports 8010/3010 — 14 tests
+  pass, replay run completes, all five routes 200 through a throwaway nginx using
+  the real vhost, SSR reads the live run rather than the fixture, SSE streams
+  incrementally, approve → resume → publish → verify works over a relative
+  browser path, the approval gate holds unapproved assets, upload returns an
+  actionable 422 without ffmpeg, and the other project on the box stayed up
 
 **Assumed, never observed:**
 - That the agent rejects most candidates when a real model scores them ← **the

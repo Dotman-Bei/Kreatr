@@ -61,6 +61,7 @@ apps/web  (Next.js 15)      →  HTTP  →  api/ (FastAPI)  →  agent/ (Strands
 | `apps/web/lib/mockData.ts` | Seeded fixture; also the shape reference for the API |
 | `data/` | creators, content, fixtures, runs (runs are gitignored) |
 | `scripts/` | `live_smoke.py` (verify Bedrock), `ingest.py` (CLI ingest) |
+| `deploy/` | systemd units, nginx vhost, `provision.sh` — see `DEPLOY.md` |
 | `tests/` | pytest — 14 tests, ingest only so far |
 
 ## 3. The agent
@@ -169,6 +170,7 @@ on screen. Never remove that badge; FR-25 depends on it.
 | Mock connector fails once on `a_x_flywheel` | Makes retry/verify demonstrable without depending on a real outage | Yes |
 | `replay` mode | Lets UI/API be developed with no AWS account | Yes |
 | In-memory `RunStore`, JSON mirror | Fastest path; sufficient for a demo | Yes — swap for DynamoDB/Postgres behind the same interface |
+| Web and API on one origin | Removes mixed content and CORS as failure modes; a blocked call would fail soft to seeded data and look like a working demo | Hard — `lib/api.ts` and the vhost assume it |
 | AWS Transcribe as default STT | No heavy local ML dependency; strengthens the AWS story | Yes |
 | Deterministic seeded waveform | `Math.random()` would cause a React hydration mismatch | **Do not change** |
 | Fixed-precision CSS percentages | Server/client float serialisation differs → hydration error | **Do not change** |
@@ -203,6 +205,42 @@ the run store must move to Redis/Postgres and ingest must become a queued worker
 **HTTPS matters:** if the web app is served over https and calls the API over http,
 browsers block it as mixed content and the workspace silently falls back to seeded
 data — which looks like a working demo showing fake numbers.
+
+### The chosen shape
+
+Deployed natively with systemd behind the nginx already running on the VPS. Full
+steps in [`DEPLOY.md`](DEPLOY.md); the decisions worth knowing here:
+
+| Decision | Rationale |
+| :--- | :--- |
+| systemd units, not Docker | The box already runs another live project on native nginx + certbot, and has no Docker. Adding a container runtime beside a production app buys nothing here |
+| nginx vhost, not Caddy | nginx already binds 80/443 for the other project. Two processes cannot share 443 |
+| One hostname for web **and** API | Kills mixed content and CORS by construction — see below |
+| API on 8010, web on 3010 | 8000–8003 are taken by the other project on that box |
+| No `--workers` on uvicorn | Each worker would get its own in-memory run store |
+
+### Same-origin serving, and the split base URL
+
+nginx routes `/api/` to the API and everything else to Next.js under one
+hostname, so browser calls are relative and inherit the page's scheme. This is
+the structural fix for the mixed-content trap above.
+
+It forces one subtlety in `apps/web/lib/api.ts`: the workspace pages are **async
+server components**, so `loadWorkspace()` runs inside the Next.js process, where
+a relative URL has no base. The module therefore resolves two bases:
+
+- **server** → `KREATR_API_ORIGIN` (loopback, set in the systemd unit) — no DNS,
+  no TLS, no round trip back through the proxy
+- **browser** → `NEXT_PUBLIC_API_URL`, set to `/` at build time, normalised to
+  `""` so every path stays relative
+
+`NEXT_PUBLIC_*` is inlined at **build** time, not read at runtime — changing the
+browser base means rebuilding, not restarting.
+
+**SSE needs `proxy_buffering off`.** With nginx's default buffering the agent
+feed accumulates and arrives in one lump when the run ends, which reads as a
+hung UI for the entire run. The vhost matches the events route *before* the
+generic `/api/` block for exactly this reason.
 
 ## 9. Extension points
 

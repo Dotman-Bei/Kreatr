@@ -21,7 +21,7 @@
 | Web wired to API | ✅ Built | Real backend ids render; fail-soft confirmed |
 | Ingest (ffmpeg + STT) | ⚠️ Built, unverified | 14 unit tests; **real ffmpeg/AWS calls never run** |
 | **Live agent run** | ❌ **Never executed** | No AWS credentials available |
-| Deployment | ⬜ Not started | — |
+| Deployment | ✅ **Live** | https://kreatr-demo.duckdns.org — HTTPS, verified end to end |
 | Demo video | ⬜ Not started | — |
 | Architecture diagram (image) | ⬜ Not started | ASCII version exists in README |
 
@@ -67,9 +67,13 @@
 - [ ] Tune `score_moment` prompt until rejection behaviour is right
 - [ ] Capture a real run's log for the demo
 
-### Phase 6 — Ship ⬜
-- [ ] Deploy (VPS decided in principle — see `handoff.md` §5)
-- [ ] HTTPS + a domain
+### Phase 6 — Ship 🟡
+- [x] Deployment config written and verified (`deploy/`, `DEPLOY.md`)
+- [x] Repo moved onto the VPS; full stack verified running there
+- [x] DuckDNS subdomain `kreatr-demo.duckdns.org` → `169.58.153.9`
+- [x] `provision.sh` run — ffmpeg, services, vhost all installed
+- [x] HTTPS via certbot; cert valid to 23 November 2026, renewal dry-run passes
+- [x] Verified end to end over public HTTPS
 - [ ] Architecture diagram as an image
 - [ ] Demo video ≤ 5 minutes
 - [ ] Devpost submission
@@ -82,8 +86,9 @@ else is built around the premise that the agent rejects most candidates, and tha
 never been observed. Prompt iteration has an unbounded tail; start it first.
 *Blocked on: AWS Bedrock access.*
 
-**2. Deployment** — independent of Bedrock, produces the live demo URL Devpost asks
-for. Can start immediately. VPS chosen over serverless (`architecture.md` §8).
+**2. Deployment** — ✅ **done.** Live at https://kreatr-demo.duckdns.org over
+HTTPS. Devpost's live-demo URL requirement is satisfied. Re-deploy after a push
+with `sudo DOMAIN=kreatr-demo.duckdns.org ./deploy/provision.sh`.
 
 **3. Demo video** — depends on (1). You want real agent footage, and re-recording
 after prompt fixes wastes a day.

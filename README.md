@@ -12,6 +12,23 @@ on the **Strands Agents SDK** and **AWS Bedrock**.
 
 ---
 
+## Working on this project?
+
+Whether you are a person or an AI coding agent, these five files carry the full
+context. Read them before changing anything.
+
+| File | Purpose |
+| :--- | :--- |
+| [`handoff.md`](handoff.md) | **Start here.** Where work stopped, what to do next |
+| [`prd.md`](prd.md) | What the product must do; what is out of scope |
+| [`architecture.md`](architecture.md) | How it is built; decisions not to undo |
+| [`memory.md`](memory.md) | Traps already hit, conventions, verified vs assumed |
+| [`project-plan.md`](project-plan.md) | Phase status and ranked remaining work |
+
+Keep them current — `memory.md` §8 says which file to update when.
+
+---
+
 ## Project status
 
 This repository is under active development for the hackathon. Status is stated

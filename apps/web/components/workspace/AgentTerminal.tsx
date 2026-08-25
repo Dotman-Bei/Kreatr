@@ -17,8 +17,25 @@ import {
   type LogEntry,
   type LogLevel,
 } from "@/lib/mockData";
-import type { RunMetrics } from "@/lib/api";
+import { eventStreamUrl, type RunMetrics, type RunStatus } from "@/lib/api";
 import { cn } from "@/lib/utils";
+
+/**
+ * What the status pill says for a real run.
+ *
+ * Taken from the run's own status rather than from whether the event socket is
+ * open. The stream stays open while a run sits at the approval gate — so that
+ * the publish and verify entries arrive live once the creator decides — and
+ * calling that "Live" would suggest an agent that is still working when it is
+ * in fact waiting on a human.
+ */
+const statusLabel: Record<RunStatus, { label: string; active: boolean }> = {
+  queued: { label: "Queued", active: false },
+  running: { label: "Live", active: true },
+  awaiting_approval: { label: "Awaiting approval", active: false },
+  completed: { label: "Ended", active: false },
+  failed: { label: "Failed", active: false },
+};
 
 const levelStyle: Record<LogLevel, { text: string; dot: string; label: string }> = {
   ingest: { text: "text-sky-300", dot: "bg-sky-400", label: "Ingest" },
@@ -39,6 +56,58 @@ const filters: { key: LogLevel | "all"; label: string }[] = [
   { key: "error", label: "Errors" },
 ];
 
+/**
+ * Subscribes to a run's server-sent activity stream.
+ *
+ * The server replays the log from the beginning on every connection, so each
+ * open resets the buffer rather than appending to it — an automatic EventSource
+ * reconnect would otherwise duplicate the entire feed. For the same reason the
+ * `done` event closes the source explicitly: the server ends the response when
+ * the run settles, and EventSource treats a closed stream as a reason to
+ * reconnect and replay it forever.
+ *
+ * Without a run id there is nothing to stream, and the seeded log is used as-is.
+ */
+function useRunStream(runId: string | null, seeded: LogEntry[]) {
+  const [entries, setEntries] = useState<LogEntry[]>(seeded);
+  const [streaming, setStreaming] = useState(false);
+  const [finished, setFinished] = useState(false);
+
+  useEffect(() => {
+    if (!runId) return;
+
+    const source = new EventSource(eventStreamUrl(runId));
+    let received: LogEntry[] = [];
+
+    source.onopen = () => {
+      received = [];
+      setStreaming(true);
+    };
+
+    source.onmessage = (event) => {
+      try {
+        received = [...received, JSON.parse(event.data) as LogEntry];
+        setEntries(received);
+      } catch {
+        // One malformed frame should not tear down the whole feed.
+      }
+    };
+
+    source.addEventListener("done", () => {
+      setFinished(true);
+      setStreaming(false);
+      source.close();
+    });
+
+    // Reconnection is EventSource's own business; we only stop claiming to be live.
+    source.onerror = () => setStreaming(false);
+
+    return () => source.close();
+  }, [runId]);
+
+  return { entries, streaming, finished };
+}
+
 function buildStats(metrics: RunMetrics): { label: string; value: string; icon: LucideIcon }[] {
   return [
     { label: "Tool calls", value: String(metrics.toolCalls), icon: TerminalIcon },
@@ -55,10 +124,13 @@ export function AgentTerminal({
   log: agentLog = seedAgentLog,
   metrics,
   runId = null,
+  status = null,
 }: {
   log?: LogEntry[];
   metrics: RunMetrics;
   runId?: string | null;
+  /** The backing run's status; absent for seeded data. */
+  status?: RunStatus | null;
 }) {
   const stats = buildStats(metrics);
   const [session, setSession] = useState<"analysis" | "post">("analysis");
@@ -67,18 +139,36 @@ export function AgentTerminal({
   const [playing, setPlaying] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const source: LogEntry[] = session === "analysis" ? agentLog : postPublishLog;
+  /** A run id means a real backend run is driving this screen. */
+  const isLive = runId !== null;
+  const { entries: liveLog, streaming, finished } = useRunStream(runId, agentLog);
+
+  // The seeded fixture is split into two sessions to demonstrate the loop's two
+  // halves. A real run has one continuous log, and showing the seeded
+  // post-publication script beside it would be presenting fixture data as part
+  // of an agent run — so the toggle only exists for seeded data (FR-25).
+  const source: LogEntry[] = isLive
+    ? liveLog
+    : session === "analysis"
+      ? agentLog
+      : postPublishLog;
 
   useEffect(() => {
     setVisible(0);
     setPlaying(true);
   }, [session]);
 
+  // Live entries arrive at the pace the agent produces them; the timed reveal
+  // is a presentation device for the seeded log only.
   useEffect(() => {
+    if (isLive) {
+      setVisible(source.length);
+      return;
+    }
     if (!playing || visible >= source.length) return;
     const id = window.setTimeout(() => setVisible((n) => n + 1), 380);
     return () => window.clearTimeout(id);
-  }, [playing, visible, source.length]);
+  }, [isLive, playing, visible, source.length]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -90,7 +180,11 @@ export function AgentTerminal({
     [streamed, filter],
   );
 
-  const running = visible < source.length;
+  const live = isLive && status ? statusLabel[status] : null;
+  // Drives the blinking cursor and the pill's pulse: seeded playback is
+  // "running" while it still has lines to reveal, a real run only while the
+  // agent itself is working.
+  const running = live ? live.active : !isLive && visible < source.length;
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
@@ -102,27 +196,29 @@ export function AgentTerminal({
               Strands execution stream
             </h2>
           </div>
-          <div className="flex gap-2">
-            {(
-              [
-                { key: "analysis", label: "Analysis run" },
-                { key: "post", label: "Post-publication" },
-              ] as const
-            ).map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => setSession(item.key)}
-                aria-pressed={session === item.key}
-                className={cn(
-                  "neo-press rounded-full border-2 border-black px-4 py-2 text-xs font-extrabold shadow-neo-sm",
-                  session === item.key ? "bg-lime-custom text-black" : "bg-white text-black",
-                )}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          {isLive ? null : (
+            <div className="flex gap-2">
+              {(
+                [
+                  { key: "analysis", label: "Analysis run" },
+                  { key: "post", label: "Post-publication" },
+                ] as const
+              ).map((item) => (
+                <button
+                  key={item.key}
+                  type="button"
+                  onClick={() => setSession(item.key)}
+                  aria-pressed={session === item.key}
+                  className={cn(
+                    "neo-press rounded-full border-2 border-black px-4 py-2 text-xs font-extrabold shadow-neo-sm",
+                    session === item.key ? "bg-lime-custom text-black" : "bg-white text-black",
+                  )}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Terminal */}
@@ -148,27 +244,33 @@ export function AgentTerminal({
                   running ? "animate-pulse bg-lime-custom" : "bg-zinc-500",
                 )}
               />
-              {running ? "Running" : "Idle"}
+              {live ? live.label : running ? "Running" : "Idle"}
             </span>
-            <button
-              type="button"
-              onClick={() => setPlaying((p) => !p)}
-              aria-label={playing ? "Pause stream" : "Resume stream"}
-              className="rounded-full border border-zinc-700 p-1.5 text-zinc-300 transition-colors hover:text-white"
-            >
-              {playing ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setVisible(0);
-                setPlaying(true);
-              }}
-              aria-label="Replay stream"
-              className="rounded-full border border-zinc-700 p-1.5 text-zinc-300 transition-colors hover:text-white"
-            >
-              <RotateCcw className="h-3 w-3" />
-            </button>
+            {/* Pausing and replaying are affordances of the seeded playback. A
+                real stream is not ours to rewind. */}
+            {isLive ? null : (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setPlaying((p) => !p)}
+                  aria-label={playing ? "Pause stream" : "Resume stream"}
+                  className="rounded-full border border-zinc-700 p-1.5 text-zinc-300 transition-colors hover:text-white"
+                >
+                  {playing ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setVisible(0);
+                    setPlaying(true);
+                  }}
+                  aria-label="Replay stream"
+                  className="rounded-full border border-zinc-700 p-1.5 text-zinc-300 transition-colors hover:text-white"
+                >
+                  <RotateCcw className="h-3 w-3" />
+                </button>
+              </>
+            )}
           </div>
 
           {/* Filters */}

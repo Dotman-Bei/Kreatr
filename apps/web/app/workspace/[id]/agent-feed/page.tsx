@@ -10,7 +10,12 @@ export default async function AgentFeedPage() {
       <div className="mb-6 flex justify-end">
         <SourceBadge source={data.source} mode={data.mode} runId={data.runId} />
       </div>
-      <AgentTerminal log={data.log} metrics={data.metrics} runId={data.runId} />
+      <AgentTerminal
+        log={data.log}
+        metrics={data.metrics}
+        runId={data.runId}
+        status={data.status}
+      />
     </>
   );
 }

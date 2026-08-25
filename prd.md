@@ -70,8 +70,9 @@ Each is testable. `[✓]` = implemented and verified. `[~]` = implemented, not v
 against a live model. `[ ]` = not built.
 
 ### Ingest
-- `[~]` **FR-1** Accept a video file, extract audio via ffmpeg (16kHz mono WAV)
-- `[~]` **FR-2** Produce a timestamped transcript via a pluggable provider
+- `[✓]` **FR-1** Accept a video file, extract audio via ffmpeg (16kHz mono WAV)
+- `[✓]` **FR-2** Produce a timestamped transcript via a pluggable provider
+  *(verified with `whisper_local`; `aws_transcribe` is still unexercised)*
 - `[✓]` **FR-3** Missing prerequisites must yield actionable guidance, not a traceback
 
 ### Understanding

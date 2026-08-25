@@ -138,9 +138,10 @@ git pull
 sudo DOMAIN=kreatr-demo.duckdns.org ./deploy/provision.sh
 ```
 
-Auto-renewal is verified. Now that ffmpeg is installed, the next easy win is a
-**real ingest** on an actual video file — that gap has been open since Phase 4 and
-needs no AWS account if you use `whisper_local`.
+Auto-renewal is verified, and real ingest is done: a 77s MP4 went through ffmpeg
+and `whisper_local` to a stored `Content`, so FR-1 and FR-2 are verified rather
+than assumed. The `aws_transcribe` provider — the default — is still unexercised
+and needs credentials plus an S3 bucket.
 
 ### Priority 3 — Demo video (≤5 min)
 
@@ -155,14 +156,19 @@ Do not restart the API between takes — the run store is in memory.
 
 ### Priority 4 — Architecture diagram, Devpost submission
 
-An hour each. The README has an ASCII diagram; Devpost wants an image.
+An hour each, and the diagram is the last fully unblocked task. The README has an
+ASCII diagram; Devpost wants an image.
+
+Note for a live demo of ingest: replay mode has no fixture for a newly ingested
+video, so a fresh upload yields zero candidates and says so in the feed. Ingest
+demos need `KREATR_AGENT_MODE=live`.
 
 ## 6. Known issues and gaps
 
 | Issue | Impact | Notes |
 | :--- | :--- | :--- |
 | **Live agent never run** | Critical — the product thesis is unproven | Needs AWS Bedrock access. The live site runs in replay, labelled as such |
-| Ingest never run for real | ffmpeg is now installed, so this is unblocked | Unit-tested with stubs only |
+| Amazon Transcribe path unrun | Medium — the default STT provider is unverified | Needs AWS credentials + an S3 bucket. `whisper_local` is verified |
 | Run store is in-memory | Runs vanish on API restart | JSON mirror in `data/runs/` is for inspection, not reload |
 | Analytics are seeded | `get_creator_analytics` returns fixture data | Acceptable per `build(1).md` §6 |
 | Publishing is a mock connector | No real OAuth | Deliberate scope decision |

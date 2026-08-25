@@ -19,7 +19,7 @@
 | Creator memory persistence | ✅ Built | Learning written to disk and re-read |
 | Performance learning loop | ✅ Built | Closed loop confirmed in replay |
 | Web wired to API | ✅ Built | Real backend ids render; fail-soft confirmed |
-| Ingest (ffmpeg + STT) | ⚠️ Built, unverified | 14 unit tests; **real ffmpeg/AWS calls never run** |
+| Ingest (ffmpeg + STT) | ✅ Built | Real video ingested end to end; AWS Transcribe path still unrun |
 | **Live agent run** | ❌ **Never executed** | No AWS credentials available |
 | Deployment | ✅ **Live** | https://kreatr-demo.duckdns.org — HTTPS, verified end to end |
 | Demo video | ⬜ Not started | — |
@@ -51,14 +51,15 @@
 - [x] Web wired with fail-soft fallback and a source badge
 - [x] Agent feed streams live over SSE, including post-approval entries
 
-### Phase 4 — Ingest ⚠️
+### Phase 4 — Ingest 🟡
 - [x] ffmpeg audio extraction (16kHz mono WAV)
 - [x] Pluggable transcription: `aws_transcribe` (default) / `whisper_local`
 - [x] Word grouping into readable lines
 - [x] Both Amazon Transcribe payload shapes handled
 - [x] `POST /api/content/upload` + `scripts/ingest.py`
 - [x] 14 tests covering grouping, parsing, assembly, and the 422 path
-- [ ] **Run against a real video file** — needs ffmpeg installed
+- [x] **Run against a real video file** — 77s MP4, AAC 22050 Hz → 16 kHz mono
+      WAV → 200 words in 12 lines via `whisper_local`
 - [ ] **Run against real Amazon Transcribe** — needs AWS credentials + S3 bucket
 
 ### Phase 5 — Live validation ❌ *(the critical path)*

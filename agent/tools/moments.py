@@ -6,6 +6,7 @@ import json
 
 from strands import tool
 
+from agent.config import settings
 from agent.context import current
 from agent.fixtures import replay_candidates
 from agent.llm import analyse
@@ -86,5 +87,15 @@ def find_content_moments(content_id: str, target_format: str = "short-form video
         )
 
     ctx.scratch["candidate_count"] = len(payload)
-    ctx.log.reasoning(f"Identified {len(payload)} raw candidate segments.")
+    if payload or not settings.is_replay:
+        # In live mode zero candidates is a real judgement, so it is reported plainly.
+        ctx.log.reasoning(f"Identified {len(payload)} raw candidate segments.")
+    else:
+        # Replay fixtures are keyed by content id, so freshly ingested video has
+        # none. Left unsaid, the run simply reports zero candidates and reads as
+        # a broken pipeline rather than a mode that cannot answer this question.
+        ctx.log.reasoning(
+            f"No replay fixture exists for {content_id!r}, so there is nothing to replay.",
+            "Newly ingested content can only be analysed with KREATR_AGENT_MODE=live.",
+        )
     return json.dumps(payload, indent=2)

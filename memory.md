@@ -122,8 +122,10 @@ The repo was moved onto the VPS; this is the primary environment now.
 - **AWS credentials: NONE** → live agent still has never run
 - Public IP `169.58.153.9`. Kreatr is live on `kreatr-demo.duckdns.org` (DuckDNS,
   same pattern as the other project), TLS via certbot, cert valid to 23 Nov 2026
-- **ffmpeg 6.1.1 is now installed** (`provision.sh` did it), so real ingest is
-  finally runnable on this box
+- **ffmpeg 6.1.1 installed** by `provision.sh`; **espeak-ng** and
+  **faster-whisper** added by hand for the ingest verification. faster-whisper
+  is not in `requirements.txt` (it is the optional offline STT provider), so a
+  fresh box needs `pip install faster-whisper` to use `whisper_local`
 
 ### The original dev machine
 
@@ -157,12 +159,15 @@ Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
   entries (publish, verify, performance, recommendation) to the already-
   connected client. Seeded fallback still renders its badge, session toggle
   and timed replay
+- **Real ingest (25 Aug):** a 77s MP4 (H.264 + AAC at 22050 Hz) went through
+  ffmpeg to 16 kHz mono PCM and out of `whisper_local` as 200 words in 12
+  lines, timestamps monotonic and within duration. FR-1 and FR-2 are no longer
+  assumptions. `aws_transcribe` is still unexercised
 
 **Assumed, never observed:**
 - That the agent rejects most candidates when a real model scores them ← **the
   product thesis, still unproven**
 - That the orchestrator calls tools in a sensible order in live mode
-- That ffmpeg extraction works on a real video
 - That Amazon Transcribe returns the payload shape the parser expects
 - Cost and latency of a live run
 

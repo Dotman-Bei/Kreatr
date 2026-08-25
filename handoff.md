@@ -154,10 +154,19 @@ recommendation into the terminal with no reload. That is the shot worth framing.
 
 Do not restart the API between takes — the run store is in memory.
 
-### Priority 4 — Architecture diagram, Devpost submission
+### Priority 4 — Devpost submission
 
-An hour each, and the diagram is the last fully unblocked task. The README has an
-ASCII diagram; Devpost wants an image.
+The architecture diagram is done: `architecture/kreatr-architecture.svg` is
+embedded in the README, and a 2560px PNG sits beside it for Devpost's upload. It
+is hand-authored SVG, so edit the source rather than re-exporting from a tool,
+and re-render the PNG with:
+
+```bash
+rsvg-convert -w 2560 -f png -o architecture/kreatr-architecture.png \
+  architecture/kreatr-architecture.svg
+```
+
+The write-up is what remains, and it depends on the demo video.
 
 Note for a live demo of ingest: replay mode has no fixture for a newly ingested
 video, so a fresh upload yields zero candidates and says so in the feed. Ingest

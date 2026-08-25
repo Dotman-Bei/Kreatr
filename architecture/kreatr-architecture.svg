@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" role="img" aria-labelledby="t d" font-family="Plus Jakarta Sans, Inter, Segoe UI, system-ui, sans-serif">
+  <title id="t">Kreatr architecture: one Strands agent that scores candidate moments, rejects most of them, blocks public actions at an approval gate inside publish_asset, verifies what it publishes, and writes what it learns back into the memory that scores the next run.</title>
+  <desc id="d">A runtime strip runs left to right: creator, Next.js workspace, nginx serving one origin over TLS, FastAPI, the Strands orchestrator with eleven tools, and Amazon Bedrock. The activity feed streams back to the workspace over SSE. Below it the agent loop: Stage A ingest produces a transcript, find_content_moments returns candidates, and score_moment judges each one against Creator Memory, yielding reject for the majority, escalate, or select. Selected moments become platform-native assets. Approval-class assets stop at the gate inside publish_asset until the creator decides; auto-class assets run unattended. Published assets are verified, with retries on failure, then performance is analysed and written back to Creator Memory, which feeds the next run's scoring.</desc>
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0A0A0A"/>
+    </marker>
+    <marker id="ah-sm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#52525B"/>
+    </marker>
+  </defs>
+
+  <!-- Opaque ground: a standalone SVG cannot inherit a page's theme, so it carries its own. -->
+  <rect width="1280" height="800" fill="#FFFFFF"/>
+
+  <!-- ============================ header ============================ -->
+  <text x="40" y="44" font-size="26" font-weight="800" fill="#0A0A0A">Kreatr — autonomous post-production agent</text>
+  <text x="40" y="70" font-size="13.5" fill="#52525B">One Strands agent decides what is worth making. Rejection is the feature, and nothing public ships without a recorded decision.</text>
+
+  <!-- ============================ runtime strip ============================ -->
+  <text x="40" y="92" font-size="10" font-weight="700" fill="#A1A1AA" letter-spacing="1.6">RUNTIME</text>
+
+  <g stroke="#0A0A0A" stroke-width="1.6" fill="#FFFFFF">
+    <rect x="40" y="100" width="120" height="50"/>
+    <rect x="196" y="100" width="180" height="50"/>
+    <rect x="412" y="100" width="200" height="50"/>
+    <rect x="648" y="100" width="140" height="50"/>
+    <rect x="824" y="100" width="250" height="50"/>
+    <rect x="1110" y="100" width="130" height="50"/>
+  </g>
+  <g font-size="12.5" font-weight="700" fill="#0A0A0A" text-anchor="middle">
+    <text x="100" y="122">Creator</text>
+    <text x="286" y="122">Next.js 15 workspace</text>
+    <text x="512" y="122">nginx</text>
+    <text x="718" y="122">FastAPI</text>
+    <text x="949" y="122">Strands orchestrator</text>
+    <text x="1175" y="122">Amazon Bedrock</text>
+  </g>
+  <g font-size="10.5" fill="#52525B" text-anchor="middle">
+    <text x="100" y="139">approves / rejects</text>
+    <text x="286" y="139">server components</text>
+    <text x="512" y="139">one origin, TLS</text>
+    <text x="718" y="139">runs, decisions, SSE</text>
+    <text x="949" y="139">one agent, 11 tools</text>
+    <text x="1175" y="139">Claude</text>
+  </g>
+  <g stroke="#0A0A0A" stroke-width="1.6" marker-end="url(#ah)">
+    <line x1="160" y1="125" x2="192" y2="125"/>
+    <line x1="376" y1="125" x2="408" y2="125"/>
+    <line x1="612" y1="125" x2="644" y2="125"/>
+    <line x1="788" y1="125" x2="820" y2="125"/>
+    <line x1="1074" y1="125" x2="1106" y2="125"/>
+  </g>
+
+  <!-- Activity feed returning to the browser: the reason the UI shows real execution. -->
+  <path d="M718,150 L718,172 L286,172 L286,154" fill="none" stroke="#52525B" stroke-width="1.4" marker-end="url(#ah-sm)"/>
+  <text x="502" y="167" font-size="10.5" fill="#52525B" text-anchor="middle">SSE activity feed — every tool call, as it happens</text>
+
+  <!-- ============================ the loop ============================ -->
+  <text x="40" y="236" font-size="10" font-weight="700" fill="#A1A1AA" letter-spacing="1.6">THE LOOP — WHAT THE AGENT ACTUALLY DOES</text>
+
+  <!-- row 1 -->
+  <g fill="#0A0A0A">
+    <rect x="45" y="253" width="250" height="100"/>
+    <rect x="367" y="253" width="270" height="100"/>
+    <rect x="669" y="253" width="250" height="100"/>
+  </g>
+  <g stroke="#0A0A0A" stroke-width="2.5" fill="#FFFFFF">
+    <rect x="40" y="248" width="250" height="100"/>
+    <rect x="362" y="248" width="270" height="100"/>
+    <rect x="664" y="248" width="250" height="100"/>
+  </g>
+
+  <g font-size="14.5" font-weight="800" fill="#0A0A0A" text-anchor="middle">
+    <text x="165" y="282">Stage A — ingest</text>
+    <text x="497" y="282">find_content_moments</text>
+    <text x="789" y="282">score_moment</text>
+  </g>
+  <g font-size="11" fill="#52525B" text-anchor="middle">
+    <text x="165" y="303">ffmpeg → 16 kHz mono WAV</text>
+    <text x="165" y="320">Transcribe or Whisper</text>
+    <text x="165" y="337">timestamped transcript</text>
+
+    <text x="497" y="303">recall-oriented: return</text>
+    <text x="497" y="320">everything plausible.</text>
+    <text x="497" y="337">Nothing is judged here.</text>
+
+    <text x="789" y="303">five signals per candidate:</text>
+    <text x="789" y="320">hook, standalone context,</text>
+    <text x="789" y="337">relevance, novelty, fit</text>
+  </g>
+
+  <g stroke="#0A0A0A" stroke-width="2" marker-end="url(#ah)">
+    <line x1="290" y1="298" x2="358" y2="298"/>
+    <line x1="632" y1="298" x2="660" y2="298"/>
+  </g>
+  <text x="324" y="290" font-size="10.5" fill="#52525B" text-anchor="middle">transcript</text>
+
+  <!-- verdicts -->
+  <g stroke-width="2">
+    <rect x="966" y="252" width="274" height="40" fill="#FEF2F2" stroke="#EF4444"/>
+    <rect x="966" y="300" width="274" height="40" fill="#FFFBEB" stroke="#F59E0B"/>
+    <rect x="966" y="348" width="274" height="40" fill="#ECFDF5" stroke="#10B981"/>
+  </g>
+  <g font-size="12.5" font-weight="800" text-anchor="middle">
+    <text x="1103" y="271" fill="#B91C1C">reject — the majority</text>
+    <text x="1103" y="319" fill="#B45309">escalate — creator calls it</text>
+    <text x="1103" y="367" fill="#047857">select</text>
+  </g>
+  <g font-size="10" text-anchor="middle">
+    <text x="1103" y="285" fill="#B91C1C">each carries the specific flaw</text>
+    <text x="1103" y="333" fill="#B45309">contractual or ambiguous</text>
+    <text x="1103" y="381" fill="#047857">survives into production</text>
+  </g>
+  <g stroke="#0A0A0A" stroke-width="1.6" marker-end="url(#ah)">
+    <line x1="914" y1="272" x2="962" y2="272"/>
+    <line x1="914" y1="298" x2="962" y2="320"/>
+    <line x1="914" y1="324" x2="962" y2="368"/>
+  </g>
+
+  <!-- select flows into production -->
+  <path d="M1103,388 L1103,455 L175,455 L175,516" fill="none" stroke="#10B981" stroke-width="2.5" marker-end="url(#ah)"/>
+
+  <!-- the human, at the point the decision is actually needed -->
+  <rect x="432" y="468" width="150" height="36" fill="#FFFFFF" stroke="#0A0A0A" stroke-width="2"/>
+  <text x="507" y="491" font-size="12" font-weight="700" fill="#0A0A0A" text-anchor="middle">creator decision</text>
+  <line x1="507" y1="504" x2="507" y2="516" stroke="#0A0A0A" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- row 2 -->
+  <g fill="#0A0A0A">
+    <rect x="45" y="525" width="270" height="110"/>
+    <rect x="367" y="525" width="290" height="110"/>
+    <rect x="709" y="525" width="250" height="110"/>
+    <rect x="1011" y="525" width="229" height="110"/>
+  </g>
+  <g stroke="#0A0A0A" stroke-width="2.5">
+    <rect x="40" y="520" width="270" height="110" fill="#FFFFFF"/>
+    <rect x="362" y="520" width="290" height="110" fill="#CCFF00"/>
+    <rect x="704" y="520" width="250" height="110" fill="#FFFFFF"/>
+    <rect x="1006" y="520" width="229" height="110" fill="#FFFFFF"/>
+  </g>
+
+  <g font-size="14.5" font-weight="800" fill="#0A0A0A" text-anchor="middle">
+    <text x="175" y="552">generate_asset_plan</text>
+    <text x="507" y="552">publish_asset</text>
+    <text x="829" y="552">verify_publish_result</text>
+    <text x="1120" y="552">analyze_performance</text>
+  </g>
+  <text x="507" y="571" font-size="11.5" font-weight="800" fill="#0A0A0A" text-anchor="middle">▮ THE APPROVAL GATE</text>
+  <g font-size="11" fill="#52525B" text-anchor="middle">
+    <text x="175" y="574">platform-native drafts —</text>
+    <text x="175" y="591">a Short, an X thread and a</text>
+    <text x="175" y="608">newsletter are not one caption</text>
+
+    <text x="829" y="574">a successful call is not</text>
+    <text x="829" y="591">proof of a published state,</text>
+    <text x="829" y="608">so the state is read back</text>
+
+    <text x="1120" y="574">measured against the</text>
+    <text x="1120" y="591">channel baseline, then</text>
+    <text x="1120" y="608">update_creator_memory</text>
+  </g>
+  <g font-size="10.5" fill="#1A1A00" text-anchor="middle">
+    <text x="507" y="590">approval-class assets block here until</text>
+    <text x="507" y="605">a decision is recorded. The gate lives</text>
+    <text x="507" y="620">inside the tool — a UI gate can be bypassed.</text>
+  </g>
+
+  <g stroke="#0A0A0A" stroke-width="2" marker-end="url(#ah)">
+    <line x1="310" y1="575" x2="358" y2="575"/>
+    <line x1="652" y1="575" x2="700" y2="575"/>
+    <line x1="954" y1="575" x2="1002" y2="575"/>
+  </g>
+
+  <!-- auto-class actions never reach the gate -->
+  <line x1="175" y1="630" x2="175" y2="650" stroke="#52525B" stroke-width="1.4" marker-end="url(#ah-sm)"/>
+  <rect x="40" y="650" width="270" height="40" fill="#F7F7F8" stroke="#52525B" stroke-width="1.4"/>
+  <text x="175" y="666" font-size="11" font-weight="700" fill="#0A0A0A" text-anchor="middle">auto-class → runs unattended</text>
+  <text x="175" y="681" font-size="10" fill="#52525B" text-anchor="middle">reversible, non-public: metadata, scheduling</text>
+
+  <!-- Recovery, routed above the row so the corridor below stays clear for the loop. -->
+  <path d="M829,516 L829,506 L600,506 L600,516" fill="none" stroke="#52525B" stroke-width="1.4" stroke-dasharray="5 3" marker-end="url(#ah-sm)"/>
+  <text x="700" y="499" font-size="10.5" fill="#52525B">on failure: retry with backoff ×3, then escalate</text>
+
+  <!-- ============================ the closing loop ============================ -->
+  <rect x="543" y="695" width="280" height="68" fill="#0A0A0A"/>
+  <rect x="538" y="690" width="280" height="68" fill="#F4FEE6" stroke="#0A0A0A" stroke-width="2.5"/>
+  <text x="678" y="717" font-size="14" font-weight="800" fill="#0A0A0A" text-anchor="middle">Creator Memory</text>
+  <text x="678" y="735" font-size="10.5" fill="#52525B" text-anchor="middle">audience, tone, avoid list,</text>
+  <text x="678" y="750" font-size="10.5" fill="#52525B" text-anchor="middle">historically strong and weak topics</text>
+
+  <path d="M1120,635 L1120,724 L822,724" fill="none" stroke="#0A0A0A" stroke-width="2" marker-end="url(#ah)"/>
+
+  <!-- The edge that makes this a loop rather than a pipeline. It climbs the gap
+       between publish_asset and verify_publish_result, so it reads as one arrow
+       returning to scoring instead of a frame drawn around the picture. -->
+  <path d="M678,690 L678,352" fill="none" stroke="#0A0A0A" stroke-width="2.5" stroke-dasharray="7 4" marker-end="url(#ah)"/>
+  <text x="694" y="424" font-size="11.5" font-weight="700" fill="#0A0A0A">what it learns</text>
+  <text x="694" y="439" font-size="11.5" font-weight="700" fill="#0A0A0A">scores the next run</text>
+</svg>

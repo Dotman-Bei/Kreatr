@@ -109,38 +109,29 @@ Kreatr is not a prompt wrapper around a transcript. It:
 
 ## Architecture
 
-```text
-                         ┌──────────────────┐
-                         │      Creator     │
-                         └────────┬─────────┘
-                                  ▼
-                         ┌──────────────────┐
-                         │   Kreatr Web UI  │  Next.js 15
-                         └────────┬─────────┘
-                                  ▼
-                    ┌────────────────────────┐
-                    │   Strands Orchestrator │  main agent
-                    └────────────┬───────────┘
-             ┌───────────────────┼────────────────────┐
-             ▼                   ▼                    ▼
-      ┌─────────────┐     ┌──────────────┐     ┌──────────────┐
-      │ Content     │     │ Strategy     │     │ Publishing   │
-      │ Analysis    │     │ + Memory     │     │ Connectors   │
-      └──────┬──────┘     └──────┬───────┘     └──────┬───────┘
-             └───────────┬───────┴────────────────────┘
-                         ▼
-                  ┌──────────────┐
-                  │ Verification │
-                  └───────┬──────┘
-                          ▼
-                 ┌─────────────────┐
-                 │ Human Approval  │  only when required
-                 └────────┬────────┘
-                          ▼
-                   Action → Analytics → Learning
-```
+![Kreatr architecture: one Strands agent scores candidate moments, rejects most of them, blocks public actions at an approval gate inside publish_asset, verifies what it publishes, and writes what it learns back into the memory that scores the next run.](architecture/kreatr-architecture.svg)
 
-> A rendered architecture diagram will live in `architecture/`. **Planned.**
+One Strands agent owns the loop. It reads a transcript, proposes candidates
+generously, then scores each one against Creator Memory and **rejects the
+majority** — that judgement is the product, not a side effect.
+
+Three things in the picture are worth pointing at:
+
+- **The gate is inside `publish_asset`, not in the UI.** A gate drawn at the
+  interface can be walked around by calling the tool directly; this one cannot.
+  Approval-class assets block there until a decision is recorded. Auto-class
+  actions — reversible and non-public — never reach it.
+- **Publishing is not trusted.** `verify_publish_result` reads the state back,
+  because a successful call is not proof of a published post. Failures retry
+  with backoff, then escalate.
+- **The dashed edge closes the loop.** What a published asset actually did is
+  measured against the channel baseline and written back to Creator Memory,
+  where it changes how the *next* run scores. That edge is the difference
+  between an agent and a pipeline.
+
+Source: [`architecture/kreatr-architecture.svg`](architecture/kreatr-architecture.svg)
+· [PNG](architecture/kreatr-architecture.png) · full detail in
+[`architecture.md`](architecture.md).
 
 ## Strands Agents Usage
 

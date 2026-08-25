@@ -23,7 +23,7 @@
 | **Live agent run** | ❌ **Never executed** | No AWS credentials available |
 | Deployment | ✅ **Live** | https://kreatr-demo.duckdns.org — HTTPS, verified end to end |
 | Demo video | ⬜ Not started | — |
-| Architecture diagram (image) | ⬜ Not started | ASCII version exists in README |
+| Architecture diagram (image) | ✅ Built | SVG + PNG in `architecture/`, embedded in README |
 
 ## 2. Phases
 
@@ -76,7 +76,7 @@
 - [x] `provision.sh` run — ffmpeg, services, vhost all installed
 - [x] HTTPS via certbot; cert valid to 23 November 2026, renewal dry-run passes
 - [x] Verified end to end over public HTTPS
-- [ ] Architecture diagram as an image
+- [x] Architecture diagram as an image (SVG for the README, 2560px PNG for Devpost)
 - [ ] Demo video ≤ 5 minutes
 - [ ] Devpost submission
 - [ ] *(Bonus)* builder.aws.com build-journey posts
@@ -95,7 +95,8 @@ with `sudo DOMAIN=kreatr-demo.duckdns.org ./deploy/provision.sh`.
 **3. Demo video** — depends on (1). You want real agent footage, and re-recording
 after prompt fixes wastes a day.
 
-**4. Architecture diagram + Devpost submission** — an hour each, do last.
+**4. Devpost submission** — the architecture diagram is done; the write-up is the
+remaining piece and depends on the demo video.
 
 ## 4. Time budget
 

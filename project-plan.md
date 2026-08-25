@@ -49,6 +49,7 @@
 - [x] Creator memory read/write
 - [x] FastAPI: runs, decisions, resume, SSE, upload
 - [x] Web wired with fail-soft fallback and a source badge
+- [x] Agent feed streams live over SSE, including post-approval entries
 
 ### Phase 4 — Ingest ⚠️
 - [x] ffmpeg audio extraction (16kHz mono WAV)

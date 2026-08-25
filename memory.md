@@ -51,6 +51,18 @@ it to "clean up" the UI.
 - **Line endings.** `.gitattributes` normalises to LF. Git will warn about CRLF on
   Windows; that is expected and harmless.
 
+### SSE
+- **The server sends no `done` event for an `awaiting_approval` run.** It only
+  fires for `completed`/`failed`, and the stream is deliberately held open so
+  post-approval entries reach a connected viewer. Anything deriving "is it
+  running" from the socket being open will claim a paused agent is working —
+  read the run's status instead.
+- **The stream replays from entry zero on every connection.** `useRunStream`
+  resets its buffer on `open` rather than appending; without that, EventSource's
+  automatic reconnect duplicates the whole feed.
+- **Close the source on `done`.** EventSource treats the server ending the
+  response as a reason to reconnect, so a settled run would replay forever.
+
 ### Deployment
 - **Do not trust a "nothing else is running" answer — check the box.** The VPS
   was believed to be free; it was in fact serving another project on 80/443 with
@@ -140,6 +152,11 @@ Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
   incrementally, approve → resume → publish → verify works over a relative
   browser path, the approval gate holds unapproved assets, upload returns an
   actionable 422 without ffmpeg, and the other project on the box stayed up
+- **Live SSE feed (25 Aug):** against the deployed instance, the backlog
+  replayed and then approving an asset mid-stream delivered five further
+  entries (publish, verify, performance, recommendation) to the already-
+  connected client. Seeded fallback still renders its badge, session toggle
+  and timed replay
 
 **Assumed, never observed:**
 - That the agent rejects most candidates when a real model scores them ← **the

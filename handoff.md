@@ -147,6 +147,10 @@ needs no AWS account if you use `whisper_local`.
 Depends on Priority 1; you want real agent footage. `build(1).md` §16 scripts it beat
 by beat. A real run's agent feed is the centrepiece.
 
+The agent feed now streams live over SSE, including the entries generated after
+an approval — approving on camera pushes publish, verify, performance and the
+recommendation into the terminal with no reload. That is the shot worth framing.
+
 Do not restart the API between takes — the run store is in memory.
 
 ### Priority 4 — Architecture diagram, Devpost submission
@@ -159,7 +163,6 @@ An hour each. The README has an ASCII diagram; Devpost wants an image.
 | :--- | :--- | :--- |
 | **Live agent never run** | Critical — the product thesis is unproven | Needs AWS Bedrock access. The live site runs in replay, labelled as such |
 | Ingest never run for real | ffmpeg is now installed, so this is unblocked | Unit-tested with stubs only |
-| `eventStreamUrl` is unwired | Agent feed renders from props, not the SSE stream | Exported but no component consumes it. The endpoint works |
 | Run store is in-memory | Runs vanish on API restart | JSON mirror in `data/runs/` is for inspection, not reload |
 | Analytics are seeded | `get_creator_analytics` returns fixture data | Acceptable per `build(1).md` §6 |
 | Publishing is a mock connector | No real OAuth | Deliberate scope decision |

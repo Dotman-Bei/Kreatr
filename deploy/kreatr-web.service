@@ -1,0 +1,36 @@
+# Kreatr web — the Next.js production server under systemd.
+#
+# `next start`, not a static export: the workspace pages are async server
+# components that fetch the current run at request time. Exporting them would
+# freeze whatever run existed at build time into the HTML.
+#
+# Installed to /etc/systemd/system/kreatr-web.service by deploy/provision.sh.
+
+[Unit]
+Description=Kreatr web (Next.js)
+After=network-online.target kreatr-api.service
+Wants=network-online.target
+
+[Service]
+Type=exec
+WorkingDirectory=/root/kreatr/Kreatr/apps/web
+Environment=NODE_ENV=production
+Environment=PORT=3010
+Environment=HOSTNAME=127.0.0.1
+
+# Server-side render path: the Next.js process talks to the API over loopback,
+# skipping DNS, TLS and a round trip back through nginx. The browser-side base
+# (NEXT_PUBLIC_API_URL) is inlined at build time instead — see DEPLOY.md.
+Environment=KREATR_API_ORIGIN=http://127.0.0.1:8010
+
+ExecStart=/usr/bin/npm run start
+
+Restart=on-failure
+RestartSec=5s
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=kreatr-web
+
+[Install]
+WantedBy=multi-user.target

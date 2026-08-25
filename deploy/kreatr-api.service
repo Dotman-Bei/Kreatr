@@ -1,0 +1,40 @@
+# Kreatr API — FastAPI/uvicorn under systemd.
+#
+# One long-lived process, which the architecture requires: the run store is in
+# memory, runs are started with BackgroundTasks, the activity feed is an open
+# SSE stream, and ingest shells out to ffmpeg. A worker pool would scatter runs
+# across processes and the workspace would read an empty store.
+#
+# Installed to /etc/systemd/system/kreatr-api.service by deploy/provision.sh.
+
+[Unit]
+Description=Kreatr API (FastAPI + Strands agent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+WorkingDirectory=/root/kreatr/Kreatr
+EnvironmentFile=/root/kreatr/Kreatr/.env
+
+# --workers is deliberately absent. See the note above: >1 worker breaks the
+# in-memory run store. Scaling out means moving agent/store.py to Redis first.
+ExecStart=/root/kreatr/Kreatr/.venv/bin/uvicorn api.main:app \
+    --host 127.0.0.1 \
+    --port 8010 \
+    --timeout-keep-alive 65 \
+    --no-access-log
+
+Restart=on-failure
+RestartSec=5s
+
+# A live run holds the process for minutes; never kill it mid-run on reload.
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=kreatr-api
+
+[Install]
+WantedBy=multi-user.target

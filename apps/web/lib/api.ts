@@ -17,7 +17,35 @@ import {
   performance as seedPerformance,
 } from "@/lib/mockData";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+/**
+ * Where the API lives, which is a different answer per side of the render.
+ *
+ * The workspace pages are server components, so `loadWorkspace` runs inside the
+ * Next.js process and reaches the API over loopback — no DNS, no TLS, no round
+ * trip back through the proxy. Approve/resume run in the browser, which must
+ * use a same-origin path so the call inherits the page's scheme and can never
+ * be blocked as mixed content. Behind one hostname the browser base is empty
+ * and every path stays relative.
+ *
+ * Deployment sets `NEXT_PUBLIC_API_URL=/` and `KREATR_API_ORIGIN` to loopback.
+ * Unset, both fall back to the split-port local dev setup.
+ */
+const LOCAL_API = "http://localhost:8000";
+
+/** Trailing slashes are stripped so `${base}${path}` never doubles up. "/" and "" both mean same-origin. */
+function apiBase(value: string | undefined, fallback: string): string {
+  if (value === undefined) return fallback;
+  return value.trim().replace(/\/+$/, "");
+}
+
+const BROWSER_API_URL = apiBase(process.env.NEXT_PUBLIC_API_URL, LOCAL_API);
+// A same-origin browser base is meaningless server-side, so loopback wins there.
+const SERVER_API_URL = apiBase(
+  process.env.KREATR_API_ORIGIN,
+  BROWSER_API_URL || LOCAL_API,
+);
+
+const apiUrl = () => (typeof window === "undefined" ? SERVER_API_URL : BROWSER_API_URL);
 
 export type RunStatus =
   | "queued"
@@ -75,7 +103,7 @@ export type WorkspaceData = {
 
 async function request<T>(path: string, init?: RequestInit): Promise<T | null> {
   try {
-    const response = await fetch(`${API_URL}${path}`, {
+    const response = await fetch(`${apiUrl()}${path}`, {
       ...init,
       headers: { "Content-Type": "application/json", ...(init?.headers ?? {}) },
       // The workspace must reflect the live run, never a cached one.
@@ -175,5 +203,6 @@ export async function resumeRun(runId: string) {
 
 /** URL for the SSE activity stream; the terminal subscribes to it directly. */
 export function eventStreamUrl(runId: string) {
-  return `${API_URL}/api/runs/${runId}/events`;
+  // Consumed by EventSource in the browser, so it always uses the browser base.
+  return `${BROWSER_API_URL}/api/runs/${runId}/events`;
 }

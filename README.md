@@ -46,7 +46,7 @@ honestly per component so nothing here overstates what runs today.
 | Performance learning loop | ✅ Built (seeded analytics) |
 | Web UI wired to the API | ✅ Built |
 | Ingest (ffmpeg + transcription) | ✅ Built — needs ffmpeg installed |
-| Deployment | ⬜ Not started |
+| Deployment | ✅ Live — [kreatr-demo.duckdns.org](https://kreatr-demo.duckdns.org) |
 | Demo video | ⬜ Not started |
 
 The workspace reads from the API when it is running and falls back to a seeded
@@ -352,6 +352,19 @@ All variables are documented inline in [`.env.example`](.env.example). Summary:
 | Agent tuning | `MOMENT_SCORE_THRESHOLD`, `ESCALATION_CONFIDENCE_THRESHOLD`, `MAX_TOOL_RETRIES` |
 
 Never commit a filled-in `.env`; it is gitignored.
+
+## Deployment
+
+**Live:** <https://kreatr-demo.duckdns.org>
+
+Kreatr runs as two systemd services behind nginx, with the web app and the API on
+one hostname so browser calls stay same-origin. Full steps, port map and
+troubleshooting: [`DEPLOY.md`](DEPLOY.md).
+
+```bash
+sudo DOMAIN=your-domain.example ./deploy/provision.sh
+sudo certbot --nginx -d your-domain.example
+```
 
 ## AWS Deployment
 

@@ -51,6 +51,33 @@ it to "clean up" the UI.
 - **Line endings.** `.gitattributes` normalises to LF. Git will warn about CRLF on
   Windows; that is expected and harmless.
 
+### Bedrock onboarding on a brand-new AWS account
+Getting from "account created" to "model responds" took four distinct blockers,
+each with a different error, and only the last is about the code. Diagnose by
+reading the error string, not by assuming credentials are wrong.
+
+1. **`ProfileNotFound`** — `.env.example` ships `AWS_PROFILE=default`, and
+   `live_smoke.py` passes it to boto3. There is no `~/.aws` on this box, so the
+   profile line must stay commented out and the key pair used instead.
+2. **`no identity-based policy allows bedrock:*`** — creating an IAM user does
+   not attach a policy. `AmazonBedrockFullAccess` has to be added explicitly;
+   the "attach policies" step during user creation is easy to skip.
+3. **`ResourceNotFoundException: Model use case details have not been
+   submitted`** — Anthropic models need a one-time form, once per account, from
+   the Bedrock **Model catalog** (the old *Model access* page is retired and
+   there is no longer a Granted toggle). Took a few minutes to propagate.
+4. **`ThrottlingException: Too many tokens per day`** — a new account's
+   on-demand token quota starts at or near zero, so even 8-token probes fail.
+   This is account warm-up, not a real limit. It lifts on its own or via a
+   Service Quotas increase request.
+
+Also seen: **`AccessDeniedException: <model> is not available for this
+account`** on the newest tier (Opus 5, Sonnet 5, Opus 4.8). Different from the
+above and not fixed by the form — that tier is not granted to new accounts.
+`BEDROCK_MODEL_ID` is one config line; Sonnet 4.6 or Haiku 4.5 run the
+orchestrator and all three analysis tools fine, and Haiku is the cheaper choice
+while iterating on the `score_moment` prompt.
+
 ### SSE
 - **The server sends no `done` event for an `awaiting_approval` run.** It only
   fires for `completed`/`failed`, and the stream is deliberately held open so

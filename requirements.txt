@@ -6,7 +6,10 @@
 #   pip install -r requirements.txt
 
 # Agent
-strands-agents>=1.53,<2
+# The [anthropic] extra installs the Anthropic client, used only when
+# KREATR_MODEL_PROVIDER=anthropic. Bedrock needs nothing beyond boto3, which
+# strands-agents already pulls in.
+strands-agents[anthropic]>=1.53,<2
 
 # API
 fastapi>=0.115

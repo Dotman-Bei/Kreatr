@@ -60,7 +60,9 @@ def health() -> dict[str, Any]:
     return {
         "ok": True,
         "mode": settings.agent_mode,
-        "model": settings.bedrock_model_id if not settings.is_replay else None,
+        # Provider-qualified, so it is never ambiguous which one answered.
+        "model": None if settings.is_replay else settings.model_label,
+        "provider": None if settings.is_replay else settings.model_provider,
         "region": settings.aws_region,
         "publishingMode": settings.publishing_mode,
     }

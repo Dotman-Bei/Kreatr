@@ -26,11 +26,27 @@ class Settings:
     """Everything the agent and API read from the environment."""
 
     # --- Model -------------------------------------------------------------
+    # Which provider backs the Strands agent. Bedrock is the default and the
+    # one the AWS story rests on; `anthropic` calls the Anthropic API directly
+    # and exists because Bedrock access is gated per account — a new account can
+    # sit at a zero token quota for days, and the agent should not be hostage to
+    # that. The orchestrator, the tools and the prompts are identical either
+    # way; only the model client changes.
+    model_provider: str = os.getenv("KREATR_MODEL_PROVIDER", "bedrock").strip().lower()
+
     # Bedrock ids carry a cross-region inference-profile prefix (global./us./eu.)
     # in front of the base model id. Override per region if `global.` is not
     # available to your account.
     bedrock_model_id: str = os.getenv("BEDROCK_MODEL_ID", "global.anthropic.claude-opus-5")
     aws_region: str = os.getenv("AWS_REGION", "us-east-1")
+
+    # Anthropic API ids carry no prefix — the same model is `claude-opus-5` here
+    # and `global.anthropic.claude-opus-5` on Bedrock.
+    anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
+    anthropic_model_id: str = os.getenv("ANTHROPIC_MODEL_ID", "claude-opus-5")
+
+    # The Anthropic client requires an explicit output ceiling; Bedrock does not.
+    max_output_tokens: int = _int("MAX_OUTPUT_TOKENS", 8192)
 
     # --- Agent mode --------------------------------------------------------
     # live   — the Strands agent reasons over Bedrock. Requires AWS credentials.
@@ -77,6 +93,15 @@ class Settings:
     @property
     def is_replay(self) -> bool:
         return self.agent_mode == "replay"
+
+    @property
+    def model_label(self) -> str:
+        """What the run is actually reasoning with, for logs and /api/health."""
+        if self.is_replay:
+            return "none (replay)"
+        if self.model_provider == "anthropic":
+            return f"anthropic:{self.anthropic_model_id}"
+        return f"bedrock:{self.bedrock_model_id}"
 
 
 settings = Settings()

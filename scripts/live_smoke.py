@@ -63,6 +63,66 @@ def header(title: str) -> None:
 # Preflight
 # ---------------------------------------------------------------------------
 
+def preflight_anthropic() -> bool:
+    """Preflight for the Anthropic provider: key present, model answers."""
+    try:
+        import anthropic
+    except ImportError:
+        fail(
+            "The anthropic package is not installed.",
+            "pip install 'strands-agents[anthropic]'",
+        )
+        return False
+
+    if not settings.anthropic_api_key:
+        fail(
+            "ANTHROPIC_API_KEY is empty.",
+            "Add it to .env. Create a key at:\n"
+            "  https://console.anthropic.com/settings/keys",
+        )
+        return False
+    ok(f"API key present ({settings.anthropic_api_key[:11]}...).")
+    ok(f"Model:  {settings.anthropic_model_id}")
+
+    try:
+        client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        client.messages.create(
+            model=settings.anthropic_model_id,
+            max_tokens=16,
+            messages=[{"role": "user", "content": "Reply with the word: ready"}],
+        )
+    except anthropic.AuthenticationError:
+        fail(
+            "The API key was rejected.",
+            "Check for a stale or truncated key, or create a new one at\n"
+            "https://console.anthropic.com/settings/keys",
+        )
+        return False
+    except anthropic.NotFoundError:
+        fail(
+            f"Unknown model id {settings.anthropic_model_id!r}.",
+            "Anthropic API ids carry no inference-profile prefix - use\n"
+            "'claude-opus-5', not 'global.anthropic.claude-opus-5'.",
+        )
+        return False
+    except anthropic.PermissionDeniedError as exc:
+        fail("The key lacks permission for this model.", str(exc))
+        return False
+    except anthropic.RateLimitError:
+        fail(
+            "Rate limited before the run even started.",
+            "Usually an empty credit balance. Check:\n"
+            "https://console.anthropic.com/settings/billing",
+        )
+        return False
+    except Exception as exc:  # noqa: BLE001 - the message is the useful part
+        fail(f"Anthropic call failed: {type(exc).__name__}: {exc}")
+        return False
+
+    ok("Anthropic model responded to a test call.")
+    return True
+
+
 def preflight() -> bool:
     """Cheap checks before spending tokens on a full run."""
     header("Preflight")
@@ -76,6 +136,18 @@ def preflight() -> bool:
         )
         return False
     ok("Agent mode is 'live'.")
+
+    # The two providers share nothing below this point - one authenticates with
+    # AWS SigV4 and resolves an inference profile, the other with an API key.
+    ok(f"Provider: {settings.model_provider}")
+    if settings.model_provider == "anthropic":
+        return preflight_anthropic()
+    if settings.model_provider != "bedrock":
+        fail(
+            f"Unknown KREATR_MODEL_PROVIDER {settings.model_provider!r}.",
+            "Expected 'bedrock' or 'anthropic'.",
+        )
+        return False
 
     # --- credentials ------------------------------------------------------
     try:

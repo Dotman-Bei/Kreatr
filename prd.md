@@ -78,20 +78,20 @@ against a live model. `[ ]` = not built.
 ### Understanding
 - `[✓]` **FR-4** Load a persistent Creator Memory: audience, tone, formats, avoid
   list, historically strong/weak topics
-- `[~]` **FR-5** Identify candidate moments from the transcript (recall-oriented)
+- `[✓]` **FR-5** Identify candidate moments from the transcript (recall-oriented)
 
 ### Judgement — *the product's core claim*
-- `[~]` **FR-6** Score every candidate on five signals: hook strength, standalone
+- `[✓]` **FR-6** Score every candidate on five signals: hook strength, standalone
   context, audience relevance, novelty, historical fit
-- `[~]` **FR-7** Return one of three verdicts: `select`, `reject`, `escalate`
-- `[~]` **FR-8** **Reject the majority of candidates.** An agent that selects
+- `[✓]` **FR-7** Return one of three verdicts: `select`, `reject`, `escalate`
+- `[✓]` **FR-8** **Reject the majority of candidates.** An agent that selects
   everything has failed the product thesis, not just a metric
 - `[✓]` **FR-9** Every rejection carries a specific reason naming the actual flaw
 - `[~]` **FR-10** Creator Memory must change decisions — a candidate matching a known
   weak topic is rejected even when well delivered
 
 ### Production
-- `[~]` **FR-11** Draft platform-native assets: Shorts, X threads, newsletter angles,
+- `[✓]` **FR-11** Draft platform-native assets: Shorts, X threads, newsletter angles,
   YouTube metadata. Never one caption reused across platforms
 - `[~]` **FR-12** Route by payoff: punchy/visual → Short; framework/structural → text
 

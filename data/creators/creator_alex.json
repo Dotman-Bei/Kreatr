@@ -37,6 +37,7 @@
     "avgRetention": 62
   },
   "learnings": [
-    "Concrete pricing examples outperform generic startup advice."
+    "Concrete pricing examples outperform generic startup advice.",
+    "First-person pricing experiments framed as a specific numeric change plus a counterintuitive result (\"I tripled my price, nobody left\") beat baseline ~2.3x with 81% retention. The hook pattern has three reusable parts: first person, a hard number, and a payoff that cannot be resolved from the title. Retention data shows viewers stay for the mechanism, not the outcome — so the follow-up should deliver the \"how\" (the actual email, the actual spreadsheet) as a reproduced artifact. Untested: whether the lift came from the pricing topic or the hook structure; applying the same structure to a distribution moment would separate the two."
   ]
 }

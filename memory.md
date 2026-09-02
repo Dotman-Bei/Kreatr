@@ -78,6 +78,22 @@ above and not fixed by the form — that tier is not granted to new accounts.
 orchestrator and all three analysis tools fine, and Haiku is the cheaper choice
 while iterating on the `score_moment` prompt.
 
+### The Anthropic provider and event loops
+- **Never cache the Anthropic model across calls.** `build_model()` was
+  `@lru_cache`d, which is right for Bedrock and wrong here: the Anthropic client
+  is async and its connection pool binds to whichever event loop first uses it.
+  Strands runs each tool call in its own loop, so the shared instance was reused
+  against a closed one and every `score_moment` after the first died with
+  `RuntimeError: Event loop is closed`. The symptom was not an error message —
+  it was **36 score_moment calls for 18 candidates**, every one silently retried,
+  double the spend, then the run dying on `APIConnectionError`. Bedrock is immune
+  because boto3 is synchronous. `_build_anthropic()` is deliberately uncached.
+- **`MAX_OUTPUT_TOKENS` is not a formality.** `generate_asset_plan` drafts every
+  surviving moment in one structured call; 8192 truncated a run with 8 assets
+  and raised `MaxTokensReachedException`. Now 16000.
+- **An empty credit balance arrives as a 400, not a 429.** Check the message
+  body for "credit balance"; the `RateLimitError` branch never fires for it.
+
 ### SSE
 - **The server sends no `done` event for an `awaiting_approval` run.** It only
   fires for `completed`/`failed`, and the stream is deliberately held open so
@@ -186,25 +202,33 @@ Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
   entries (publish, verify, performance, recommendation) to the already-
   connected client. Seeded fallback still renders its badge, session toggle
   and timed replay
+- **THE PRODUCT THESIS (25 Aug).** First live run, `claude-opus-5` via the
+  Anthropic provider: 21 candidates → 8 selected, **62% rejected**, 96 tool
+  calls, 6 public actions held at the approval gate, 8 assets drafted. The
+  rejections name real flaws rather than restating a score — one reads "an intro
+  roadmap that promises four topics and delivers none of them; the strong 'empty
+  repo' line writes a check the remaining 30 seconds never cashes". **No prompt
+  tuning was needed.** §6's prediction that the first run would be too generous
+  was wrong — the prompt was already strict enough. Captured at
+  `docs/runs/first-live-run.json`
 - **Real ingest (25 Aug):** a 77s MP4 (H.264 + AAC at 22050 Hz) went through
   ffmpeg to 16 kHz mono PCM and out of `whisper_local` as 200 words in 12
   lines, timestamps monotonic and within duration. FR-1 and FR-2 are no longer
   assumptions. `aws_transcribe` is still unexercised
 
 **Assumed, never observed:**
-- That the agent rejects most candidates when a real model scores them ← **the
-  product thesis, still unproven**
-- That the orchestrator calls tools in a sensible order in live mode
 - That Amazon Transcribe returns the payload shape the parser expects
-- Cost and latency of a live run
+- Anything about the Bedrock path end to end — the account never cleared its
+  zero token quota, so only the Anthropic provider has actually run
 
-## 6. Expected first-live-run failure mode
+## 6. Rejection tuning — the prediction that did not come true
 
-Models tend to find merit in everything. "Reject most candidates" fights that
-instinct. **Expect the first live run to be too generous.** `scripts/live_smoke.py`
-asserts a minimum 20% rejection rate and will flag it.
+This section predicted the first live run would be too generous, because models
+tend to find merit in everything. **It was wrong.** The first run rejected 62%
+against a 20% floor, with no tuning. Kept because the levers still apply if a
+future prompt change loosens it.
 
-If that happens, in order:
+If a run ever selects too much, in order:
 1. Tighten the `score_moment` system prompt (`agent/tools/scoring.py`) — make
    rejection the expected outcome even harder
 2. Raise `MOMENT_SCORE_THRESHOLD` above 60

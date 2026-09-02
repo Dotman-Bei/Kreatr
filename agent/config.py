@@ -44,9 +44,15 @@ class Settings:
     # and `global.anthropic.claude-opus-5` on Bedrock.
     anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
     anthropic_model_id: str = os.getenv("ANTHROPIC_MODEL_ID", "claude-opus-5")
+    # Identity-linked keys must name the workspace they act in on every request.
+    # Plain workspace-scoped keys carry it implicitly and leave this empty.
+    anthropic_workspace_id: str = os.getenv("ANTHROPIC_WORKSPACE_ID", "")
 
     # The Anthropic client requires an explicit output ceiling; Bedrock does not.
-    max_output_tokens: int = _int("MAX_OUTPUT_TOKENS", 8192)
+    # 8192 was too tight: generate_asset_plan drafts every surviving moment in
+    # one structured call, and a run with eight assets hit the ceiling mid-plan.
+    # 16000 keeps a non-streaming call comfortably inside the SDK's HTTP timeout.
+    max_output_tokens: int = _int("MAX_OUTPUT_TOKENS", 16000)
 
     # --- Agent mode --------------------------------------------------------
     # live   — the Strands agent reasons over Bedrock. Requires AWS credentials.

@@ -1,9 +1,10 @@
-"""Live smoke test: prove the Strands agent actually works against Bedrock.
+"""Live smoke test: prove the Strands agent actually works against a live model.
 
-Run this the moment AWS credentials are available. It answers, in order:
+Run this the moment credentials are available for whichever provider
+KREATR_MODEL_PROVIDER names. It answers, in order:
 
   1. Are credentials resolvable at all?
-  2. Can this account invoke the configured Bedrock model in this region?
+  2. Can this account actually invoke the configured model?
   3. Does one full workflow run end to end?
   4. Did the agent behave like an agent — call tools, reject weak moments,
      stop at the approval gate — or did it just talk?
@@ -84,8 +85,15 @@ def preflight_anthropic() -> bool:
     ok(f"API key present ({settings.anthropic_api_key[:11]}...).")
     ok(f"Model:  {settings.anthropic_model_id}")
 
+    kwargs = {"api_key": settings.anthropic_api_key}
+    if settings.anthropic_workspace_id:
+        kwargs["default_headers"] = {
+            "anthropic-workspace-id": settings.anthropic_workspace_id
+        }
+        ok(f"Workspace: {settings.anthropic_workspace_id}")
+
     try:
-        client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        client = anthropic.Anthropic(**kwargs)
         client.messages.create(
             model=settings.anthropic_model_id,
             max_tokens=16,
@@ -98,12 +106,26 @@ def preflight_anthropic() -> bool:
             "https://console.anthropic.com/settings/keys",
         )
         return False
-    except anthropic.NotFoundError:
-        fail(
-            f"Unknown model id {settings.anthropic_model_id!r}.",
-            "Anthropic API ids carry no inference-profile prefix - use\n"
-            "'claude-opus-5', not 'global.anthropic.claude-opus-5'.",
-        )
+    except anthropic.NotFoundError as exc:
+        # A 404 here is either the model or the workspace, and guessing wrong
+        # sends you to fix the thing that was never broken. Read the message.
+        if "orkspace" in str(exc):
+            fail(
+                f"Workspace {settings.anthropic_workspace_id!r} was not found.",
+                "The id is real but does not belong to this key's organisation,\n"
+                "or it is mistyped. Check the id at\n"
+                "  https://console.anthropic.com/settings/workspaces\n"
+                "Simpler: create a workspace-scoped key instead, which carries\n"
+                "its workspace implicitly - then unset ANTHROPIC_WORKSPACE_ID.",
+            )
+        else:
+            fail(
+                f"Model {settings.anthropic_model_id!r} was not found: {exc}",
+                "Anthropic API ids carry no inference-profile prefix - use\n"
+                "'claude-opus-5', not 'global.anthropic.claude-opus-5'.\n"
+                "Your workspace may also not have access to this model; try\n"
+                "ANTHROPIC_MODEL_ID=claude-sonnet-5",
+            )
         return False
     except anthropic.PermissionDeniedError as exc:
         fail("The key lacks permission for this model.", str(exc))
@@ -114,6 +136,26 @@ def preflight_anthropic() -> bool:
             "Usually an empty credit balance. Check:\n"
             "https://console.anthropic.com/settings/billing",
         )
+        return False
+    except anthropic.BadRequestError as exc:
+        # An empty balance arrives as a 400, not the 429 you would expect.
+        if "credit balance" in str(exc):
+            fail(
+                "The account is out of credit.",
+                "Top up at https://console.anthropic.com/settings/billing\n"
+                "A full Kreatr run costs roughly $0.30-0.60 on claude-opus-5;\n"
+                "ANTHROPIC_MODEL_ID=claude-sonnet-5 is about 2.5x cheaper.",
+            )
+        elif "workspace-id" in str(exc):
+            fail(
+                "This is an identity-linked key, so it must name a workspace.",
+                "Find the id at https://console.anthropic.com/settings/workspaces\n"
+                "(it looks like wrkspc_...), then add to .env:\n"
+                "  ANTHROPIC_WORKSPACE_ID=wrkspc_...\n"
+                "A workspace-scoped key carries this implicitly and needs no id.",
+            )
+        else:
+            fail(f"Anthropic rejected the request: {exc}")
         return False
     except Exception as exc:  # noqa: BLE001 - the message is the useful part
         fail(f"Anthropic call failed: {type(exc).__name__}: {exc}")
@@ -365,7 +407,8 @@ def main() -> int:
 
     passed = smoke(args.content)
     if passed:
-        print(f"\n{GREEN}{BOLD}Live run passed.{RESET} The agent is working against Bedrock.")
+        print(f"\n{GREEN}{BOLD}Live run passed.{RESET} The agent is working against "
+              f"{settings.model_label}.")
         print(f"{DIM}Capture this log - a real run's agent feed is your demo.{RESET}")
         return 0
 

@@ -1,0 +1,2236 @@
+{
+  "id": "run_c8f7e1df10",
+  "contentId": "vid_100saas",
+  "creatorId": "creator_alex",
+  "status": "awaiting_approval",
+  "mode": "live",
+  "startedAt": "2026-09-02T12:30:55+00:00",
+  "finishedAt": "2026-09-02T12:38:54+00:00",
+  "error": null,
+  "moments": [
+    {
+      "id": "m_30_days_from_empty_repo_",
+      "start": "00:00",
+      "end": "00:38",
+      "startSeconds": 0,
+      "endSeconds": 38,
+      "lengthSeconds": 38,
+      "topic": "30 days from empty repo to paying customers",
+      "hook": "Thirty days ago this was an empty repo.",
+      "status": "rejected",
+      "score": 34,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 66
+        },
+        {
+          "label": "Standalone context",
+          "value": 28
+        },
+        {
+          "label": "Audience relevance",
+          "value": 70
+        },
+        {
+          "label": "Novelty",
+          "value": 18
+        },
+        {
+          "label": "Historical fit",
+          "value": 52
+        }
+      ],
+      "reasons": [
+        "The opening line 'thirty days ago this was an empty repo' is a genuinely strong cold open, but the remaining 30 seconds is a table of contents — 'four things: how I picked the problem, how I got the first users, how I priced it' — and none of the four are actually delivered inside the clip.",
+        "A stranger finishes the 38 seconds knowing only that a product exists and has customers. There is no named product, no problem, no user count, no price, no channel — nothing they could act on or argue with.",
+        "Novelty is near zero because every claim is a forward promise rather than a specific assertion. 'How I priced it' is a label, not a pricing example, and this creator's audience converts on concrete pricing numbers rather than the announcement that numbers are coming.",
+        "The pricing and distribution beats this creator historically wins on are all referenced here but located outside this window — the payoff segments themselves are the sellable moments, not this preamble."
+      ],
+      "transcript": "Thirty days ago this was an empty repo. Today it has paying customers, and I want to walk you through exactly how that happened. I am going to cover four things: how I picked the problem, how I got the first users, how I priced it, and what I would do differently.",
+      "rejectionReason": "The clip is an intro roadmap that promises four topics and delivers none of them; the strong 'empty repo' line writes a check the remaining 30 seconds never cashes, leaving viewers with no specific claim, number, or takeaway. Cut instead from the pricing or first-users segment this intro is pointing at.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_picking_the_problem_from",
+      "start": "00:38",
+      "end": "01:12",
+      "startSeconds": 38,
+      "endSeconds": 72,
+      "lengthSeconds": 34,
+      "topic": "Picking the problem from your own workflow",
+      "hook": "The problem came from my own workflow.",
+      "status": "rejected",
+      "score": 28,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 22
+        },
+        {
+          "label": "Standalone context",
+          "value": 50
+        },
+        {
+          "label": "Audience relevance",
+          "value": 45
+        },
+        {
+          "label": "Novelty",
+          "value": 15
+        },
+        {
+          "label": "Historical fit",
+          "value": 30
+        }
+      ],
+      "reasons": [
+        "Hook line 'The problem came from my own workflow' states an origin fact with no tension, question, or stakes — nothing in the first 8 seconds makes a viewer need second 9.",
+        "The whole 34s payload is two sentences that restate 'scratch your own itch' — no named manual task, no time saved, no tool built, so there is no specific claim to carry the clip.",
+        "Fails the creator's proven pattern: no pricing figure, distribution channel, or AI tool is mentioned, and learned data says concrete pricing examples beat generic startup-origin advice.",
+        "Standalone comprehension is only partial — 'build something' never resolves into what was built, so a stranger leaves without knowing what the story was about.",
+        "Sits closest to the historically weak 'general startup/productivity' lane rather than the strong pricing/distribution/AI lanes."
+      ],
+      "transcript": "The problem came from my own workflow. I was doing the same manual task every week and I finally got annoyed enough to build something.",
+      "rejectionReason": "Hook is a flat origin statement with no tension, and the 34s never names the manual task, the tool, or any measurable outcome — it reduces to 'build what annoys you', generic advice any founder could give and a poor fit for a creator whose pricing/distribution specifics perform.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_skipping_customer_discov",
+      "start": "01:12",
+      "end": "02:00",
+      "startSeconds": 72,
+      "endSeconds": 120,
+      "lengthSeconds": 48,
+      "topic": "Skipping customer discovery because you are the customer",
+      "hook": "I want to be clear that I did not do customer discovery interviews.",
+      "status": "rejected",
+      "score": 32,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 48
+        },
+        {
+          "label": "Standalone context",
+          "value": 25
+        },
+        {
+          "label": "Audience relevance",
+          "value": 55
+        },
+        {
+          "label": "Novelty",
+          "value": 22
+        },
+        {
+          "label": "Historical fit",
+          "value": 30
+        }
+      ],
+      "reasons": [
+        "The contrarian opener ('I did not do customer discovery interviews') is immediately defused by the creator's own hedge, 'That is not always the right approach' — the clip argues against its own hook within 15 seconds and lands on no position a viewer can take away.",
+        "'It worked here' never names the 'here': no product, no market, no metric, no signal of what 'worked' means. A stranger scrolling has no idea what was built or how well it did.",
+        "Three sentences of content stretched across 48 seconds means the clip is mostly dead air or unrelated talk, with no concrete example to fill it — the opposite of the concrete pricing examples that historically outperform for this creator.",
+        "'I was the customer' as founder-validation is one of the most repeated claims in startup content; without the specific decision it replaced or the mistake it avoided, there is nothing here another founder could not have said.",
+        "Topic sits outside the proven lanes of pricing, distribution, and AI tools, and it lacks the specificity that has previously compensated for off-topic material."
+      ],
+      "transcript": "I want to be clear that I did not do customer discovery interviews. I was the customer. That is not always the right approach but it worked here.",
+      "rejectionReason": "The hook sets up a contrarian claim about skipping customer discovery, then retracts it one sentence later with 'that is not always the right approach' and never supplies the product, market, or outcome behind 'it worked here.' There is no payoff to produce.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_nine_day_build_one_featu",
+      "start": "02:00",
+      "end": "02:48",
+      "startSeconds": 120,
+      "endSeconds": 168,
+      "lengthSeconds": 48,
+      "topic": "Nine day build, one feature, no settings page",
+      "hook": "So the build took about nine days for a version that did one thing.",
+      "status": "rejected",
+      "score": 32,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 30
+        },
+        {
+          "label": "Standalone context",
+          "value": 22
+        },
+        {
+          "label": "Audience relevance",
+          "value": 55
+        },
+        {
+          "label": "Novelty",
+          "value": 38
+        },
+        {
+          "label": "Historical fit",
+          "value": 35
+        }
+      ],
+      "reasons": [
+        "The hook opens mid-sentence with 'So the build took about nine days' — 'the build' has no referent, so a cold viewer never learns what product was built or for whom.",
+        "Nothing in the 48 seconds pays off the nine-day number: no launch result, no revenue, no user reaction. The clip states a scope decision and stops.",
+        "'One thing, done properly, with no settings page' is the only concrete detail, and it restates standard MVP-scoping advice rather than the specific pricing or distribution examples this audience responds to.",
+        "The transcript carries roughly two sentences across 48 seconds, meaning most of the runtime is unaccounted for — likely filler or setup that won't cut into a tight short.",
+        "Ship-fast scoping sits outside the creator's proven lanes (pricing, distribution, AI tools) and closer to the general-productivity territory that has underperformed."
+      ],
+      "transcript": "So the build took about nine days for a version that did one thing. One thing, done properly, with no settings page.",
+      "rejectionReason": "The hook references 'the build' with no antecedent and the clip never delivers an outcome for the nine days, so the specific number lands as trivia instead of a claim a founder can act on.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_build_one_feature_well_i",
+      "start": "02:00",
+      "end": "03:00",
+      "startSeconds": 120,
+      "endSeconds": 180,
+      "lengthSeconds": 60,
+      "topic": "Build one feature well instead of six badly",
+      "hook": "So the build took about nine days for a version that did one thing.",
+      "status": "rejected",
+      "score": 42,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 35
+        },
+        {
+          "label": "Standalone context",
+          "value": 50
+        },
+        {
+          "label": "Audience relevance",
+          "value": 62
+        },
+        {
+          "label": "Novelty",
+          "value": 28
+        },
+        {
+          "label": "Historical fit",
+          "value": 38
+        }
+      ],
+      "reasons": [
+        "Hook opens on a filler 'So' and a stat with no referent — the viewer never learns what was built, so 'nine days for a version that did one thing' lands as trivia rather than tension.",
+        "The payoff, 'they build six features badly instead of one feature well', is the most repeated MVP-scoping line in startup content; there is no number, price, or named tradeoff to make it this creator's version of the claim.",
+        "Only one concrete detail carries the clip ('no settings page'), and it arrives as an aside rather than as the argument, so 60 seconds mostly restates the premise.",
+        "Product-scoping sits outside the creator's proven lanes of pricing, distribution and AI tools, and the learned pattern is that concrete pricing examples beat general startup advice like this.",
+        "A stranger can follow the moral but not the story — no product, no user, no outcome after the nine days — which removes the specificity that would justify the runtime."
+      ],
+      "transcript": "So the build took about nine days for a version that did one thing. One thing, done properly, with no settings page. That is the part people skip. They build six features badly instead of one feature well.",
+      "rejectionReason": "The hook is a context-free stat prefaced with 'So', and the clip resolves into stock MVP advice ('one feature well, not six badly') with no named product, metric, or pricing detail to differentiate it — exactly the generic startup advice this creator's audience underperforms on.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_distribution_decides_whe",
+      "start": "04:02",
+      "end": "05:02",
+      "startSeconds": 242,
+      "endSeconds": 302,
+      "lengthSeconds": 60,
+      "topic": "Distribution decides whether you have a business",
+      "hook": "Distribution. This is the part that actually decides whether you have a business.",
+      "status": "rejected",
+      "score": 31,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 38
+        },
+        {
+          "label": "Standalone context",
+          "value": 20
+        },
+        {
+          "label": "Audience relevance",
+          "value": 78
+        },
+        {
+          "label": "Novelty",
+          "value": 18
+        },
+        {
+          "label": "Historical fit",
+          "value": 72
+        }
+      ],
+      "reasons": [
+        "The 60-second window contains a single sentence of usable speech — 'Distribution. This is the part that actually decides whether you have a business.' There is no claim, example, or mechanism after the assertion, so there is nothing to cut around.",
+        "The clip opens on 'Anyway,' which signals a mid-thought transition rather than a cold open; it reads as the tail of a prior section rather than the start of a new one.",
+        "'Distribution decides whether you have a business' is a thesis statement, not a specific insight — it is the kind of line any startup account could post, which collides with the creator's stated avoidance of generic startup framing.",
+        "Distribution is a historically strong topic and the audience of early-stage founders cares, but the learned pattern is that concrete examples outperform assertions, and this moment is pure assertion with zero numbers or cases.",
+        "A stranger finishes the clip knowing distribution matters but learning nothing about what to do, which is the failure mode this creator's audience punishes."
+      ],
+      "transcript": "Anyway. Distribution. This is the part that actually decides whether you have a business.",
+      "rejectionReason": "The moment is a topic announcement, not a payload: one sentence of transcript ('Distribution... decides whether you have a business') with no supporting claim or example, and it opens mid-thought on 'Anyway.' Recut later in the segment where an actual distribution channel or number is named.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_first_40_customers_came_",
+      "start": "05:12",
+      "end": "05:50",
+      "startSeconds": 312,
+      "endSeconds": 350,
+      "lengthSeconds": 38,
+      "topic": "First 40 customers came from a spreadsheet, not ads",
+      "hook": "My first 40 customers came from a spreadsheet, not ads.",
+      "status": "selected",
+      "score": 82,
+      "platforms": [
+        "YouTube Shorts",
+        "Instagram Reels",
+        "TikTok",
+        "LinkedIn",
+        "X"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 85
+        },
+        {
+          "label": "Standalone context",
+          "value": 88
+        },
+        {
+          "label": "Audience relevance",
+          "value": 90
+        },
+        {
+          "label": "Novelty",
+          "value": 78
+        },
+        {
+          "label": "Historical fit",
+          "value": 85
+        }
+      ],
+      "reasons": [
+        "Hook front-loads a specific number and a negation ('40 customers... not ads') that sets up a concrete alternative rather than a vague promise — earns the next line without clickbait phrasing the creator avoids.",
+        "Fully self-contained in 38s: problem (no ad budget), method (blank sheet, 200 companies), and mechanic (quote their own complaint back to them) all land without prior episode context.",
+        "Cold-outbound-with-no-budget is exactly the distribution pain of pre-PMF founders, one of the creator's historically strong topics.",
+        "The differentiator is tactical and repeatable — sourcing prospects from people who publicly complained about the problem, then mirroring their wording — not 'do sales outreach', which is what most founders say here.",
+        "Implicit 200 emails to 40 customers ratio gives a hard number that mirrors the pricing-example pattern the creator's audience responds to.",
+        "Minor gap: the clip never says where the public complaints were found (Reddit, support forums, review sites), which is the one detail a viewer will want; worth a caption or on-screen fix in production."
+      ],
+      "transcript": "My first 40 customers came from a spreadsheet, not ads. I opened a blank sheet, listed 200 companies that had publicly complained about the exact problem I solved, and sent 200 emails that each referenced their own words back to them.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_why_a_19_percent_reply_r",
+      "start": "05:50",
+      "end": "06:40",
+      "startSeconds": 350,
+      "endSeconds": 400,
+      "lengthSeconds": 50,
+      "topic": "Why a 19 percent reply rate happened",
+      "hook": "The reply rate was about 19 percent, which is absurd.",
+      "status": "rejected",
+      "score": 54,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 78
+        },
+        {
+          "label": "Standalone context",
+          "value": 34
+        },
+        {
+          "label": "Audience relevance",
+          "value": 84
+        },
+        {
+          "label": "Novelty",
+          "value": 42
+        },
+        {
+          "label": "Historical fit",
+          "value": 80
+        }
+      ],
+      "reasons": [
+        "\"19 percent reply rate, which is absurd\" is a strong opener for this creator: a hard number, no hype language, and a built-in question (why?) that earns the next few seconds.",
+        "The clip never says what the emails were selling, who they went to, or what sample size produced 19 percent — a viewer cannot tell if this is 40 emails or 4,000, which is the difference between a fluke and a tactic.",
+        "The payoff collapses into \"they were not cold, they were specific\" with zero example of what specific looked like — no subject line, no opening sentence, no research step. That is exactly the generic-advice failure mode the learned observation warns about.",
+        "Outreach and reply rates sit inside distribution, a historically strong topic, so the subject matter is right even though this particular 50 seconds does not deliver on it.",
+        "The hook writes a check the body does not cash: it promises a mechanism behind an absurd number and delivers a one-word abstraction instead."
+      ],
+      "transcript": "The reply rate was about 19 percent, which is absurd, and it is absurd because the emails were not cold. They were specific.",
+      "rejectionReason": "The 19 percent stat sets up a mechanism reveal that never arrives — \\\"they were specific\\\" is stated but never shown, with no example email, no audience described, and no sample size, so the clip ends as unsupported generic outreach advice. Worth revisiting only if an adjacent segment contains the actual email copy or targeting method, which could be stitched in to complete the promise.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_cold_outreach_that_is_no",
+      "start": "05:12",
+      "end": "06:10",
+      "startSeconds": 312,
+      "endSeconds": 370,
+      "lengthSeconds": 58,
+      "topic": "Cold outreach that is not cold",
+      "hook": "My first 40 customers came from a spreadsheet, not ads.",
+      "status": "selected",
+      "score": 81,
+      "platforms": [
+        "LinkedIn",
+        "YouTube Shorts",
+        "Instagram Reels",
+        "X"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 85
+        },
+        {
+          "label": "Standalone context",
+          "value": 88
+        },
+        {
+          "label": "Audience relevance",
+          "value": 90
+        },
+        {
+          "label": "Novelty",
+          "value": 72
+        },
+        {
+          "label": "Historical fit",
+          "value": 80
+        }
+      ],
+      "reasons": [
+        "Hook is a numbers-vs-expectation contrast ('40 customers from a spreadsheet, not ads') that names the payoff and the anti-method in one line — no setup required to understand it.",
+        "Fully self-contained: the 200-company list, the 200 emails, and the 19 percent reply rate are all stated inside the 58 seconds, so a stranger needs nothing from earlier in the episode.",
+        "Distribution is one of the creator's historically strong topics, and pre-revenue founders with no ad budget are exactly the people a manual-sourcing tactic serves.",
+        "The mechanism is specific rather than motivational — filtering to companies that publicly complained about the problem, then quoting their own words back — which is the operational detail that separates this from 'do cold outreach'.",
+        "Matches the learned pattern that concrete numeric examples outperform generic advice: 200 / 200 / 19 percent gives the same texture as the pricing examples that have worked.",
+        "Deducted for novelty: personalized outreach referencing a prospect's own words is a known playbook, so the differentiator here is the sourcing filter and the reply-rate figure rather than the idea itself."
+      ],
+      "transcript": "My first 40 customers came from a spreadsheet, not ads. I opened a blank sheet, listed 200 companies that had publicly complained about the exact problem I solved, and sent 200 emails that each referenced their own words back to them. The reply rate was about 19 percent, which is absurd, and it is absurd because the emails were not cold. They were specific.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_paid_ads_failed_400_for_",
+      "start": "06:40",
+      "end": "07:40",
+      "startSeconds": 400,
+      "endSeconds": 460,
+      "lengthSeconds": 60,
+      "topic": "Paid ads failed: $400 for two churned signups",
+      "hook": "I did try paid ads for a week.",
+      "status": "rejected",
+      "score": 43,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 25
+        },
+        {
+          "label": "Standalone context",
+          "value": 58
+        },
+        {
+          "label": "Audience relevance",
+          "value": 72
+        },
+        {
+          "label": "Novelty",
+          "value": 40
+        },
+        {
+          "label": "Historical fit",
+          "value": 66
+        }
+      ],
+      "reasons": [
+        "The opening line 'I did try paid ads for a week' is a concession answering an unheard question — 'I did' presupposes a challenge the viewer never saw, so the first 8 seconds land as a mid-conversation aside rather than a claim.",
+        "The $400 / two signups / both churned figure is genuinely concrete and matches the creator's proven distribution+numbers territory, but it arrives in the second sentence, after the hook has already lost the scroll.",
+        "The whole moment resolves in three sentences and ends at 'So I stopped' — there is no diagnosis of why the ads failed, what channel replaced them, or what a founder should do differently, so there is no takeaway to reward the watch.",
+        "60 seconds of runtime against roughly 12 seconds of substance means the cut is mostly dead air or unquoted material; the transcript does not support a full-length short.",
+        "A stranger can follow the arithmetic but not the stakes — no mention of what the product is, what CAC would have been acceptable, or what the alternative channel was."
+      ],
+      "transcript": "I did try paid ads for a week. I spent 400 dollars and got two signups, both of which churned. So I stopped.",
+      "rejectionReason": "The hook is a backward-looking concession ('I did try paid ads for a week') that depends on an off-screen question, and the strongest asset — the $400-for-two-churned-signups number — is buried in the following sentence. The clip also stops at 'So I stopped' with no explanation or replacement channel, so there is no payoff for a founder audience that expects a pricing/distribution lesson. If the $400 figure can be front-loaded and paired with what actually worked instead, this is worth re-cutting.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_pricing_biggest_mistake_",
+      "start": "07:50",
+      "end": "08:42",
+      "startSeconds": 470,
+      "endSeconds": 522,
+      "lengthSeconds": 52,
+      "topic": "Pricing: biggest mistake and biggest correction",
+      "hook": "Let us talk about pricing, because this is where I made the biggest mistake and then the biggest correction.",
+      "status": "rejected",
+      "score": 25,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 50
+        },
+        {
+          "label": "Standalone context",
+          "value": 10
+        },
+        {
+          "label": "Audience relevance",
+          "value": 80
+        },
+        {
+          "label": "Novelty",
+          "value": 12
+        },
+        {
+          "label": "Historical fit",
+          "value": 78
+        }
+      ],
+      "reasons": [
+        "The moment consists entirely of the setup line 'this is where I made the biggest mistake and then the biggest correction' — the mistake is never named and the correction is never described, so there is no payoff inside the 52 seconds.",
+        "Standalone context is fatal here: a viewer learns no price point, no product, no before/after number. Nothing in the clip can be acted on or even understood.",
+        "Topic (pricing) and audience (early-stage founders) are exactly on-target, and pricing is a historically strong lane — but the learned signal is that CONCRETE pricing examples outperform, and this moment contains zero concrete detail.",
+        "As cut, it functions as a tease that promises a reveal it never delivers, which conflicts directly with the creator's stated avoidance of clickbait.",
+        "If the actual mistake-and-correction narrative follows after 08:42, the clip should be re-cut with an extended out-point to include the specific numbers; the current boundaries capture only the throat-clear."
+      ],
+      "transcript": "Let us talk about pricing, because this is where I made the biggest mistake and then the biggest correction.",
+      "rejectionReason": "The clip is pure setup with no payoff — it announces a pricing mistake and correction but never states either one, leaving no claim, number, or takeaway for a viewer to follow.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_tripled_the_price_lost_z",
+      "start": "08:42",
+      "end": "09:21",
+      "startSeconds": 522,
+      "endSeconds": 561,
+      "lengthSeconds": 39,
+      "topic": "Tripled the price, lost zero customers",
+      "hook": "I tripled my price and lost exactly zero customers.",
+      "status": "selected",
+      "score": 84,
+      "platforms": [
+        "TikTok",
+        "Instagram Reels",
+        "YouTube Shorts",
+        "LinkedIn"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 90
+        },
+        {
+          "label": "Standalone context",
+          "value": 85
+        },
+        {
+          "label": "Audience relevance",
+          "value": 92
+        },
+        {
+          "label": "Novelty",
+          "value": 66
+        },
+        {
+          "label": "Historical fit",
+          "value": 95
+        }
+      ],
+      "reasons": [
+        "Hook leads with a hard number and a counterintuitive outcome — '3x price, zero churn' — which is a claim, not a tease, so it earns the next line without clickbait framing.",
+        "Fully self-contained: no product name, no callback to earlier discussion, no unexplained metric. A stranger opening on 'I tripled my price' understands the stakes immediately.",
+        "Directly on the creator's strongest topic (pricing) and matches the learned observation that concrete pricing examples outperform generic startup advice — this is a specific multiple attached to a specific customer count.",
+        "The reframe — first ten customers are buying a fix for a problem costing more than the price tag — gives the hook a payoff mechanism rather than leaving it as a brag.",
+        "Novelty is the weakest signal: 'raise your prices' is a saturated founder genre, and the moment relies on the 3x/zero-churn specificity to differentiate rather than a new mechanism. Worth producing, but the edit should keep the '$ cost of the problem' framing rather than the price multiple alone.",
+        "39s is a clean single-idea runtime — no trimming needed to fit vertical formats."
+      ],
+      "transcript": "I tripled my price and lost exactly zero customers. Here is the thing nobody tells you about pricing early: your first ten customers are not buying software, they are buying a fix for a problem that is costing them more than your price tag.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_19_signalled_a_toy",
+      "start": "09:21",
+      "end": "10:20",
+      "startSeconds": 561,
+      "endSeconds": 620,
+      "lengthSeconds": 59,
+      "topic": "$19 signalled a toy",
+      "hook": "I started at nineteen dollars because that felt safe. It was not safe.",
+      "status": "selected",
+      "score": 74,
+      "platforms": [
+        "TikTok",
+        "Instagram Reels",
+        "YouTube Shorts",
+        "LinkedIn"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 82
+        },
+        {
+          "label": "Standalone context",
+          "value": 76
+        },
+        {
+          "label": "Audience relevance",
+          "value": 88
+        },
+        {
+          "label": "Novelty",
+          "value": 61
+        },
+        {
+          "label": "Historical fit",
+          "value": 90
+        }
+      ],
+      "reasons": [
+        "Hook is a self-negating reversal in two short sentences — 'that felt safe. It was not safe.' — which sets up a contradiction the viewer needs resolved, and it lands well inside 8 seconds with no windup.",
+        "Needs zero setup: a specific number ($19), a specific decision (the founder's own price), and a specific consequence (read as a toy). A stranger scrolling past understands the entire situation from the first line.",
+        "Pricing is this creator's strongest historical topic, and the learned observation is explicit that concrete pricing examples outperform generic advice — this is a dollar figure attached to a first-person mistake, not a framework.",
+        "The price-signals-quality point is reasonably well-trodden in founder circles; what saves it from generic is the specific $19 anchor and the admission of the underlying motive (safety-seeking), which reframes underpricing as fear rather than strategy.",
+        "Risk to flag for production: the supplied transcript covers roughly the first 15 seconds of a 59-second moment. The payoff — what the price was raised to and what changed — is not visible in the excerpt. Verify the back half resolves the setup before cutting; if it drifts into unrelated ground, trim to the strongest 30 seconds around the $19 claim."
+      ],
+      "transcript": "I started at nineteen dollars because that felt safe. It was not safe. It signalled that the thing was a toy.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_cheap_pricing_changes_th",
+      "start": "09:21",
+      "end": "10:20",
+      "startSeconds": 561,
+      "endSeconds": 620,
+      "lengthSeconds": 59,
+      "topic": "Cheap pricing changes the conversation",
+      "hook": "I started at nineteen dollars because that felt safe.",
+      "status": "selected",
+      "score": 66,
+      "platforms": [
+        "TikTok",
+        "Instagram Reels",
+        "YouTube Shorts",
+        "LinkedIn"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 74
+        },
+        {
+          "label": "Standalone context",
+          "value": 70
+        },
+        {
+          "label": "Audience relevance",
+          "value": 88
+        },
+        {
+          "label": "Novelty",
+          "value": 52
+        },
+        {
+          "label": "Historical fit",
+          "value": 86
+        }
+      ],
+      "reasons": [
+        "Opens on a specific number and an admission of error — '$19 because that felt safe' — which is the concrete-pricing-example pattern that has historically outperformed for this creator",
+        "The self-correction in the second line ('It was not safe') creates a clean 8-second turn without any clickbait framing, matching the direct/educational tone",
+        "Fully self-contained: a stranger needs no prior segment to understand that a founder priced low and regrets it",
+        "Novelty is the weak spot — 'cheap price signals a toy' is a widely repeated pricing adage, and the clip anchors only the wrong number ($19) without naming what he raised it to or what changed",
+        "Recommend the edit extend past 10:20 if a follow-up price or outcome exists; the payoff number is what would lift this from good to strong"
+      ],
+      "transcript": "I started at nineteen dollars because that felt safe. It was not safe. It signalled that the thing was a toy.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_higher_price_changed_cus",
+      "start": "10:20",
+      "end": "11:02",
+      "startSeconds": 620,
+      "endSeconds": 662,
+      "lengthSeconds": 42,
+      "topic": "Higher price changed customer questions",
+      "hook": "When I moved to fifty nine, the conversations changed.",
+      "status": "selected",
+      "score": 72,
+      "platforms": [
+        "TikTok",
+        "Instagram Reels",
+        "YouTube Shorts",
+        "LinkedIn"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 71
+        },
+        {
+          "label": "Standalone context",
+          "value": 60
+        },
+        {
+          "label": "Audience relevance",
+          "value": 88
+        },
+        {
+          "label": "Novelty",
+          "value": 70
+        },
+        {
+          "label": "Historical fit",
+          "value": 92
+        }
+      ],
+      "reasons": [
+        "Hook leads with a specific price point ($59) and a concrete consequence rather than a teaser, so the first line already delivers information instead of promising it later.",
+        "The payoff is a falsifiable observation — buyers switched from 'is it free?' to onboarding questions — which is the kind of concrete pricing example the learned observations say outperforms generic advice.",
+        "Pricing is the creator's strongest historical topic, and 'raising price changes who shows up' is directly actionable for early-stage founders deciding between free tiers and paid.",
+        "Context gap: the prior price is never stated, so a stranger can't gauge the size of the move — a one-line on-screen note ('was $9') would close this without a re-record.",
+        "Thin for 42 seconds — the supplied transcript is two sentences, so the clip likely needs the tightest cut around the before/after contrast rather than the full window."
+      ],
+      "transcript": "When I moved to fifty nine, the conversations changed. People asked about onboarding instead of asking whether it was free.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_cutting_onboarding_from_",
+      "start": "11:48",
+      "end": "12:40",
+      "startSeconds": 708,
+      "endSeconds": 760,
+      "lengthSeconds": 52,
+      "topic": "Cutting onboarding from three screens to one",
+      "hook": "Right, back to the product. The onboarding was three screens and I cut it to one.",
+      "status": "rejected",
+      "score": 24,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 18
+        },
+        {
+          "label": "Standalone context",
+          "value": 30
+        },
+        {
+          "label": "Audience relevance",
+          "value": 55
+        },
+        {
+          "label": "Novelty",
+          "value": 22
+        },
+        {
+          "label": "Historical fit",
+          "value": 30
+        }
+      ],
+      "reasons": [
+        "The opening line 'Right, back to the product' is a mid-episode transition marker — it signals the viewer they missed something rather than pulling them in, which is fatal in the first 2 seconds of a vertical clip.",
+        "The entire 52-second window resolves to a single sentence of transcript: three screens became one. There is no before/after activation number, no reasoning for which two screens were cut, and no result — the claim never pays off.",
+        "'I cut onboarding from three screens to one' is the kind of product tweak any founder could assert; without the conversion delta it carries none of the specificity that makes this creator's pricing breakdowns land.",
+        "Onboarding UX sits outside the creator's proven lanes of pricing, distribution and AI tooling, and it lacks the concrete-numbers quality that the learned observation says drives performance here.",
+        "A stranger arriving cold cannot tell what product this is, who it onboards, or whether the change worked — the moment depends entirely on the surrounding conversation."
+      ],
+      "transcript": "Right, back to the product. The onboarding was three screens and I cut it to one.",
+      "rejectionReason": "Opens on a conversational back-reference ('Right, back to the product') and the clip contains only the setup sentence — no metric, no outcome, no explanation of what was removed. There is nothing in the 52 seconds to cut a payoff from.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_doing_support_yourself_i",
+      "start": "12:40",
+      "end": "13:40",
+      "startSeconds": 760,
+      "endSeconds": 820,
+      "lengthSeconds": 60,
+      "topic": "Doing support yourself in a shared inbox",
+      "hook": "Support was me, in a shared inbox, for the entire first month.",
+      "status": "rejected",
+      "score": 38,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 55
+        },
+        {
+          "label": "Standalone context",
+          "value": 72
+        },
+        {
+          "label": "Audience relevance",
+          "value": 45
+        },
+        {
+          "label": "Novelty",
+          "value": 22
+        },
+        {
+          "label": "Historical fit",
+          "value": 30
+        }
+      ],
+      "reasons": [
+        "The 60 seconds is a restated premise with no payoff: he says the shared inbox 'taught me the objections faster than any survey' but never names a single objection, so the clip ends exactly where it gets interesting.",
+        "'Founder does support personally early on' is the most recycled version of do-things-that-don't-scale — there is no number, no timeframe beyond 'first month', and no specific decision that changed as a result.",
+        "Hook is a plain confession rather than tension; 'Support was me, in a shared inbox' has no stakes for a scrolling viewer and the immediate self-hedge ('not scalable, would not defend it') deflates it before the 8-second mark.",
+        "Sits outside the creator's proven lanes (pricing, distribution, AI tools) and drifts toward founder-ops/process content, which historically underperforms for this audience.",
+        "Standalone context is the only real strength — a stranger needs nothing prior to follow it — but that doesn't rescue a clip with no concrete claim inside it."
+      ],
+      "transcript": "Support was me, in a shared inbox, for the entire first month. That is not scalable and I would not defend it, but it taught me the objections faster than any survey would have.",
+      "rejectionReason": "The clip promises that manning support surfaced customer objections but never states even one of them, leaving a generic 'do things that don't scale' anecdote with no specific takeaway — and it falls outside the pricing/distribution/AI topics that work for this audience. Worth revisiting only if a later segment names the actual objections and what they changed.",
+      "rejectionClass": "low-relevance"
+    },
+    {
+      "id": "m_distribution_is_a_compou",
+      "start": "14:20",
+      "end": "15:05",
+      "startSeconds": 860,
+      "endSeconds": 905,
+      "lengthSeconds": 45,
+      "topic": "Distribution is a compounding loop, not a channel",
+      "hook": "Distribution is not a channel, it is a compounding loop.",
+      "status": "selected",
+      "score": 76,
+      "platforms": [
+        "LinkedIn",
+        "YouTube Shorts",
+        "Instagram Reels",
+        "X"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 82
+        },
+        {
+          "label": "Standalone context",
+          "value": 90
+        },
+        {
+          "label": "Audience relevance",
+          "value": 86
+        },
+        {
+          "label": "Novelty",
+          "value": 64
+        },
+        {
+          "label": "Historical fit",
+          "value": 88
+        }
+      ],
+      "reasons": [
+        "Opens on a negation-then-redefinition ('not a channel, it is a compounding loop') that creates an immediate definitional gap the viewer wants closed — no ramp-up, no throat-clearing.",
+        "Fully self-contained: the three sentences form a complete argument (claim, test, consequence) with zero references to earlier segments, guests, or on-screen material.",
+        "The falsifiable test — 'every customer you land should make the next one cheaper to reach' — gives founders something they can apply to their own CAC numbers the same day, which is the practical register this creator works in.",
+        "The closing line 'you do not have distribution, you have advertising' is a clean reframe that reclassifies paid acquisition rather than just praising organic growth — it lands as an argument, not a slogan.",
+        "Distribution sits squarely in this creator's proven topic set, and the framing avoids the motivational-language pattern the creator rejects.",
+        "Weakest signal is novelty: the loop-vs-channel distinction is conceptual with no named company, referral rate, or CAC figure attached. Given that concrete examples have historically outperformed here, a single worked number over the 45 seconds would materially lift this."
+      ],
+      "transcript": "Distribution is not a channel, it is a compounding loop. Every customer you land should make the next one cheaper to reach. If it does not, you do not have distribution, you have advertising.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_the_shareable_footer_loo",
+      "start": "15:05",
+      "end": "16:05",
+      "startSeconds": 905,
+      "endSeconds": 965,
+      "lengthSeconds": 60,
+      "topic": "The shareable footer loop that drove a third of signups",
+      "hook": "The loop for me was simple: every customer got a shareable output with a small footer.",
+      "status": "selected",
+      "score": 68,
+      "platforms": [
+        "YouTube Shorts",
+        "LinkedIn",
+        "Instagram Reels",
+        "X"
+      ],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 64
+        },
+        {
+          "label": "Standalone context",
+          "value": 62
+        },
+        {
+          "label": "Audience relevance",
+          "value": 88
+        },
+        {
+          "label": "Novelty",
+          "value": 70
+        },
+        {
+          "label": "Historical fit",
+          "value": 86
+        }
+      ],
+      "reasons": [
+        "Hook opens flat with 'The loop for me was simple' but recovers fast — the payoff number ('about a third of new signups by week four') lands inside the first 8 seconds, so the attribution stat does the hook work rather than the phrasing.",
+        "Fully self-contained mechanic: shareable output → footer → signups is legible to a stranger with no prior segment. Weakness is that the transcript never names the product or what the 'shareable output' actually is, so a viewer can't map it onto their own product without guessing.",
+        "Distribution loops are a top-performing topic for this creator and this is the cheapest version of one — no ad budget, no partnerships — which is exactly the constraint early-stage founders are under.",
+        "Novelty is carried by the specificity of the measurement, not the tactic. Footer attribution is a known growth play, but 'a third of signups by week four' is a claim with a number and a timeframe attached, which matches the learned pattern that concrete figures beat generic advice.",
+        "Tone fits: no motivational framing, states a mechanism and a result and stops. Risk noted — 60s of runtime against a single transcribed sentence means the clip may thin out after the stat; edit should tighten to the mechanic plus the number."
+      ],
+      "transcript": "The loop for me was simple: every customer got a shareable output with a small footer, and that footer drove about a third of new signups by week four.",
+      "rejectionReason": null,
+      "rejectionClass": null
+    },
+    {
+      "id": "m_when_the_loop_does_not_w",
+      "start": "16:20",
+      "end": "17:20",
+      "startSeconds": 980,
+      "endSeconds": 1040,
+      "lengthSeconds": 60,
+      "topic": "When the loop does not work: invisible products",
+      "hook": "I want to flag that this works for tools with a visible output.",
+      "status": "rejected",
+      "score": 24,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 18
+        },
+        {
+          "label": "Standalone context",
+          "value": 12
+        },
+        {
+          "label": "Audience relevance",
+          "value": 65
+        },
+        {
+          "label": "Novelty",
+          "value": 25
+        },
+        {
+          "label": "Historical fit",
+          "value": 55
+        }
+      ],
+      "reasons": [
+        "The hook is a mid-talk caveat — 'this works for tools with a visible output' — where 'this' is an unnamed loop established earlier in the episode; a cold viewer has nothing to attach the exception to.",
+        "The whole 60s contains only two sentences of substance: visible-output products get the loop, invisible products 'probably' need content. There is no named product, no example of an invisible product, and no description of what the content loop actually looks like.",
+        "'Probably content' is hedged and unspecific — it is the generic answer any founder could give, and it conflicts with the learned observation that concrete examples outperform abstract advice for this audience.",
+        "Distribution/growth loops are a historically strong lane for this creator, but this clip is the footnote to the idea rather than the idea itself — the payload lives in the segment before 16:20."
+      ],
+      "transcript": "I want to flag that this works for tools with a visible output. If your product is invisible, you need a different loop, probably content.",
+      "rejectionReason": "Opens on an unresolved reference ('this works for tools with a visible output') that depends on a loop explained earlier in the episode, and never defines it — so the first 8 seconds present a qualification to an argument the viewer has not heard. The remaining content is one hedged sentence ('probably content') with no example of an invisible product or the loop it should use.",
+      "rejectionClass": "weak-hook"
+    },
+    {
+      "id": "m_what_i_would_do_differen",
+      "start": "19:27",
+      "end": "20:14",
+      "startSeconds": 1167,
+      "endSeconds": 1214,
+      "lengthSeconds": 47,
+      "topic": "What I would do differently",
+      "hook": "Last thing. What I would do differently.",
+      "status": "rejected",
+      "score": 34,
+      "platforms": [],
+      "signals": [
+        {
+          "label": "Hook strength",
+          "value": 20
+        },
+        {
+          "label": "Standalone context",
+          "value": 40
+        },
+        {
+          "label": "Audience relevance",
+          "value": 70
+        },
+        {
+          "label": "Novelty",
+          "value": 22
+        },
+        {
+          "label": "Historical fit",
+          "value": 48
+        }
+      ],
+      "reasons": [
+        "Hook is a segment sign-off ('Last thing. What I would do differently.') — it signals an episode is ending rather than opening a loop, and 'last thing' explicitly points back to a list the viewer never saw.",
+        "The two takeaways are stated but never unpacked: no price point, no before/after revenue, no description of what the product was or who the outreach targeted. The clip is over before either claim is supported.",
+        "'I would price higher on day one' is the exact generic form of the advice this creator's audience already discounts — the learned pattern is that concrete pricing examples (actual numbers, actual conversion effects) are what land.",
+        "The distribution point — starting the outreach spreadsheet pre-launch — is the more differentiated idea here, but it gets one clause and no mechanics (how many contacts, what the outreach said, what it produced).",
+        "Topic territory (pricing, distribution) is squarely in the creator's proven lanes, which is why this reads as a missed opportunity rather than an off-brand moment; the substance is simply too compressed to carry a standalone short."
+      ],
+      "transcript": "Last thing. What I would do differently. I would price higher on day one, and I would start the outreach spreadsheet before the product was finished.",
+      "rejectionReason": "Opens with a wrap-up cue ('Last thing') that depends on a list the viewer never heard, then delivers two unsupported one-line regrets — 'price higher on day one' with no number and 'start the outreach spreadsheet earlier' with no mechanics. Neither the hook nor the payload survives being cut out of the episode.",
+      "rejectionClass": "weak-hook"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a_short_pricing_3x",
+      "type": "YouTube Short",
+      "platform": "YouTube Shorts",
+      "icon": "youtube",
+      "sourceMomentId": "m_tripled_the_price_lost_z",
+      "confidence": 88,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Tuesday at 9:00 AM ET",
+      "title": "I tripled my price and lost zero customers",
+      "body": "COLD OPEN (0:00-0:04)\n\"I tripled my price and lost exactly zero customers.\"\n[on-screen: $19 -> $59]\n\n0:04-0:22\n\"Here's what nobody tells you about pricing early: your first ten customers are not buying software. They're buying a fix for a problem that's already costing them more than your price tag.\"\n[on-screen: THEY'RE NOT BUYING SOFTWARE]\n\n0:22-0:35\n\"If the problem costs them $4,000 a month, $19 and $59 are the same number to them. The only person the low price protects is you.\"\n\nEND CARD: \"Full 30-day build breakdown — link in description.\"\n\nCaption: Tripled the price. Zero churn. The math your first ten customers are actually running.\n\n#saas #pricing #founders",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "08:42-09:21"
+        },
+        {
+          "label": "Runtime",
+          "value": "~35s"
+        },
+        {
+          "label": "Moment score",
+          "value": "84"
+        }
+      ],
+      "rationale": [
+        "Highest-scoring moment in the set (84) and the only one with a self-contained result-plus-reason structure — no setup needed, which is what a Short requires.",
+        "Concrete number in the first four seconds does the work clickbait would normally do, so it stays inside Alex's 'no clickbait' constraint.",
+        "Suggested-platform list leads with short-form vertical (TikTok/Reels/Shorts); Shorts is the format Alex actually publishes."
+      ]
+    },
+    {
+      "id": "a_short_spreadsheet_40",
+      "type": "YouTube Short",
+      "platform": "YouTube Shorts",
+      "icon": "youtube",
+      "sourceMomentId": "m_first_40_customers_came_",
+      "confidence": 85,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Friday at 9:00 AM ET",
+      "title": "My first 40 customers came from a spreadsheet",
+      "body": "COLD OPEN (0:00-0:05)\n\"My first 40 customers came from a spreadsheet, not ads.\"\n[on-screen: screen recording of a blank sheet filling with company names]\n\n0:05-0:25\n\"I opened a blank sheet. I listed 200 companies that had publicly complained about the exact problem I solved. Then I sent 200 emails — each one quoting their own words back to them.\"\n[on-screen: 200 companies -> 200 emails -> 40 customers]\n\n0:25-0:33\n\"No budget. No funnel. One column of names and one column of receipts.\"\n\nEND CARD: \"The full outreach breakdown is in the 30-day video.\"\n\nCaption: 200 rows. 200 emails. 40 customers. Zero ad spend.\n\n#founders #saas #gtm",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "05:12-05:50"
+        },
+        {
+          "label": "Runtime",
+          "value": "~33s"
+        },
+        {
+          "label": "Moment score",
+          "value": "82"
+        }
+      ],
+      "rationale": [
+        "Score 82 and the tightest visual in the video — a spreadsheet filling up is literally screen-recordable, which is the routing test for Short vs. text.",
+        "The 38s cut is the clean version; the 58s cut of the same span carries the reply-rate analysis, which is argument, not visual — routed to X instead so the two assets don't cannibalise.",
+        "Early-stage founders with no ad budget are Alex's core audience; this is the moment that maps directly to what they can do this week."
+      ]
+    },
+    {
+      "id": "a_x_outreach_specificity",
+      "type": "X post",
+      "platform": "X",
+      "icon": "x",
+      "sourceMomentId": "m_cold_outreach_that_is_no",
+      "confidence": 82,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Wednesday at 11:30 AM ET",
+      "title": "19% reply rate: the outreach wasn't cold, it was specific",
+      "body": "A 19% reply rate on cold email sounds fake. It wasn't cold.\n\nWhat I actually did:\n\n1. Opened a blank spreadsheet.\n2. Listed 200 companies that had publicly complained about the exact problem I solved. Public complaints only — their words, on the record.\n3. Wrote 200 emails that each quoted their own complaint back to them.\n\nThat's it. No sequence tool, no 7-touch cadence, no personalisation tokens.\n\nThe reply rate was ~19%, and that number isn't a hack. It's just what happens when the recipient can tell the email could not have been sent to anyone else.\n\n\"Cold\" is not a channel problem. It's a specificity problem. Most cold email fails because it would still make sense if you swapped the company name — and everyone can feel that.\n\n40 of those 200 became customers.",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "05:12-06:10"
+        },
+        {
+          "label": "Moment score",
+          "value": "81"
+        },
+        {
+          "label": "Format",
+          "value": "Single post, thread-ready"
+        }
+      ],
+      "rationale": [
+        "Score 81, but the payoff is a numbered mechanism plus a reply-rate stat — that reads as a process, not a visual, so X beats another vertical cut.",
+        "Deliberately paired with the 38s Shorts cut of the same span: the Short carries the story, this carries the 19% analysis, so they reinforce rather than duplicate.",
+        "Matches Alex's 'practical' brief — a founder can execute all three steps without buying anything."
+      ]
+    },
+    {
+      "id": "a_x_distribution_loop",
+      "type": "X post",
+      "platform": "X",
+      "icon": "x",
+      "sourceMomentId": "m_distribution_is_a_compou",
+      "confidence": 78,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Week 2 Tuesday at 11:30 AM ET",
+      "title": "Distribution vs. advertising: the compounding test",
+      "body": "Distribution is not a channel. It's a compounding loop.\n\nThe test is one question: does every customer you land make the next one cheaper to reach?\n\nIf yes, that's distribution.\nIf no, that's advertising. Advertising is fine — but price it honestly. It stops the day you stop paying.\n\nMost early founders say \"we're figuring out distribution\" when they mean \"we're buying attention.\" Those are different companies with different unit economics.\n\nRun the test on your own numbers before your next channel experiment.",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "14:20-15:05"
+        },
+        {
+          "label": "Moment score",
+          "value": "76"
+        },
+        {
+          "label": "Format",
+          "value": "Single post"
+        }
+      ],
+      "rationale": [
+        "Score 76 and the shape is a definition plus a one-question test — framework-shaped content that survives as text and loses nothing without video.",
+        "X was in the suggested set and this is the kind of contrarian-but-defensible claim that gets quote-tweeted by founders, which is Alex's audience.",
+        "Kept short on purpose: the mechanic that proves it (the footer loop) is a separate, weaker moment and is being held back for verification rather than padded in here."
+      ]
+    },
+    {
+      "id": "a_x_price_changed_questions",
+      "type": "X post",
+      "platform": "X",
+      "icon": "x",
+      "sourceMomentId": "m_higher_price_changed_cus",
+      "confidence": 72,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Week 2 Thursday at 11:30 AM ET",
+      "title": "The question your price is training buyers to ask",
+      "body": "When I moved from $19 to $59, the questions changed.\n\nAt $19: \"Is there a free plan?\"\nAt $59: \"What does onboarding look like?\"\n\nSame product. Same week. Different buyer posture.\n\nPrice isn't just what you capture — it's the instruction you hand the buyer about how seriously to take you. A cheap price invites people to evaluate whether to pay at all. A real price invites them to evaluate whether it will work.\n\nIf every sales call opens with a discount question, that's not a sales problem.",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "10:20-11:02"
+        },
+        {
+          "label": "Moment score",
+          "value": "72"
+        }
+      ],
+      "rationale": [
+        "Score 72 — mid-tier, but the before/after quote pair is unusually clean and lands better as read text than as a talking-head clip.",
+        "Sits between the pricing Short and the pricing newsletter as the mid-week connective post; different angle (buyer behaviour) so it doesn't repeat the 3x-price claim.",
+        "No motivational framing, just the observed change in question type — consistent with Alex's stated 'avoid generic motivational language'."
+      ]
+    },
+    {
+      "id": "a_newsletter_pricing_arc",
+      "type": "Newsletter",
+      "platform": "Newsletter",
+      "icon": "mail",
+      "sourceMomentId": "m_19_signalled_a_toy",
+      "confidence": 80,
+      "actionClass": "approval",
+      "status": "pending",
+      "scheduledFor": "Week 2 Sunday at 8:00 AM ET",
+      "title": "$19 felt safe. That was the problem.",
+      "body": "SUBJECT: $19 felt safe. That was the problem.\nPREVIEW: What a low price actually signals to your first ten customers.\n\n—\n\nI launched at $19/month because it felt safe.\n\nIt wasn't safe. It was a signal, and the signal was: this is a toy.\n\nHere's the sequence, with real numbers:\n\n**$19 — the toy price**\nI picked it by looking at what felt uncomfortable to charge and then going one step below that. That's not pricing, that's flinching. Every inbound conversation started with some version of \"is there a free tier?\" — because I'd already told them the product was worth roughly nothing.\n\n**$59 — the conversation flips**\nSame product, same week. The questions changed to \"what does onboarding look like?\" Buyers stopped negotiating whether to pay and started planning how to use it. I hadn't added a feature. I'd removed an excuse.\n\n**3x — and zero churn**\nWhen I tripled the price, I lost exactly zero customers. Not because I'm a great salesperson. Because of something I misunderstood for the whole first month:\n\nYour first ten customers are not buying software. They're buying a fix for a problem that is already costing them more than your price tag.\n\nIf the problem burns $4,000 a month of someone's time, $19 and $59 are the same number to them. The gap between those two prices only exists in your head. The only person a low price protects is the founder.\n\n**What to do this week**\n1. Write down what the problem costs your customer per month. Get an actual figure from an actual customer — don't estimate it.\n2. Compare it to your price. If your price is under 5% of that number, you are not priced, you are apologising.\n3. Raise the price for new customers only. Grandfather the existing ones. You now have a clean test with no downside.\n4. Track the first question new prospects ask. That's your real pricing signal, faster than any conversion number.\n\nOne caveat, so this isn't advice-shaped noise: this held for me at 40 customers solving one sharply defined problem. If you're selling something broad to a market that hasn't named the pain yet, a higher price won't rescue that. Fix the specificity first.\n\n— Alex\n\nP.S. The full 30-day build video is here, pricing section starts at 8:42.",
+      "meta": [
+        {
+          "label": "Sources",
+          "value": "09:21-10:20, 10:20-11:02, 08:42-09:21"
+        },
+        {
+          "label": "Length",
+          "value": "~550 words"
+        },
+        {
+          "label": "Merged moments",
+          "value": "3"
+        }
+      ],
+      "rationale": [
+        "Three pricing moments (74, 66, 72) cover one continuous arc — $19 to $59 to 3x — and none of them stands alone at Short length. Assembled, they form the newsletter's natural narrative spine.",
+        "m_cheap_pricing_changes_th (66) is a duplicate span and transcript of m_19_signalled_a_toy (74); it produced no separate asset and is absorbed here rather than shipped twice.",
+        "Newsletter is where Alex's 'educational' register has room for the caveat at the end — the honest boundary condition that would be cut from a 35-second Short and would read as hedging on X."
+      ]
+    },
+    {
+      "id": "a_short_footer_loop",
+      "type": "YouTube Short",
+      "platform": "YouTube Shorts",
+      "icon": "youtube",
+      "sourceMomentId": "m_the_shareable_footer_loo",
+      "confidence": 55,
+      "actionClass": "escalate",
+      "status": "draft",
+      "scheduledFor": "",
+      "title": "The footer that drove a third of my signups",
+      "body": "DRAFT — HOLD FOR VERIFICATION\n\n0:00-0:05\n\"A third of my signups came from a line of text at the bottom of a page.\"\n\n0:05-0:25\n\"Every customer got a shareable output. Every shareable output had a small footer. By week four that footer was driving about a third of new signups.\"\n[on-screen: mock of the shared output with the footer highlighted]\n\n0:25-0:32\n\"That's the difference between distribution and advertising: it kept working after I stopped.\"\n\nOPEN QUESTIONS BEFORE PUBLISH:\n1. \"About a third by week four\" — needs the actual attribution source. Was this tracked by referral parameter or estimated? A public stat this specific will get challenged in the comments.\n2. Needs a real screenshot of the footer. Without it the Short is 30 seconds of narration and the visual routing argument disappears.",
+      "meta": [
+        {
+          "label": "Source",
+          "value": "15:05-16:05"
+        },
+        {
+          "label": "Moment score",
+          "value": "68"
+        },
+        {
+          "label": "Blocker",
+          "value": "Unverified stat"
+        }
+      ],
+      "rationale": [
+        "Lowest score in the set (68) and the only asset resting entirely on a single unverified metric — 'about a third of new signups by week four' is the whole payoff, so if the attribution is soft the asset has nothing left.",
+        "Alex's audience is founders who will ask how it was tracked; publishing a fuzzy number would undercut the 'practical, direct' positioning more than skipping the moment would.",
+        "Escalating rather than dropping it: with a real footer screenshot and a confirmed attribution method this becomes a strong companion to the distribution post — it is the proof the framework is currently missing."
+      ]
+    },
+    {
+      "id": "a_yt_metadata_source",
+      "type": "YouTube metadata",
+      "platform": "YouTube",
+      "icon": "tag",
+      "sourceMomentId": "m_first_40_customers_came_",
+      "confidence": 90,
+      "actionClass": "auto",
+      "status": "published",
+      "scheduledFor": "",
+      "title": "Chapters, description and tags — How I Built a SaaS in 30 Days",
+      "body": "CHAPTERS\n00:00 Intro — the 30-day constraint\n05:12 My first 40 customers came from a spreadsheet\n06:10 Why the outreach wasn't cold, it was specific\n08:42 Tripling the price and losing zero customers\n09:21 Why $19 signalled a toy\n10:20 What changed at $59\n14:20 Distribution is a loop, not a channel\n15:05 The shareable footer that compounded\n[Gaps at 00:00-05:12 and 11:02-14:20 need chapter titles from the full timeline before publish — placeholders above cover only the reviewed moments.]\n\nDESCRIPTION\nI built and shipped a SaaS product in 30 days. This is the unedited version of what actually moved the numbers — not the montage.\n\nInside:\n• How I got the first 40 customers from a 200-row spreadsheet and zero ad spend, at a ~19% reply rate\n• Why I started at $19, why that was a mistake, and what happened when I tripled the price\n• The exact moment buyer questions changed from \"is there a free plan?\" to \"what does onboarding look like?\"\n• The difference between distribution and advertising, and the one question that tells you which you have\n• The footer loop that was driving roughly a third of signups by week four\n\nBuilt for early-stage founders who need something to do on Monday, not something to feel good about on Sunday.\n\nChapters are below. Pricing section starts at 8:42.\n\nTAGS\nsaas, build in public, early stage startup, first customers, cold email, cold outreach, b2b sales, saas pricing, pricing strategy, raise your prices, product market fit, indie hacker, solo founder, bootstrapped saas, distribution strategy, growth loops, referral loop, startup marketing, no ad spend, 30 day build, founder lessons, how to get first customers, saas onboarding, b2b outreach, spreadsheet outreach",
+      "meta": [
+        {
+          "label": "Chapters",
+          "value": "8 (2 gaps flagged)"
+        },
+        {
+          "label": "Tags",
+          "value": "25"
+        },
+        {
+          "label": "Reversible",
+          "value": "Yes"
+        }
+      ],
+      "rationale": [
+        "Metadata is non-public-facing and fully reversible, so it runs as 'auto' — nothing here reaches the audience as a new post.",
+        "Chapter timestamps are pulled directly from the scored moment spans, so the highest-value sections (05:12 outreach, 08:42 pricing, 14:20 distribution) become jump targets and feed the Shorts that point back to them.",
+        "Tags weight toward search intent Alex's founder audience actually types — 'how to get first customers', 'saas pricing' — rather than broad startup terms he'd never rank for.",
+        "Gaps at 00:00-05:12 and 11:02-14:20 are flagged rather than invented; no moments were scored in those ranges."
+      ]
+    }
+  ],
+  "log": [
+    {
+      "time": "12:30:55",
+      "level": "ingest",
+      "tag": "INGEST",
+      "message": "Received saas-growth-final.mp4 (20:14).",
+      "detail": "mode: live"
+    },
+    {
+      "time": "12:30:55",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Orchestrator started. Planning the post-production workflow.",
+      "detail": null
+    },
+    {
+      "time": "12:30:57",
+      "level": "tool",
+      "tag": "TOOL:get_transcript",
+      "message": "Calling get_transcript(content_id=vid_100saas).",
+      "detail": null
+    },
+    {
+      "time": "12:30:57",
+      "level": "memory",
+      "tag": "TOOL:get_creator_memory",
+      "message": "Calling get_creator_memory().",
+      "detail": null
+    },
+    {
+      "time": "12:30:57",
+      "level": "ingest",
+      "tag": "INGEST",
+      "message": "Loaded transcript for vid_100saas (652 words, 24 lines).",
+      "detail": null
+    },
+    {
+      "time": "12:30:57",
+      "level": "memory",
+      "tag": "MEMORY:creator_alex",
+      "message": "Loaded creator memory.",
+      "detail": "strong: pricing, distribution, ai tools; weak: general productivity, morning routines"
+    },
+    {
+      "time": "12:30:57",
+      "level": "learn",
+      "tag": "TOOL:get_creator_analytics",
+      "message": "Calling get_creator_analytics().",
+      "detail": null
+    },
+    {
+      "time": "12:30:57",
+      "level": "tool",
+      "tag": "TOOL:get_transcript",
+      "message": "get_transcript returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:30:57",
+      "level": "memory",
+      "tag": "TOOL:get_creator_memory",
+      "message": "get_creator_memory returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:30:57",
+      "level": "learn",
+      "tag": "TOOL:get_creator_analytics",
+      "message": "Loaded baseline for creator_alex (avg 41,200 views, 62% retention).",
+      "detail": null
+    },
+    {
+      "time": "12:30:58",
+      "level": "learn",
+      "tag": "TOOL:get_creator_analytics",
+      "message": "get_creator_analytics returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:31:00",
+      "level": "tool",
+      "tag": "TOOL:find_content_moments",
+      "message": "Calling find_content_moments(content_id=vid_100saas, target_format=short-form video).",
+      "detail": null
+    },
+    {
+      "time": "12:31:35",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Identified 21 raw candidate segments.",
+      "detail": null
+    },
+    {
+      "time": "12:31:35",
+      "level": "tool",
+      "tag": "TOOL:find_content_moments",
+      "message": "find_content_moments returned.",
+      "detail": "35.15s"
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_30_days_from_empty_repo_).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_picking_the_problem_from).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_skipping_customer_discov).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_nine_day_build_one_featu).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_build_one_feature_well_i).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_distribution_decides_whe).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_first_40_customers_came_).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_why_a_19_percent_reply_r).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_cold_outreach_that_is_no).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_paid_ads_failed_400_for_).",
+      "detail": null
+    },
+    {
+      "time": "12:31:46",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_pricing_biggest_mistake_).",
+      "detail": null
+    },
+    {
+      "time": "12:31:58",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_picking_the_problem_from (28) — Hook is a flat origin statement with no tension, and the 34s never names the manual task, the tool, or any measurable outcome — it reduces to 'build what annoys you', generic advice any founder could give and a poor fit for a creator whose pricing/distribution specifics perform.",
+      "detail": null
+    },
+    {
+      "time": "12:31:58",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "12.58s"
+    },
+    {
+      "time": "12:31:58",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_first_40_customers_came_ (82) — First 40 customers came from a spreadsheet, not ads.",
+      "detail": "Hook front-loads a specific number and a negation ('40 customers... not ads') that sets up a concrete alternative rather than a vague promise — earns the next line without clickbait phrasing the creator avoids.; Fully self-contained in 38s: problem (no ad budget), method (blank sheet, 200 companies), and mechanic (quote their own complaint back to them) all land without prior episode context."
+    },
+    {
+      "time": "12:31:58",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "12.76s"
+    },
+    {
+      "time": "12:31:58",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_distribution_decides_whe (31) — The moment is a topic announcement, not a payload: one sentence of transcript ('Distribution... decides whether you have a business') with no supporting claim or example, and it opens mid-thought on 'Anyway.' Recut later in the segment where an actual distribution channel or number is named.",
+      "detail": null
+    },
+    {
+      "time": "12:31:58",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "12.81s"
+    },
+    {
+      "time": "12:31:59",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_30_days_from_empty_repo_ (34) — The clip is an intro roadmap that promises four topics and delivers none of them; the strong 'empty repo' line writes a check the remaining 30 seconds never cashes, leaving viewers with no specific claim, number, or takeaway. Cut instead from the pricing or first-users segment this intro is pointing at.",
+      "detail": null
+    },
+    {
+      "time": "12:31:59",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "13.70s"
+    },
+    {
+      "time": "12:32:00",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_nine_day_build_one_featu (32) — The hook references 'the build' with no antecedent and the clip never delivers an outcome for the nine days, so the specific number lands as trivia instead of a claim a founder can act on.",
+      "detail": null
+    },
+    {
+      "time": "12:32:00",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "14.13s"
+    },
+    {
+      "time": "12:32:00",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_build_one_feature_well_i (42) — The hook is a context-free stat prefaced with 'So', and the clip resolves into stock MVP advice ('one feature well, not six badly') with no named product, metric, or pricing detail to differentiate it — exactly the generic startup advice this creator's audience underperforms on.",
+      "detail": null
+    },
+    {
+      "time": "12:32:00",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "14.47s"
+    },
+    {
+      "time": "12:32:00",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_skipping_customer_discov (32) — The hook sets up a contrarian claim about skipping customer discovery, then retracts it one sentence later with 'that is not always the right approach' and never supplies the product, market, or outcome behind 'it worked here.' There is no payoff to produce.",
+      "detail": null
+    },
+    {
+      "time": "12:32:00",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "14.64s"
+    },
+    {
+      "time": "12:32:05",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_why_a_19_percent_reply_r (54) — The 19 percent stat sets up a mechanism reveal that never arrives — \\\"they were specific\\\" is stated but never shown, with no example email, no audience described, and no sample size, so the clip ends as unsupported generic outreach advice. Worth revisiting only if an adjacent segment contains the actual email copy or targeting method, which could be stitched in to complete the promise.",
+      "detail": null
+    },
+    {
+      "time": "12:32:05",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "19.63s"
+    },
+    {
+      "time": "12:32:09",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_cold_outreach_that_is_no (81) — Cold outreach that is not cold.",
+      "detail": "Hook is a numbers-vs-expectation contrast ('40 customers from a spreadsheet, not ads') that names the payoff and the anti-method in one line — no setup required to understand it.; Fully self-contained: the 200-company list, the 200 emails, and the 19 percent reply rate are all stated inside the 58 seconds, so a stranger needs nothing from earlier in the episode."
+    },
+    {
+      "time": "12:32:09",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "22.93s"
+    },
+    {
+      "time": "12:32:13",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_paid_ads_failed_400_for_ (43) — The hook is a backward-looking concession ('I did try paid ads for a week') that depends on an off-screen question, and the strongest asset — the $400-for-two-churned-signups number — is buried in the following sentence. The clip also stops at 'So I stopped' with no explanation or replacement channel, so there is no payoff for a founder audience that expects a pricing/distribution lesson. If the $400 figure can be front-loaded and paired with what actually worked instead, this is worth re-cutting.",
+      "detail": null
+    },
+    {
+      "time": "12:32:13",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "26.90s"
+    },
+    {
+      "time": "12:32:13",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_pricing_biggest_mistake_ (25) — The clip is pure setup with no payoff — it announces a pricing mistake and correction but never states either one, leaving no claim, number, or takeaway for a viewer to follow.",
+      "detail": null
+    },
+    {
+      "time": "12:32:13",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "27.25s"
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_tripled_the_price_lost_z).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_19_signalled_a_toy).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_cheap_pricing_changes_th).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_higher_price_changed_cus).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_cutting_onboarding_from_).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_doing_support_yourself_i).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_distribution_is_a_compou).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_the_shareable_footer_loo).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_when_the_loop_does_not_w).",
+      "detail": null
+    },
+    {
+      "time": "12:33:10",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "Calling score_moment(moment_id=m_what_i_would_do_differen).",
+      "detail": null
+    },
+    {
+      "time": "12:33:24",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_cutting_onboarding_from_ (24) — Opens on a conversational back-reference ('Right, back to the product') and the clip contains only the setup sentence — no metric, no outcome, no explanation of what was removed. There is nothing in the 52 seconds to cut a payoff from.",
+      "detail": null
+    },
+    {
+      "time": "12:33:24",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "13.50s"
+    },
+    {
+      "time": "12:33:24",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_tripled_the_price_lost_z (84) — Tripled the price, lost zero customers.",
+      "detail": "Hook leads with a hard number and a counterintuitive outcome — '3x price, zero churn' — which is a claim, not a tease, so it earns the next line without clickbait framing.; Fully self-contained: no product name, no callback to earlier discussion, no unexplained metric. A stranger opening on 'I tripled my price' understands the stakes immediately."
+    },
+    {
+      "time": "12:33:24",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "13.92s"
+    },
+    {
+      "time": "12:33:25",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_distribution_is_a_compou (76) — Distribution is a compounding loop, not a channel.",
+      "detail": "Opens on a negation-then-redefinition ('not a channel, it is a compounding loop') that creates an immediate definitional gap the viewer wants closed — no ramp-up, no throat-clearing.; Fully self-contained: the three sentences form a complete argument (claim, test, consequence) with zero references to earlier segments, guests, or on-screen material."
+    },
+    {
+      "time": "12:33:26",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "15.08s"
+    },
+    {
+      "time": "12:33:26",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_doing_support_yourself_i (38) — The clip promises that manning support surfaced customer objections but never states even one of them, leaving a generic 'do things that don't scale' anecdote with no specific takeaway — and it falls outside the pricing/distribution/AI topics that work for this audience. Worth revisiting only if a later segment names the actual objections and what they changed.",
+      "detail": null
+    },
+    {
+      "time": "12:33:26",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "15.73s"
+    },
+    {
+      "time": "12:33:26",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_the_shareable_footer_loo (68) — The shareable footer loop that drove a third of signups.",
+      "detail": "Hook opens flat with 'The loop for me was simple' but recovers fast — the payoff number ('about a third of new signups by week four') lands inside the first 8 seconds, so the attribution stat does the hook work rather than the phrasing.; Fully self-contained mechanic: shareable output → footer → signups is legible to a stranger with no prior segment. Weakness is that the transcript never names the product or what the 'shareable output' actually is, so a viewer can't map it onto their own product without guessing."
+    },
+    {
+      "time": "12:33:26",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "16.04s"
+    },
+    {
+      "time": "12:33:28",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_cheap_pricing_changes_th (66) — Cheap pricing changes the conversation.",
+      "detail": "Opens on a specific number and an admission of error — '$19 because that felt safe' — which is the concrete-pricing-example pattern that has historically outperformed for this creator; The self-correction in the second line ('It was not safe') creates a clean 8-second turn without any clickbait framing, matching the direct/educational tone"
+    },
+    {
+      "time": "12:33:28",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "17.50s"
+    },
+    {
+      "time": "12:33:28",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_higher_price_changed_cus (72) — Higher price changed customer questions.",
+      "detail": "Hook leads with a specific price point ($59) and a concrete consequence rather than a teaser, so the first line already delivers information instead of promising it later.; The payoff is a falsifiable observation — buyers switched from 'is it free?' to onboarding questions — which is the kind of concrete pricing example the learned observations say outperforms generic advice."
+    },
+    {
+      "time": "12:33:28",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "17.94s"
+    },
+    {
+      "time": "12:33:31",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Selected m_19_signalled_a_toy (74) — $19 signalled a toy.",
+      "detail": "Hook is a self-negating reversal in two short sentences — 'that felt safe. It was not safe.' — which sets up a contradiction the viewer needs resolved, and it lands well inside 8 seconds with no windup.; Needs zero setup: a specific number ($19), a specific decision (the founder's own price), and a specific consequence (read as a toy). A stranger scrolling past understands the entire situation from the first line."
+    },
+    {
+      "time": "12:33:31",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "21.02s"
+    },
+    {
+      "time": "12:33:36",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_when_the_loop_does_not_w (24) — Opens on an unresolved reference ('this works for tools with a visible output') that depends on a loop explained earlier in the episode, and never defines it — so the first 8 seconds present a qualification to an argument the viewer has not heard. The remaining content is one hedged sentence ('probably content') with no example of an invisible product or the loop it should use.",
+      "detail": null
+    },
+    {
+      "time": "12:33:36",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "26.03s"
+    },
+    {
+      "time": "12:33:39",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Rejected m_what_i_would_do_differen (34) — Opens with a wrap-up cue ('Last thing') that depends on a list the viewer never heard, then delivers two unsupported one-line regrets — 'price higher on day one' with no number and 'start the outreach spreadsheet earlier' with no mechanics. Neither the hook nor the payload survives being cut out of the episode.",
+      "detail": null
+    },
+    {
+      "time": "12:33:39",
+      "level": "tool",
+      "tag": "TOOL:score_moment",
+      "message": "score_moment returned.",
+      "detail": "28.96s"
+    },
+    {
+      "time": "12:33:46",
+      "level": "tool",
+      "tag": "TOOL:generate_asset_plan",
+      "message": "Calling generate_asset_plan().",
+      "detail": null
+    },
+    {
+      "time": "12:35:43",
+      "level": "error",
+      "tag": "TOOL:generate_asset_plan",
+      "message": "generate_asset_plan raised MaxTokensReachedException.",
+      "detail": "Model stopped generating due to maximum token limit. The partial message has been added to the conversation history. You can continue by calling the agent again. For more information see: https://strandsagents.com/docs/user-guide/concepts/agents/agent-loop/#maxtokensreachedexception"
+    },
+    {
+      "time": "12:35:45",
+      "level": "tool",
+      "tag": "TOOL:generate_asset_plan",
+      "message": "Calling generate_asset_plan().",
+      "detail": null
+    },
+    {
+      "time": "12:37:31",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Drafted 8 assets from 8 selected moments.",
+      "detail": "6 approval, 1 auto, 1 escalate"
+    },
+    {
+      "time": "12:37:31",
+      "level": "tool",
+      "tag": "TOOL:generate_asset_plan",
+      "message": "generate_asset_plan returned.",
+      "detail": "105.67s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_short_pricing_3x, slot=Tuesday at 9:00 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_short_spreadsheet_40, slot=Friday at 9:00 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_x_outreach_specificity, slot=Wednesday at 11:30 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_x_distribution_loop, slot=Week 2 Tuesday at 11:30 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_x_price_changed_questions, slot=Week 2 Thursday at 11:30 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Calling schedule_asset(asset_id=a_newsletter_pricing_arc, slot=Week 2 Sunday at 8:00 AM ET).",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Tuesday at 9:00 AM ET for a_short_pricing_3x.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Friday at 9:00 AM ET for a_short_spreadsheet_40.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Wednesday at 11:30 AM ET for a_x_outreach_specificity.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Week 2 Tuesday at 11:30 AM ET for a_x_distribution_loop.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Week 2 Thursday at 11:30 AM ET for a_x_price_changed_questions.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "Reserved Week 2 Sunday at 8:00 AM ET for a_newsletter_pricing_arc.",
+      "detail": null
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:42",
+      "level": "tool",
+      "tag": "TOOL:schedule_asset",
+      "message": "schedule_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_short_pricing_3x).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_short_spreadsheet_40).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_x_outreach_specificity).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_x_distribution_loop).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_x_price_changed_questions).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_newsletter_pricing_arc).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Calling publish_asset(asset_id=a_yt_metadata_source).",
+      "detail": null
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_short_pricing_3x is a public action and needs creator approval.",
+      "detail": "type: YouTube Short, confidence: 88%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_short_spreadsheet_40 is a public action and needs creator approval.",
+      "detail": "type: YouTube Short, confidence: 85%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_x_outreach_specificity is a public action and needs creator approval.",
+      "detail": "type: X post, confidence: 82%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_x_distribution_loop is a public action and needs creator approval.",
+      "detail": "type: X post, confidence: 78%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_x_price_changed_questions is a public action and needs creator approval.",
+      "detail": "type: X post, confidence: 72%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "a_newsletter_pricing_arc is a public action and needs creator approval.",
+      "detail": "type: Newsletter, confidence: 80%"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "Published a_yt_metadata_source to YouTube.",
+      "detail": "remote id yo_a_source_1"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.01s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.02s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.02s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.02s"
+    },
+    {
+      "time": "12:37:47",
+      "level": "tool",
+      "tag": "TOOL:publish_asset",
+      "message": "publish_asset returned.",
+      "detail": "0.02s"
+    },
+    {
+      "time": "12:37:51",
+      "level": "verify",
+      "tag": "TOOL:verify_publish_result",
+      "message": "Calling verify_publish_result(asset_id=a_yt_metadata_source).",
+      "detail": null
+    },
+    {
+      "time": "12:37:51",
+      "level": "learn",
+      "tag": "TOOL:analyze_performance",
+      "message": "Calling analyze_performance(asset_id=a_short_pricing).",
+      "detail": null
+    },
+    {
+      "time": "12:37:51",
+      "level": "verify",
+      "tag": "TOOL:verify_publish_result",
+      "message": "Verified a_yt_metadata_source live.",
+      "detail": "remote id yo_a_source_1"
+    },
+    {
+      "time": "12:37:51",
+      "level": "verify",
+      "tag": "TOOL:verify_publish_result",
+      "message": "verify_publish_result returned.",
+      "detail": "0.00s"
+    },
+    {
+      "time": "12:38:30",
+      "level": "learn",
+      "tag": "TOOL:analyze_performance",
+      "message": "The post hit 94,800 views against a 41,200 baseline (2.3x), with retention at 81% vs 62% and CTR at 9.1% vs 5.4%, converting 1,240 new subscribers.",
+      "detail": null
+    },
+    {
+      "time": "12:38:30",
+      "level": "learn",
+      "tag": "RECOMMENDATION",
+      "message": "Next content: The five-line email I sent when I tripled my price.",
+      "detail": null
+    },
+    {
+      "time": "12:38:30",
+      "level": "learn",
+      "tag": "TOOL:analyze_performance",
+      "message": "analyze_performance returned.",
+      "detail": "38.67s"
+    },
+    {
+      "time": "12:38:35",
+      "level": "memory",
+      "tag": "TOOL:update_creator_memory",
+      "message": "Calling update_creator_memory(learning=First-person pricing experiments fram..., strong_topic=pricing).",
+      "detail": null
+    },
+    {
+      "time": "12:38:35",
+      "level": "memory",
+      "tag": "MEMORY:creator_alex",
+      "message": "Wrote to memory: First-person pricing experiments framed as a specific numeric change plus a counterintuitive result (\"I tripled my price, nobody left\") beat baseline ~2.3x with 81% retention. The hook pattern has three reusable parts: first person, a hard number, and a payoff that cannot be resolved from the title. Retention data shows viewers stay for the mechanism, not the outcome — so the follow-up should deliver the \"how\" (the actual email, the actual spreadsheet) as a reproduced artifact. Untested: whether the lift came from the pricing topic or the hook structure; applying the same structure to a distribution moment would separate the two.",
+      "detail": "learning"
+    },
+    {
+      "time": "12:38:35",
+      "level": "memory",
+      "tag": "TOOL:update_creator_memory",
+      "message": "update_creator_memory returned.",
+      "detail": "0.00s"
+    },
+    {
+      "time": "12:38:54",
+      "level": "reasoning",
+      "tag": "REASONING",
+      "message": "Orchestrator finished. 11 model calls, 96 tool calls.",
+      "detail": null
+    },
+    {
+      "time": "12:38:54",
+      "level": "reasoning",
+      "tag": "SUMMARY",
+      "message": "{'role': 'assistant', 'content': [{'reasoningContent': {'reasoningText': {'text': '', 'signature': 'CAISkwIKjgEIERgCKkDLUIi6W71ofdb1JK7NU88r7uce7dDSKPloJ7SURjGFEba+JSeSLCDx8wPoehsaVCywaiaTLuCE1+KVKzSd6jEXMg1jbGF1ZGUtb3B1cy01OAFCCHRoaW5raW5nWiQ2NTNlMmE4OC0wYTY2LTQxNTMtODMzNC03Y2FkNGJmZmI1Y2OoAc6x4NQGEgx+0ffBwxbYjhXeRawaDNG2EnlS022qewreeiIwBakDFvvyfl+c4C8TdESj5PWJKZhoaUQ6swjm3PEU3d+b80EqmKrHDrtlfX+3mhRaKjL38bg874Dp2696MWRMWA3nwrtS8iQxaDXCAREMbKv8C/9cCk/RTK1Rk3dHNxaJ6TDnNRgB'}}}, {'text': 'Done. Here\\'s where things stand.\\n\\n**Candidates: 21 found, 13 rejected, 8 selected → 8 assets.**\\n\\n**Why ",
+      "detail": null
+    },
+    {
+      "time": "12:38:54",
+      "level": "gatekeeper",
+      "tag": "GATEKEEPER",
+      "message": "6 public actions require creator approval. Pausing execution.",
+      "detail": null
+    }
+  ],
+  "metrics": {
+    "candidateMoments": 21,
+    "analysed": 21,
+    "selected": 8,
+    "rejectionRate": 62,
+    "actionsPlanned": 8,
+    "actionsVerified": 1,
+    "recoveries": 0,
+    "toolCalls": 96,
+    "manualMinutes": 142,
+    "kreatrMinutes": 32,
+    "savedMinutes": 110,
+    "decisionsAvoided": 23,
+    "decisionReduction": 79
+  },
+  "performance": {
+    "assetId": "a_short_pricing",
+    "asset": "I tripled my price. Nobody left.",
+    "views": 94800,
+    "baselineViews": 41200,
+    "multiple": "2.3x",
+    "retention": 81,
+    "baselineRetention": 62,
+    "ctr": 9.1,
+    "baselineCtr": 5.4,
+    "newSubscribers": 1240
+  },
+  "nextRecommendation": {
+    "title": "The five-line email I sent when I tripled my price",
+    "format": "First-person written case study, same format and channel as the winner. 800–1,200 words, single narrative, with the actual email reproduced in full as the centrepiece artifact. Publish within 10 days while the 1,240 new subscribers are still warm.",
+    "confidence": 78,
+    "reason": "The winner proved two things independently: the topic (pricing) pulls clicks, and the open-loop hook holds attention. But 81% retention against a 62% baseline tells you something more specific — people stayed because they wanted the mechanism, not the outcome. They already had the outcome in the title. The thing they clicked for was *how*, and the honest read is that a single post can only partly deliver that. This piece pays off the exact question the last one opened, which is the cheapest audience demand you will ever get to serve. Reproducing the actual email is what makes it a new post rather than a rerun: it's an artifact, not a retelling, and artifacts are the part readers screenshot and forward. The title keeps the three mechanics that worked — first person, a specific number, a concrete noun that can't be resolved from the headline — while swapping the promise from result to method, so it reads as a sequel rather than a repeat. Main risk, stated plainly: sequels typically underperform the original because the curiosity gap is narrower, and one 2.3x post is a single data point, not a trend. Expect something between baseline and the winner, not another 94,800. Treat this as the post that converts the new subscribers into readers who trust you on pricing specifically — that's the durable asset here, more than the view count.",
+    "evidence": [
+      "Pricing is the creator's strongest topic and the winner sat directly on it: 94,800 views vs a 41,200 baseline (2.3x)",
+      "Retention of 81% vs 62% baseline indicates readers stayed for the unresolved 'how', which this post delivers directly — the demand is already measured, not assumed",
+      "CTR 9.1% vs 5.4% baseline came from a hook pattern with three reusable parts (first person, specific number, counterintuitive or concrete payoff); the proposed title preserves all three",
+      "1,240 new subscribers arrived via a pricing post and have no other content from this creator on that topic yet — highest-intent segment available, and it decays",
+      "Counter-evidence a sceptic should weigh: this is one post, not a validated pattern; sequel posts usually capture less curiosity than the original because the headline gap is smaller",
+      "Counter-evidence: it is not separable from this data whether the lift came from the pricing topic or the hook structure — if it was the hook, the same structure applied to distribution or AI tools would test that, and is the better next experiment if this post underperforms"
+    ]
+  }
+}

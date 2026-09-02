@@ -20,7 +20,7 @@
 | Performance learning loop | ✅ Built | Closed loop confirmed in replay |
 | Web wired to API | ✅ Built | Real backend ids render; fail-soft confirmed |
 | Ingest (ffmpeg + STT) | ✅ Built | Real video ingested end to end; AWS Transcribe path still unrun |
-| **Live agent run** | ❌ **Never executed** | No AWS credentials available |
+| **Live agent run** | ✅ **Executed** | 21 candidates → 8 selected, 62% rejected, 96 tool calls |
 | Deployment | ✅ **Live** | https://kreatr-demo.duckdns.org — HTTPS, verified end to end |
 | Demo video | ⬜ Not started | — |
 | Architecture diagram (image) | ✅ Built | SVG + PNG in `architecture/`, embedded in README |
@@ -62,12 +62,13 @@
       WAV → 200 words in 12 lines via `whisper_local`
 - [ ] **Run against real Amazon Transcribe** — needs AWS credentials + S3 bucket
 
-### Phase 5 — Live validation ❌ *(the critical path)*
-- [ ] AWS account with Bedrock model access for Claude
-- [ ] `scripts/live_smoke.py --preflight` passes
-- [ ] `scripts/live_smoke.py` full run passes
-- [ ] Tune `score_moment` prompt until rejection behaviour is right
-- [ ] Capture a real run's log for the demo
+### Phase 5 — Live validation ✅
+- [x] A provider the agent can actually reach — Bedrock is quota-blocked on a
+      new AWS account, so `KREATR_MODEL_PROVIDER=anthropic` runs the same agent
+- [x] `scripts/live_smoke.py --preflight` passes
+- [x] `scripts/live_smoke.py` full run passes, every check
+- [x] Rejection behaviour is right first time — 62%, no prompt tuning needed
+- [x] Real run captured at `docs/runs/first-live-run.json`
 
 ### Phase 6 — Ship 🟡
 - [x] Deployment config written and verified (`deploy/`, `DEPLOY.md`)
@@ -83,10 +84,10 @@
 
 ## 3. Remaining work, ranked
 
-**1. Live agent run** — the only unvalidated assumption in the project. Everything
-else is built around the premise that the agent rejects most candidates, and that has
-never been observed. Prompt iteration has an unbounded tail; start it first.
-*Blocked on: AWS Bedrock access.*
+**1. Live agent run** — ✅ **done, and the thesis held.** 21 candidates, 8 selected,
+**62% rejected**, 96 tool calls, 6 actions held at the approval gate. The rejections
+name real flaws. No prompt tuning was needed. *Remaining: top up Anthropic credit —
+the trial balance ran out after two runs.*
 
 **2. Deployment** — ✅ **done.** Live at https://kreatr-demo.duckdns.org over
 HTTPS. Devpost's live-demo URL requirement is satisfied. Re-deploy after a push

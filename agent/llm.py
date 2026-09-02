@@ -23,9 +23,52 @@ from agent.config import settings
 T = TypeVar("T", bound=BaseModel)
 
 
+def _build_anthropic() -> Model:
+    """A fresh Anthropic model, deliberately not cached.
+
+    The client underneath is async, and its connection pool binds to whichever
+    event loop first uses it. Strands runs each tool call in its own loop, so a
+    shared instance is reused against a loop that has since closed and every
+    call after the first dies with `RuntimeError: Event loop is closed` — which
+    surfaces as a tool failure, gets retried, and doubles the model spend. One
+    client per call is the fix; constructing it costs nothing next to the round
+    trip it is about to make.
+    """
+    # Imported lazily so a Bedrock-only deployment needs no anthropic package.
+    from strands.models.anthropic import AnthropicModel
+
+    if not settings.anthropic_api_key:
+        raise RuntimeError(
+            "KREATR_MODEL_PROVIDER is 'anthropic' but ANTHROPIC_API_KEY is empty.\n"
+            "Set it in .env, or switch back with KREATR_MODEL_PROVIDER=bedrock."
+        )
+    client_args: dict[str, object] = {"api_key": settings.anthropic_api_key}
+    if settings.anthropic_workspace_id:
+        # An identity-linked key is not bound to one workspace, so every request
+        # has to say which it acts in or the API rejects it as a 400.
+        client_args["default_headers"] = {
+            "anthropic-workspace-id": settings.anthropic_workspace_id
+        }
+    return AnthropicModel(
+        client_args=client_args,
+        model_id=settings.anthropic_model_id,
+        # Required by the Anthropic client; Bedrock infers its own ceiling.
+        max_tokens=settings.max_output_tokens,
+    )
+
+
 @functools.lru_cache(maxsize=1)
+def _build_bedrock() -> Model:
+    """Cached: boto3 is synchronous, so one client is safe to share, and
+    building it is the expensive part."""
+    return BedrockModel(
+        model_id=settings.bedrock_model_id,
+        region_name=settings.aws_region,
+    )
+
+
 def build_model() -> Model:
-    """The model both the orchestrator and the analysis calls share.
+    """The model the orchestrator and the analysis calls reason with.
 
     Bedrock is the default. The Anthropic provider is the escape hatch for when
     Bedrock is unavailable — a new AWS account can sit at a zero token quota
@@ -33,31 +76,13 @@ def build_model() -> Model:
     same orchestrator, same eleven tools, same prompts.
     """
     if settings.model_provider == "anthropic":
-        # Imported lazily so a Bedrock-only deployment needs no anthropic package.
-        from strands.models.anthropic import AnthropicModel
-
-        if not settings.anthropic_api_key:
-            raise RuntimeError(
-                "KREATR_MODEL_PROVIDER is 'anthropic' but ANTHROPIC_API_KEY is empty.\n"
-                "Set it in .env, or switch back with KREATR_MODEL_PROVIDER=bedrock."
-            )
-        return AnthropicModel(
-            client_args={"api_key": settings.anthropic_api_key},
-            model_id=settings.anthropic_model_id,
-            # Required by the Anthropic client; Bedrock infers its own ceiling.
-            max_tokens=settings.max_output_tokens,
-        )
-
+        return _build_anthropic()
     if settings.model_provider != "bedrock":
         raise RuntimeError(
             f"Unknown KREATR_MODEL_PROVIDER {settings.model_provider!r}. "
             "Expected 'bedrock' or 'anthropic'."
         )
-
-    return BedrockModel(
-        model_id=settings.bedrock_model_id,
-        region_name=settings.aws_region,
-    )
+    return _build_bedrock()
 
 
 def analyse(

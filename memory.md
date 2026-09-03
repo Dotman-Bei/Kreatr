@@ -66,10 +66,13 @@ reading the error string, not by assuming credentials are wrong.
    submitted`** — Anthropic models need a one-time form, once per account, from
    the Bedrock **Model catalog** (the old *Model access* page is retired and
    there is no longer a Granted toggle). Took a few minutes to propagate.
-4. **`ThrottlingException: Too many tokens per day`** — a new account's
-   on-demand token quota starts at or near zero, so even 8-token probes fail.
-   This is account warm-up, not a real limit. It lifts on its own or via a
-   Service Quotas increase request.
+4. **`ThrottlingException: Too many tokens per day`** — the quota is applied at
+   **0** for every model, so even an 8-token probe fails. This was first read as
+   account warm-up that would lift on its own. **It did not.** Polled 3.6 hours,
+   then re-checked hours later, then again on 3 Sep: still zero. Service Quotas
+   marks these **Not adjustable**, so there is no increase to request either.
+   The only remaining lever is an AWS Support case — `handoff.md` §6 has the
+   text, including the sentence that stops support from blaming IAM.
 
 Also seen: **`AccessDeniedException: <model> is not available for this
 account`** on the newest tier (Opus 5, Sonnet 5, Opus 4.8). Different from the
@@ -145,6 +148,24 @@ while iterating on the `score_moment` prompt.
 | Model: `global.anthropic.claude-opus-5` | Bedrock ids take a cross-region inference-profile prefix | Switch to `us.`/`eu.` if `global.` is not enabled |
 | Unsplash ids centralised in `lib/images.ts` | Every id was resolution- and subject-checked; two 404'd, several were wrong subjects | Add new ids there, verify before use |
 
+## 3b. What AWS is doing in this project
+
+Worth stating plainly, because it caused most of the friction and the scope is
+narrower than it looks. AWS is Amazon's cloud platform — rented compute, storage
+and managed services. **Kreatr is not hosted on it**; it runs on a Contabo VPS.
+Four services are referenced and only one is load-bearing:
+
+| Service | Role | Status |
+| :--- | :--- | :--- |
+| **Bedrock** | Rents model access — the agent's brain | Configured, default, **never executed** |
+| **Transcribe** | Speech to text for ingest | Optional; `whisper_local` is what ran |
+| **S3** | Storage, only for the Transcribe path | Unused |
+| **IAM** | Issues the access keys | Working |
+
+The hackathon leans AWS because Strands is AWS's SDK, which is why Bedrock stays
+the configured default despite never working on this account. Swapping providers
+is one env var (`KREATR_MODEL_PROVIDER`) and changes nothing else.
+
 ## 4. Environment facts
 
 ### The VPS (where the project now lives — Ubuntu 24.04)
@@ -163,6 +184,11 @@ The repo was moved onto the VPS; this is the primary environment now.
   5432 and redis 6379. Kreatr uses **8010** (API) and **3010** (web)
 - **Docker: NOT installed** — and deliberately not being installed. See `DEPLOY.md` §1
 - **AWS credentials: NONE** → live agent still has never run
+- **Anthropic account is out of credit** as of 3 Sep — preflight reports it, and
+  it arrives as a 400 rather than a 429. ~$5 restores it
+- **`kreatr-web` was found stopped on 3 Sep** (exited cleanly 30 Aug, so
+  `Restart=on-failure` did not fire) and the site was 502ing. `systemctl start
+  kreatr-web` fixed it. Check `systemctl is-active` before any demo
 - Public IP `169.58.153.9`. Kreatr is live on `kreatr-demo.duckdns.org` (DuckDNS,
   same pattern as the other project), TLS via certbot, cert valid to 23 Nov 2026
 - **ffmpeg 6.1.1 installed** by `provision.sh`; **espeak-ng** and

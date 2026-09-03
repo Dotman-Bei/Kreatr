@@ -2,7 +2,7 @@
 
 > Status and sequencing. See `handoff.md` for the immediate next action.
 >
-> **Last updated:** 25 August 2026 · **Deadline:** 14 September 2026, 5:00 PM PDT
+> **Last updated:** 3 September 2026 · **Deadline:** 14 September 2026, 5:00 PM PDT (11 days)
 
 ---
 
@@ -101,18 +101,19 @@ remaining piece and depends on the demo video.
 
 ## 4. Time budget
 
-20 days remaining. Suggested shape:
+**11 days remaining.** Everything on the original plan is done except the video
+and the submission — both blocked only on having credit to run the agent once
+more (`handoff.md` §8).
 
 | Window | Focus |
 | :--- | :--- |
-| Days 1–3 | Bedrock access, first live run, prompt iteration |
-| Days 4–6 | Deployment, HTTPS, live URL |
-| Days 7–9 | Real ingest on a real video; end-to-end rehearsal |
-| Days 10–14 | Demo video, architecture diagram, README polish |
-| Days 15–20 | Buffer, Devpost submission, bonus posts |
+| Days 1–2 | Unblock inference: AWS support case, or ~$5 Anthropic credit |
+| Days 3–5 | Film the demo video against a live run |
+| Days 6–7 | Devpost write-up and submission |
+| Days 8–11 | Buffer. *(Optional)* Strands ModelRouter, builder.aws.com posts |
 
-The buffer is not optional — the first live run is the most likely source of
-surprise.
+The buffer is real this time: the first live run already happened and held, so
+the largest source of surprise is behind us.
 
 ## 5. Guardrails
 

@@ -173,6 +173,14 @@ Then: approve 3 → X thread fails (HTTP 504) → retries → verifies → prici
 
 ## 10. Measured claims
 
-Only claim what is instrumented. Current demo-run numbers come from
-`RunMetrics` and must be labelled as controlled demo estimates, never user research:
-time saved, decisions avoided, rejection rate, actions verified, recoveries.
+Only claim what is instrumented. Numbers come from `RunMetrics` and must be
+labelled as controlled demo estimates, never user research: time saved, decisions
+avoided, rejection rate, actions verified, recoveries.
+
+**From the first live run (25 Aug 2026, `docs/runs/first-live-run.json`):** 21
+candidates, 8 selected, **62% rejected**, 96 tool calls, 6 public actions held at
+the approval gate, 8 assets drafted, one learning written back to Creator Memory.
+
+That run used `claude-opus-5` through the **Anthropic API**, not Bedrock — the
+AWS account has never been able to invoke a model (`handoff.md` §6). Say so when
+describing the AWS integration; it is built and configured, not demonstrated.

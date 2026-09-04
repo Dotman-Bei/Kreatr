@@ -44,6 +44,11 @@ class Settings:
     # and `global.anthropic.claude-opus-5` on Bedrock.
     anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
     anthropic_model_id: str = os.getenv("ANTHROPIC_MODEL_ID", "claude-opus-5")
+    # Points the Anthropic client at an Anthropic-compatible gateway instead of
+    # api.anthropic.com — a router with its own credit, say. Empty means direct.
+    # Such gateways usually expose their own subset of model ids, so set
+    # ANTHROPIC_MODEL_ID to one they actually serve.
+    anthropic_base_url: str = os.getenv("ANTHROPIC_BASE_URL", "").strip().rstrip("/")
     # Identity-linked keys must name the workspace they act in on every request.
     # Plain workspace-scoped keys carry it implicitly and leave this empty.
     anthropic_workspace_id: str = os.getenv("ANTHROPIC_WORKSPACE_ID", "")
@@ -106,7 +111,10 @@ class Settings:
         if self.is_replay:
             return "none (replay)"
         if self.model_provider == "anthropic":
-            return f"anthropic:{self.anthropic_model_id}"
+            # Name the gateway when one is in front, so a run is never mistaken
+            # for a direct Anthropic call.
+            via = f" via {self.anthropic_base_url}" if self.anthropic_base_url else ""
+            return f"anthropic:{self.anthropic_model_id}{via}"
         return f"bedrock:{self.bedrock_model_id}"
 
 

@@ -86,6 +86,9 @@ def preflight_anthropic() -> bool:
     ok(f"Model:  {settings.anthropic_model_id}")
 
     kwargs = {"api_key": settings.anthropic_api_key}
+    if settings.anthropic_base_url:
+        kwargs["base_url"] = settings.anthropic_base_url
+        ok(f"Gateway:   {settings.anthropic_base_url}")
     if settings.anthropic_workspace_id:
         kwargs["default_headers"] = {
             "anthropic-workspace-id": settings.anthropic_workspace_id

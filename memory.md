@@ -97,6 +97,23 @@ while iterating on the `score_moment` prompt.
 - **An empty credit balance arrives as a 400, not a 429.** Check the message
   body for "credit balance"; the `RateLimitError` branch never fires for it.
 
+### Anthropic-compatible gateways
+`ANTHROPIC_BASE_URL` points the Anthropic client at a gateway instead of
+api.anthropic.com. It works, and `model_label` names the gateway so a routed run
+can never be presented as a direct call.
+
+**AgentRouter (agentrouter.org) will not work for this project.** It is
+Anthropic-compatible and a simple `messages.create` succeeds, but the SDK stamps
+`x-stainless-async` on every request and the router rejects async clients with
+`401 unauthorized client detected`. Strands uses `AsyncAnthropic` internally, so
+every agent call trips it. Diagnosed by elimination: sync client OK, tools OK,
+system prompt OK, sync streaming OK, async client 401.
+
+Do not work around this by patching Strands to the sync client or stripping the
+header. The block is deliberate — it is a free platform for AI *coding* tools
+(Claude Code, Cline, Cursor) and the check is how they keep it to that use.
+Their error points at a Discord; ask there instead.
+
 ### SSE
 - **The server sends no `done` event for an `awaiting_approval` run.** It only
   fires for `completed`/`failed`, and the stream is deliberately held open so

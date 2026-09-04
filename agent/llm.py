@@ -43,6 +43,8 @@ def _build_anthropic() -> Model:
             "Set it in .env, or switch back with KREATR_MODEL_PROVIDER=bedrock."
         )
     client_args: dict[str, object] = {"api_key": settings.anthropic_api_key}
+    if settings.anthropic_base_url:
+        client_args["base_url"] = settings.anthropic_base_url
     if settings.anthropic_workspace_id:
         # An identity-linked key is not bound to one workspace, so every request
         # has to say which it acts in or the API rejects it as a 400.

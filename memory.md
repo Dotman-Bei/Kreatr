@@ -186,9 +186,11 @@ The repo was moved onto the VPS; this is the primary environment now.
 - **AWS credentials: NONE** → live agent still has never run
 - **Anthropic account is out of credit** as of 3 Sep — preflight reports it, and
   it arrives as a 400 rather than a 429. ~$5 restores it
-- **`kreatr-web` was found stopped on 3 Sep** (exited cleanly 30 Aug, so
-  `Restart=on-failure` did not fire) and the site was 502ing. `systemctl start
-  kreatr-web` fixed it. Check `systemctl is-active` before any demo
+- **`kreatr-web` was found stopped on 3 Sep**, having exited cleanly on 30 Aug.
+  `Restart=on-failure` ignores exit status 0, so systemd left it down and the
+  site served 502s for four days. Both units are now `Restart=always` — a clean
+  exit is still an outage. Fix verified by killing each process and watching it
+  come back
 - Public IP `169.58.153.9`. Kreatr is live on `kreatr-demo.duckdns.org` (DuckDNS,
   same pattern as the other project), TLS via certbot, cert valid to 23 Nov 2026
 - **ffmpeg 6.1.1 installed** by `provision.sh`; **espeak-ng** and

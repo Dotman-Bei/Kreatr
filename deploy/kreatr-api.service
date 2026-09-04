@@ -9,6 +9,10 @@
 
 [Unit]
 Description=Kreatr API (FastAPI + Strands agent)
+# Five failures inside a minute means a real fault, not a blip. These belong in
+# [Unit]; systemd ignores them under [Service].
+StartLimitIntervalSec=60
+StartLimitBurst=5
 After=network-online.target
 Wants=network-online.target
 
@@ -25,7 +29,10 @@ ExecStart=/root/kreatr/Kreatr/.venv/bin/uvicorn api.main:app \
     --timeout-keep-alive 65 \
     --no-access-log
 
-Restart=on-failure
+# `always` for the same reason as the web unit: uvicorn exiting cleanly is still
+# an outage. Restarting does discard the in-memory run store, but a dead API
+# loses those runs anyway and serves 502s on top.
+Restart=always
 RestartSec=5s
 
 # A live run holds the process for minutes; never kill it mid-run on reload.

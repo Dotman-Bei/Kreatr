@@ -71,9 +71,10 @@ systemctl status kreatr-api kreatr-web --no-pager
 curl -s https://kreatr-demo.duckdns.org/api/health
 ```
 
-`kreatr-web` was found stopped on 3 Sep (it had exited on 30 Aug) and the site was
-502ing. `systemctl start kreatr-web` fixed it. Both units are `enabled`, so this
-survives reboots — but check `is-active` before demoing, and see §7.
+Both units are `enabled` and now set `Restart=always`, so a crash *or* a clean
+exit is recovered within about 10 seconds. Verified by killing each process and
+watching systemd bring it back. Still worth a glance at `is-active` before
+demoing, but an unattended outage should no longer be possible.
 
 ## 4. What AWS is, and why this project touches it
 
@@ -224,7 +225,6 @@ switch means that decision needs no code change.
 | :--- | :--- | :--- |
 | **Bedrock never executed** | The AWS story is configured, not demonstrated | §6. Do not overclaim it |
 | **Out of Anthropic credit** | Cannot run the agent right now | ~$5 fixes it |
-| `kreatr-web` exited once unattended | Site 502s until restarted | Found 3 Sep; check `is-active` before demoing. If it recurs, look at `Restart=on-failure` — a clean exit does not trigger it |
 | Amazon Transcribe path unrun | The default STT provider is unverified | Needs credentials + an S3 bucket. `whisper_local` is verified |
 | Run store is in-memory | Runs vanish on API restart | `data/runs/*.json` is a mirror for inspection, not reloaded on boot |
 | Analytics are seeded | `get_creator_analytics` returns fixture data | Acceptable per `build(1).md` §6 |

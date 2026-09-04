@@ -221,6 +221,16 @@ cd /root/kreatr/Kreatr && git pull
 sudo DOMAIN=kreatr-demo.duckdns.org ./deploy/provision.sh
 ```
 
+### Restart policy
+
+Both units use `Restart=always`, not `on-failure`. On 30 Aug `kreatr-web` exited
+with status 0; `on-failure` ignores a clean exit, so systemd left it down and the
+site served 502s for four days before anyone looked. Neither process has a
+legitimate reason to exit, so any exit is an outage. `StartLimitBurst=5` inside
+`StartLimitIntervalSec=60` still stops a genuinely broken service (missing build,
+claimed port) from looping forever. Both directives live in `[Unit]` — systemd
+ignores them under `[Service]`.
+
 ### Both services are single-process on purpose
 
 `kreatr-api.service` has no `--workers` flag. More than one worker gives each

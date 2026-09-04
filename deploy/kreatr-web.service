@@ -8,6 +8,11 @@
 
 [Unit]
 Description=Kreatr web (Next.js)
+# Give up only after five failures inside a minute — that is a real fault (a
+# missing build, a claimed port), not a blip worth retrying forever. These two
+# belong in [Unit]; systemd ignores them under [Service].
+StartLimitIntervalSec=60
+StartLimitBurst=5
 After=network-online.target kreatr-api.service
 Wants=network-online.target
 
@@ -25,7 +30,10 @@ Environment=KREATR_API_ORIGIN=http://127.0.0.1:8010
 
 ExecStart=/usr/bin/npm run start
 
-Restart=on-failure
+# `always`, not `on-failure`: this process has no legitimate reason to exit, and
+# on 30 Aug it exited with status 0 — so on-failure ignored it and the site
+# served 502s for four days. A clean exit here is still an outage.
+Restart=always
 RestartSec=5s
 
 StandardOutput=journal

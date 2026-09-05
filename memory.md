@@ -67,18 +67,22 @@ reading the error string, not by assuming credentials are wrong.
    the Bedrock **Model catalog** (the old *Model access* page is retired and
    there is no longer a Granted toggle). Took a few minutes to propagate.
 4. **`ThrottlingException: Too many tokens per day`** — the quota is applied at
-   **0** for every model, so even an 8-token probe fails. **Confirmed
-   account-wide on 5 Sep**: the same error appears in the Bedrock console
-   Playground, signed in as the root user, on *Amazon Nova Micro* — a
-   first-party Amazon model. That rules out our code, the `kreatr` IAM user,
-   Anthropic-specific gating and the use-case form in one test. If you are
-   re-diagnosing this, run the Playground first; it removes every variable we
-   control. This was first read as
-   account warm-up that would lift on its own. **It did not.** Polled 3.6 hours,
-   then re-checked hours later, then again on 3 Sep: still zero. Service Quotas
-   marks these **Not adjustable**, so there is no increase to request either.
-   The only remaining lever is an AWS Support case — `handoff.md` §6 has the
-   text, including the sentence that stops support from blaming IAM.
+   **0** for every model, so even an 8-token probe fails.
+
+   First read as account warm-up that would lift on its own. **It did not.**
+   Polled 3.6 hours, re-checked hours later, then again on 3 and 5 Sep: still
+   zero. Service Quotas marks these **Not adjustable**, so there is no increase
+   to request either.
+
+   **Confirmed account-wide on 5 Sep.** The Bedrock console Playground, signed in
+   as the root user, returns the same error on *Amazon Nova Micro* — a
+   first-party Amazon model. One test rules out our code, the `kreatr` IAM user,
+   Anthropic-specific gating and the use-case form. **Run the Playground first
+   when re-diagnosing**; it removes every variable under our control.
+
+   Remaining levers, in order: verify the payment method (see §4 — the likeliest
+   cause), then the AWS Support case whose text is in `handoff.md` §6, including
+   the sentence that stops support from blaming IAM.
 
 Also seen: **`AccessDeniedException: <model> is not available for this
 account`** on the newest tier (Opus 5, Sonnet 5, Opus 4.8). Different from the

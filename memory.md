@@ -67,7 +67,13 @@ reading the error string, not by assuming credentials are wrong.
    the Bedrock **Model catalog** (the old *Model access* page is retired and
    there is no longer a Granted toggle). Took a few minutes to propagate.
 4. **`ThrottlingException: Too many tokens per day`** — the quota is applied at
-   **0** for every model, so even an 8-token probe fails. This was first read as
+   **0** for every model, so even an 8-token probe fails. **Confirmed
+   account-wide on 5 Sep**: the same error appears in the Bedrock console
+   Playground, signed in as the root user, on *Amazon Nova Micro* — a
+   first-party Amazon model. That rules out our code, the `kreatr` IAM user,
+   Anthropic-specific gating and the use-case form in one test. If you are
+   re-diagnosing this, run the Playground first; it removes every variable we
+   control. This was first read as
    account warm-up that would lift on its own. **It did not.** Polled 3.6 hours,
    then re-checked hours later, then again on 3 Sep: still zero. Service Quotas
    marks these **Not adjustable**, so there is no increase to request either.
@@ -201,6 +207,13 @@ The repo was moved onto the VPS; this is the primary environment now.
   5432 and redis 6379. Kreatr uses **8010** (API) and **3010** (web)
 - **Docker: NOT installed** — and deliberately not being installed. See `DEPLOY.md` §1
 - **AWS credentials: NONE** → live agent still has never run
+- **AWS: a payment card was added 5 Sep** (Mastercard, set default) and Bedrock
+  was still blocked immediately after. Payment *currency* was still unset at
+  that point, and it was unconfirmed whether the card ever took AWS's
+  verification authorisation — both plausible reasons verification had not
+  completed. Nigerian cards commonly decline AWS's international authorisation
+  at the bank, so check the bank app for a ~$1 pending charge before assuming
+  AWS is at fault
 - **Anthropic account is out of credit** as of 3 Sep — preflight reports it, and
   it arrives as a 400 rather than a 429. ~$5 restores it
 - **`kreatr-web` was found stopped on 3 Sep**, having exited cleanly on 30 Aug.

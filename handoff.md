@@ -146,7 +146,18 @@ verified:
 
 Service Quotas shows an **applied value of 0** against AWS defaults in the
 billions, marked **Not adjustable** — so the "request increase" path does not
-exist. An 8-token probe fails. Polled 3.6 hours, then again hours later: no
+exist. An 8-token probe fails.
+
+**Confirmed account-wide (5 Sep).** The Bedrock console Playground, signed in as
+the root user, returns the same `ThrottlingException` on **Amazon Nova Micro** —
+a first-party Amazon model. That single test rules out our code, the `kreatr`
+IAM user, Anthropic-specific gating and the use-case form. Re-run it before
+re-diagnosing anything; it removes every variable under our control.
+
+The likeliest cause is that AWS holds new-account Bedrock inference at zero until
+a payment method is verified. A card was added on 5 Sep and changed nothing
+immediately — but the payment *currency* was still unset, and it was never
+confirmed the card accepted AWS's verification authorisation. Polled 3.6 hours, then again hours later: no
 change. A second, separate gate also applies to the newest tier (Opus 5,
 Sonnet 5, Opus 4.8): `not available for this account`, which the use-case form
 does not fix. Sonnet 4.6 or Haiku 4.5 would be fine if the quota ever lifts.

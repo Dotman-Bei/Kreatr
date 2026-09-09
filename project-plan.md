@@ -20,7 +20,7 @@
 | Performance learning loop | ✅ Built | Closed loop confirmed in replay |
 | Web wired to API | ✅ Built | Real backend ids render; fail-soft confirmed |
 | Ingest (ffmpeg + STT) | ✅ Built | Real video ingested end to end; AWS Transcribe path still unrun |
-| **Live agent run** | ✅ **Executed** | 21 candidates → 8 selected, 62% rejected, 96 tool calls |
+| **Live agent run** | ✅ **Executed ×2** | 62% then 65% rejected; learning from run 1 drove run 2's selections |
 | Deployment | ✅ **Live** | https://kreatr-demo.duckdns.org — HTTPS, verified end to end |
 | Demo video | ⬜ Not started | — |
 | Architecture diagram (image) | ✅ Built | SVG + PNG in `architecture/`, embedded in README |

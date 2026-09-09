@@ -273,6 +273,18 @@ Pinned: `strands-agents 1.53.0`, `fastapi 0.141.1`, `pydantic 2.13.4`,
   tuning was needed.** §6's prediction that the first run would be too generous
   was wrong — the prompt was already strict enough. Captured at
   `docs/runs/first-live-run.json`
+- **THE LOOP CLOSED ACROSS RUNS (9 Sep).** Second live run, `claude-sonnet-5`:
+  17 candidates, 6 selected, **65% rejected**, 81 tool calls, zero errors. The
+  significant part is not the rate. On 25 Aug the first run wrote a learning to
+  Creator Memory naming a reusable hook pattern *and flagged its own confound* —
+  "whether the lift came from the pricing topic or the hook structure; applying
+  the same structure to a distribution moment would separate the two". On 9 Sep
+  a **different model** selected a distribution moment because it "tests whether
+  the pricing-hook lift generalizes to distribution as noted in learned
+  observations". The agent designed an experiment in one run and executed it in
+  the next, two weeks and one model change apart. Captured at
+  `docs/runs/second-live-run-sonnet.json`. This is the strongest demo material
+  in the project — stronger than the rejection rate
 - **Real ingest (25 Aug):** a 77s MP4 (H.264 + AAC at 22050 Hz) went through
   ffmpeg to 16 kHz mono PCM and out of `whisper_local` as 200 words in 12
   lines, timestamps monotonic and within duration. FR-1 and FR-2 are no longer
